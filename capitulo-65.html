@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guyton Cap. 65 – Digestión y Absorción</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+    background: linear-gradient(165deg, #eef2f9 0%, #dde6f2 100%);
+    color: #1e293b;
+    line-height: 1.55;
+    padding: 26px 14px 90px;
+    min-height: 100vh;
+  }
+  .contenedor { max-width: 880px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 35%, #2563eb 70%, #0ea5e9 100%);
+    color: #fff;
+    padding: 30px 28px;
+    border-radius: 20px;
+    box-shadow: 0 14px 34px rgba(30, 58, 138, .3);
+    margin-bottom: 24px;
+  }
+  header h1 { margin: 0 0 8px; font-size: 1.45rem; letter-spacing: -.3px; }
+  header p { margin: 0; font-size: .92rem; opacity: .93; }
+  .panel {
+    position: sticky; top: 12px; z-index: 20;
+    display: flex; flex-wrap: wrap; gap: 10px;
+    align-items: center; justify-content: space-between;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(10px);
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 12px 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 6px 20px rgba(15,23,42,.09);
+    font-size: .9rem;
+    font-weight: 600;
+  }
+  .panel .marcador { color: #2563eb; }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 22px 16px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 16px rgba(15,23,42,.07);
+    border-left: 6px solid #cbd5e1;
+    transition: box-shadow .25s;
+  }
+  .card:hover { box-shadow: 0 6px 22px rgba(15,23,42,.11); }
+  .card.teoria { border-left-color: #3b82f6; }
+  .card.caso   { border-left-color: #f59e0b; }
+  .cabecera { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+  .numero {
+    background: #1e293b; color: #fff;
+    font-size: .72rem; font-weight: 700;
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex: 0 0 auto;
+  }
+  .etiqueta {
+    font-size: .68rem; font-weight: 700; letter-spacing: .6px;
+    text-transform: uppercase;
+    padding: 3px 10px; border-radius: 20px;
+  }
+  .etiqueta.t { background: #dbeafe; color: #1d4ed8; }
+  .etiqueta.c { background: #fef3c7; color: #b45309; }
+  .etiqueta.materia { background: #f1f5f9; color: #475569; }
+  .enunciado {
+    margin: 0 0 6px;
+    font-weight: 600;
+    font-size: .98rem;
+    color: #0f172a;
+  }
+  .opciones { margin-top: 8px; }
+  .opcion {
+    display: flex; align-items: flex-start; gap: 10px;
+    width: 100%; text-align: left;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 11px;
+    padding: 11px 14px;
+    margin-top: 9px;
+    font: inherit;
+    font-size: .93rem;
+    color: #1e293b;
+    cursor: pointer;
+    transition: background .18s, border-color .18s, transform .12s;
+  }
+  .opcion:hover:not(:disabled) { background: #eff6ff; border-color: #93c5fd; transform: translateX(2px); }
+  .opcion:disabled { cursor: default; }
+  .letra { font-weight: 800; color: #64748b; flex: 0 0 auto; min-width: 16px; }
+  .opcion.correcta { background: #dcfce7; border-color: #22c55e; font-weight: 600; }
+  .opcion.correcta .letra { color: #15803d; }
+  .opcion.incorrecta { background: #fee2e2; border-color: #ef4444; }
+  .opcion.incorrecta .letra { color: #b91c1c; }
+  .explicacion {
+    display: none;
+    margin-top: 14px;
+    padding: 13px 16px;
+    border-radius: 11px;
+    background: #f0f9ff;
+    border-left: 4px solid #0ea5e9;
+    font-size: .89rem;
+    color: #0c4a6e;
+  }
+  .explicacion.visible { display: block; animation: aparecer .28s ease; }
+  @keyframes aparecer {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  footer { text-align: center; font-size: .8rem; color: #64748b; margin-top: 34px; }
+  .volver {
+    position: fixed; bottom: 20px; left: 20px; z-index: 100;
+    background: #2563eb; color: #fff;
+    padding: 10px 18px; border-radius: 30px;
+    text-decoration: none; font-weight: 600;
+    box-shadow: 0 4px 14px rgba(37,99,235,.4);
+    font-size: .9rem;
+  }
+  .volver:hover { background: #1d4ed8; }
+  @media (max-width: 560px) {
+    header { padding: 22px 18px; }
+    header h1 { font-size: 1.18rem; }
+    .card { padding: 16px 15px 12px; }
+    .opcion { font-size: .88rem; }
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="volver">🏠 Inicio</a>
+
+<div class="contenedor">
+  <header>
+    <h1>📖 Guyton Cap. 65 – Digestión y Absorción en el Tubo Digestivo</h1>
+    <p>Hidrólisis · Carbohidratos · Proteínas · Grasas · Agua y electrolitos · Vitaminas · Casos clínicos</p>
+  </header>
+
+  <div class="panel">
+    <span class="marcador" id="marcador">Respondidas: 0 / 0 · Aciertos: 0</span>
+  </div>
+
+  <div id="quiz"></div>
+  <footer>Selecciona una opción para ver la explicación inmediata.</footer>
+</div>
+
+<script>
+const preguntas = [
+
+/* =========================================================
+   PRINCIPIOS GENERALES E HIDRÓLISIS (1-12)
+   ========================================================= */
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Cuál es el proceso químico básico común a la digestión de carbohidratos, grasas y proteínas?",
+  ops:["La hidrólisis","La oxidación","La fermentación","La fosforilación"],
+  ok:0,
+  exp:"La hidrólisis es el proceso básico de la digestión: las enzimas devuelven iones H y OH del agua a los polímeros, separándolos en sus unidades constituyentes. Es común a los tres macronutrientes." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"Los triglicéridos están formados por:",
+  ops:["Glicerol y tres ácidos grasos","Glucosa y fructosa","Aminoácidos unidos por enlaces peptídicos","Colesterol y fosfolípidos"],
+  ok:0,
+  exp:"Los triglicéridos (grasas neutras) son combinaciones de tres moléculas de ácidos grasos condensadas con una molécula de glicerol. Su digestión libera los ácidos grasos por hidrólisis." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"Las proteínas están formadas por aminoácidos unidos mediante:",
+  ops:["Enlaces peptídicos","Enlaces glucosídicos","Enlaces éster","Puentes disulfuro"],
+  ok:0,
+  exp:"Los aminoácidos se unen por enlaces peptídicos. La hidrólisis de estos enlaces por enzimas proteolíticas libera los aminoácidos libres." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"Los carbohidratos de la dieta son principalmente:",
+  ops:["Monosacáridos libres","Polisacáridos y disacáridos","Ácidos grasos","Aminoácidos"],
+  ok:1,
+  exp:"Casi todos los carbohidratos de los alimentos son polisacáridos (almidones) o disacáridos (sacarosa, lactosa), formados por monosacáridos unidos por condensación." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"La mucosa gastrointestinal no puede absorber los macronutrientes en su forma natural porque:",
+  ops:["Son demasiado grandes y necesitan hidrólisis previa","Son tóxicos sin digerir","No son solubles en agua","Carecen de transportadores"],
+  ok:0,
+  exp:"Los macronutrientes deben ser hidrolizados a sus unidades absorbibles (monosacáridos, aminoácidos, ácidos grasos) antes de poder atravesar la mucosa intestinal." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"Las enzimas digestivas son de naturaleza:",
+  ops:["Lipídica","Proteica","Glucídica","Mineral"],
+  ok:1,
+  exp:"Todas las enzimas digestivas son proteínas secretadas por las glándulas gastrointestinales. Actúan como catalizadores de las reacciones de hidrólisis." },
+
+{ cat:"Principios generales", tipo:"caso",
+  q:"Paciente con pancreatitis crónica que presenta malabsorción global. ¿Qué proceso está alterado?",
+  ops:["La hidrólisis enzimática de los nutrientes","La absorción de agua","La motilidad gástrica","La secreción de bilis"],
+  ok:0,
+  exp:"La pancreatitis crónica reduce la secreción de enzimas pancreáticas (lipasa, proteasas, amilasa), lo que altera la hidrólisis de grasas, proteínas y carbohidratos, causando malabsorción." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"La condensación de monosacáridos para formar polisacáridos implica:",
+  ops:["La eliminación de una molécula de agua","La adición de una molécula de agua","La oxidación de la glucosa","La fosforilación"],
+  ok:0,
+  exp:"La condensación une monosacáridos eliminando una molécula de agua por enlace. La digestión invierte este proceso mediante hidrólisis." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"El producto final de la digestión de los carbohidratos es:",
+  ops:["Maltosa","Monosacáridos","Almidón","Glucógeno"],
+  ok:1,
+  exp:"La digestión de los carbohidratos termina en monosacáridos (glucosa, galactosa y fructosa), que son hidrosolubles y se absorben de inmediato hacia la sangre portal." },
+
+{ cat:"Principios generales", tipo:"caso",
+  q:"Paciente con fibrosis quística que presenta esteatorrea. ¿Qué mecanismo explica la malabsorción de grasas?",
+  ops:["Obstrucción de los conductos pancreáticos","Exceso de sales biliares","Aumento de la motilidad intestinal","Deficiencia de lactasa"],
+  ok:0,
+  exp:"La fibrosis quística produce moco espeso que obstruye los conductos pancreáticos, impidiendo la llegada de la lipasa pancreática al duodeno. Sin lipasa, los triglicéridos no se hidrolizan y aparecen en las heces (esteatorrea)." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"La digestión de las grasas requiere inicialmente:",
+  ops:["Emulsificación por sales biliares","Hidrólisis por amilasa","Desnaturalización por ácido","Fosforilación"],
+  ok:0,
+  exp:"Las grasas deben ser emulsificadas por las sales biliares para reducir el tamaño de los glóbulos lipídicos y aumentar la superficie de acción de la lipasa pancreática, que es hidrosoluble." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"La lipasa pancreática hidroliza los triglicéridos en:",
+  ops:["Ácidos grasos y monoglicéridos","Glucosa y galactosa","Aminoácidos libres","Colesterol libre"],
+  ok:0,
+  exp:"La lipasa pancreática, junto con la colipasa, hidroliza los triglicéridos en ácidos grasos libres y monoglicéridos, que luego se incorporan a las micelas." },
+
+/* =========================================================
+   DIGESTIÓN DE CARBOHIDRATOS (13-28)
+   ========================================================= */
+{ cat:"Carbohidratos", tipo:"teoria",
+  q:"¿Cuáles son las tres fuentes principales de carbohidratos en la dieta?",
+  ops:["Sacarosa, lactosa y almidones","Glucosa, fructosa y galactosa","Celulosa, pectina y lignina","Amilosa, amilopectina y glucógeno"],
+  ok:0,
+  exp:"Las fuentes más importantes son la sacarosa (azúcar de caña), la lactosa (azúcar de la leche) y los almidones (polisacáridos vegetales). Otras fuentes menores son el glucógeno, el alcohol y las pectinas." },
+
+{ cat:"Carbohidratos", tipo:"teoria",
+  q:"La ptialina salival es una enzima que:",
+  ops:["Digiere proteínas","Inicia la digestión del almidón","Digiere grasas","Neutraliza el ácido"],
+  ok:1,
+  exp:"La ptialina (α-amilasa salival) es secretada por la glándula parótida e hidroliza el almidón en maltosa y polímeros pequeños de glucosa (3-9 moléculas)." },
+
+{ cat:"Carbohidratos", tipo:"teoria",
+  q:"¿Qué porcentaje del almidón ingerido se hidroliza en la boca antes de la deglución?",
+  ops:["No más del 5%","30-40%","60-70%","90%"],
+  ok:0,
+  exp:"En el momento de la deglución, no más del 5% de los almidones ingeridos se encuentran ya hidrolizados, porque el tiempo de contacto con la ptialina en la boca es breve." },
+
+{ cat:"Carbohidratos", tipo:"teoria",
+  q:"La amilasa salival se inactiva en el estómago cuando el pH desciende por debajo de:",
+  ops:["4","7","2","9"],
+  ok:0,
+  exp:"La actividad de la amilasa salival desaparece cuando el pH gástrico desciende por debajo de 4, antes de que los alimentos se mezclen completamente con las secreciones gástricas." },
+
+{ cat:"Carbohidratos", tipo:"teoria",
+  q:"La α-amilasa pancreática actúa sobre el almidón en:",
+  ops:["El estómago","El duodeno y yeyuno proximal","El íleon terminal","El colon"],
+  ok:1,
+  exp:"La α-amilasa pancreática actúa en el duodeno y el yeyuno proximal durante 15-30 minutos, convirtiendo el almidón en maltosa y pequeños polímeros de glucosa." },
+
+{ cat:"Carbohidratos", tipo:"teoria",
+  q:"Las enzimas del borde en cepillo que hidrolizan los disacáridos son:",
+  ops:["Lactasa, sacarasa, maltasa y α-dextrinasa","Pepsina, tripsina y quimotripsina","Amilasa y lipasa","Pepsina y renina"],
+  ok:0,
+  exp:"Los enterocitos de las vellosidades contienen lactasa, sacarasa, maltasa y α-dextrinasa, que hidrolizan los disacáridos en monosacáridos absorbibles." },
+
+{ cat:"Carbohidratos", tipo:"teoria",
+  q:"La lactosa se hidroliza en:",
+  ops:["Glucosa y galactosa","Glucosa y fructosa","Dos moléculas de glucosa","Glucosa y manosa"],
+  ok:0,
+  exp:"La lactasa hidroliza la lactosa en una molécula de glucosa y una de galactosa." },
+
+{ cat:"Carbohidratos", tipo:"teoria",
+  q:"La sacarosa se hidroliza en:",
+  ops:["Glucosa y fructosa","Glucosa y galactosa","Dos moléculas de glucosa","Fructosa y galactosa"],
+  ok:0,
+  exp:"La sacarasa hidroliza la sacarosa en una molécula de glucosa y una de fructosa." },
+
+{ cat:"Carbohidratos", tipo:"teoria",
+  q:"La maltosa se hidroliza en:",
+  ops:["Dos moléculas de glucosa","Glucosa y galactosa","Glucosa y fructosa","Dos moléculas de fructosa"],
+  ok:0,
+  exp:"La maltasa hidroliza la maltosa en dos moléculas de glucosa." },
+
+{ cat:"Carbohidratos", tipo:"teoria",
+  q:"¿Qué monosacárido representa aproximadamente el 80% del producto final de la digestión de los carbohidratos?",
+  ops:["Glucosa","Galactosa","Fructosa","Manosa"],
+  ok:0,
+  exp:"La glucosa representa alrededor del 80% del producto final de la digestión de los carbohidratos. La galactosa y la fructosa rara vez aportan más del 10% cada una." },
+
+{ cat:"Carbohidratos", tipo:"teoria",
+  q:"La celulosa no se digiere en el ser humano porque:",
+  ops:["Carece de enzimas que rompan sus enlaces β-1,4","Es demasiado grande para absorberse","El pH gástrico la destruye","No contiene glucosa"],
+  ok:0,
+  exp:"El ser humano carece de celulasa, la enzima que hidroliza los enlaces β-1,4 de la celulosa. Por eso la celulosa llega intacta al colon y actúa como fibra dietética." },
+
+{ cat:"Carbohidratos", tipo:"caso",
+  q:"Paciente adulto que presenta diarrea y distensión abdominal tras ingerir leche. ¿Qué enzima está deficiente?",
+  ops:["La sacarasa","La lactasa","La maltasa","La α-dextrinasa"],
+  ok:1,
+  exp:"La deficiencia de lactasa impide hidrolizar la lactosa en glucosa y galactosa. La lactosa no absorbida fermenta en el colon y causa diarrea osmótica y gases." },
+
+{ cat:"Carbohidratos", tipo:"teoria",
+  q:"La glucosa y la galactosa se absorben en el intestino delgado mediante:",
+  ops:["Difusión simple","Cotransporte con sodio (SGLT1)","Difusión facilitada (GLUT5)","Transporte activo de potasio"],
+  ok:1,
+  exp:"La glucosa y la galactosa se absorben por cotransporte activo con sodio (SGLT1) en la membrana apical del enterocito. La fructosa lo hace por difusión facilitada (GLUT5)." },
+
+{ cat:"Carbohidratos", tipo:"teoria",
+  q:"La fructosa se absorbe principalmente por:",
+  ops:["Cotransporte con sodio","Difusión facilitada","Transporte activo de calcio","Pinocitosis"],
+  ok:1,
+  exp:"La fructosa se absorbe por difusión facilitada (GLUT5), sin acoplarse al sodio. Dentro del enterocito se fosforila y luego se convierte en glucosa." },
+
+{ cat:"Carbohidratos", tipo:"caso",
+  q:"Niño con diarrea osmótica y pH fecal ácido. ¿Qué tipo de intolerancia es más probable?",
+  ops:["Intolerancia a la lactosa","Intolerancia a las proteínas","Intolerancia a las grasas","Intolerancia al gluten"],
+  ok:0,
+  exp:"La intolerancia a la lactosa produce diarrea osmótica con pH fecal ácido por fermentación bacteriana de la lactosa no absorbida. Es frecuente en niños y adultos con deficiencia de lactasa." },
+
+/* =========================================================
+   DIGESTIÓN DE PROTEÍNAS (29-45)
+   ========================================================= */
+{ cat:"Proteínas", tipo:"teoria",
+  q:"La digestión de las proteínas comienza en el estómago por acción de:",
+  ops:["La tripsina","La pepsina","La quimotripsina","La carboxipeptidasa"],
+  ok:1,
+  exp:"La pepsina es una enzima péptica gástrica que alcanza su máxima actividad a pH 2-3 y se inactiva a pH >5. Degrada las proteínas en polipéptidos." },
+
+{ cat:"Proteínas", tipo:"teoria",
+  q:"La pepsina es más activa a un pH de:",
+  ops:["7-8","2-3","5-6","9-10"],
+  ok:1,
+  exp:"La pepsina alcanza su máxima actividad a pH 2-3 y se inactiva a pH superior a 5. Por eso la digestión de proteínas en el estómago depende del ambiente ácido." },
+
+{ cat:"Proteínas", tipo:"teoria",
+  q:"La pepsina puede digerir especialmente:",
+  ops:["El colágeno","La celulosa","El almidón","Los triglicéridos"],
+  ok:0,
+  exp:"La pepsina es capaz de digerir el colágeno, una albúmina que constituye el principal componente del tejido conectivo intercelular de las carnes." },
+
+{ cat:"Proteínas", tipo:"teoria",
+  q:"¿Qué porcentaje de la digestión de proteínas se produce en el estómago?",
+  ops:["10-20%","50-60%","80-90%","5%"],
+  ok:0,
+  exp:"La pepsina proporciona solo el 10-20% de la digestión total de proteínas. La mayor parte ocurre en el intestino delgado por las enzimas pancreáticas." },
+
+{ cat:"Proteínas", tipo:"teoria",
+  q:"Las enzimas proteolíticas pancreáticas que actúan en el duodeno y yeyuno son:",
+  ops:["Tripsina, quimotripsina, carboxipolipeptidasa y proelastasa","Pepsina y renina","Amilasa y lipasa","Lactasa y sacarasa"],
+  ok:0,
+  exp:"Las enzimas proteolíticas pancreáticas (tripsina, quimotripsina, carboxipolipeptidasa y proelastasa) degradan los restos de proteínas en el intestino delgado, liberando aminoácidos y pequeños péptidos." },
+
+{ cat:"Proteínas", tipo:"teoria",
+  q:"La tripsina y la quimotripsina degradan las moléculas proteicas en:",
+  ops:["Pequeños polipéptidos","Monosacáridos","Ácidos grasos","Nucleótidos"],
+  ok:0,
+  exp:"La tripsina y la quimotripsina degradan las proteínas en pequeños polipéptidos, que luego son hidrolizados por peptidasas del borde en cepillo hasta aminoácidos libres." },
+
+{ cat:"Proteínas", tipo:"teoria",
+  q:"La absorción de aminoácidos en el enterocito utiliza:",
+  ops:["Difusión simple","Cotransporte con sodio","Pinocitosis","Transporte activo de calcio"],
+  ok:1,
+  exp:"Los aminoácidos se absorben por cotransporte con sodio en la membrana apical del enterocito. Los dipéptidos y tripéptidos pueden absorberse por transporte de péptidos (PepT1)." },
+
+{ cat:"Proteínas", tipo:"teoria",
+  q:"La mayor parte de las proteínas absorbidas pasan a la circulación portal como:",
+  ops:["Proteínas intactas","Aminoácidos libres","Péptidos grandes","Glucosa"],
+  ok:1,
+  exp:"Las proteínas se digieren hasta aminoácidos y pequeños péptidos, que se absorben y pasan a la vena porta. El hígado los utiliza para síntesis proteica y otras funciones." },
+
+{ cat:"Proteínas", tipo:"teoria",
+  q:"La hidrólisis final de los dipéptidos y tripéptidos ocurre en:",
+  ops:["El estómago","El borde en cepillo del enterocito","El colon","La luz del íleon"],
+  ok:1,
+  exp:"Las peptidasas del borde en cepillo de los enterocitos realizan la hidrólisis final de los dipéptidos y tripéptidos en aminoácidos libres, que luego son absorbidos." },
+
+{ cat:"Proteínas", tipo:"caso",
+  q:"Paciente con gastrectomía total que presenta anemia megaloblástica. ¿Por qué ocurre?",
+  ops:["Falta de factor intrínseco","Falta de ácido clorhídrico","Falta de pepsina","Falta de gastrina"],
+  ok:0,
+  exp:"La gastrectomía total elimina las células parietales que secretan factor intrínseco. Sin factor intrínseco, la vitamina B12 no puede absorberse en el íleon terminal, causando anemia megaloblástica." },
+
+{ cat:"Proteínas", tipo:"teoria",
+  q:"El factor intrínseco es esencial para la absorción de:",
+  ops:["Hierro","Vitamina B12","Calcio","Ácido fólico"],
+  ok:1,
+  exp:"El factor intrínseco se une a la vitamina B12 y permite su absorción en el íleon terminal. Su deficiencia causa anemia perniciosa." },
+
+{ cat:"Proteínas", tipo:"teoria",
+  q:"La enterocinasa (enteroquinasa) se localiza en:",
+  ops:["El estómago","El borde en cepillo del duodeno","El colon","El esófago"],
+  ok:1,
+  exp:"La enterocinasa es una enzima del borde en cepillo del duodeno que activa el tripsinógeno en tripsina, iniciando la cascada de activación de las enzimas pancreáticas." },
+
+{ cat:"Proteínas", tipo:"caso",
+  q:"Paciente con pancreatitis aguda que presenta dolor abdominal intenso y elevación de amilasa. ¿Qué mecanismo explica la elevación de amilasa?",
+  ops:["Obstrucción del conducto pancreático","Aumento de la secreción gástrica","Deficiencia de lactasa","Aumento de la absorción intestinal"],
+  ok:0,
+  exp:"La pancreatitis aguda causa edema e inflamación que obstruyen el conducto pancreático, impidiendo el paso de las enzimas al duodeno. Las enzimas se liberan a la sangre, elevando la amilasa y la lipasa séricas." },
+
+{ cat:"Proteínas", tipo:"teoria",
+  q:"Las enzimas proteolíticas pancreáticas se secretan en forma de:",
+  ops:["Enzimas activas","Precursores inactivos (zimógenos)","Cofactores","Hormonas"],
+  ok:1,
+  exp:"Las enzimas proteolíticas pancreáticas (tripsinógeno, quimotripsinógeno, procarboxipeptidasa) se secretan como zimógenos inactivos para evitar la autodigestión del páncreas." },
+
+{ cat:"Proteínas", tipo:"teoria",
+  q:"La tripsina se activa a partir de:",
+  ops:["El tripsinógeno por la enterocinasa","La pepsina por el ácido","La quimotripsina por la bilis","La amilasa por el calcio"],
+  ok:0,
+  exp:"El tripsinógeno pancreático se activa en el duodeno por la enterocinasa (enteroquinasa) del borde en cepillo, convirtiéndose en tripsina activa. La tripsina luego activa otras enzimas pancreáticas." },
+
+{ cat:"Proteínas", tipo:"caso",
+  q:"Paciente con úlcera duodenal e infección por H. pylori. ¿Qué célula es estimulada en exceso?",
+  ops:["Célula principal","Célula parietal","Célula caliciforme","Célula D"],
+  ok:1,
+  exp:"H. pylori estimula la secreción de gastrina y de ácido clorhídrico por las células parietales, lo que contribuye a la lesión de la mucosa duodenal." },
+
+/* =========================================================
+   DIGESTIÓN Y ABSORCIÓN DE GRASAS (46-65)
+   ========================================================= */
+{ cat:"Grasas", tipo:"teoria",
+  q:"La digestión de las grasas requiere la emulsificación por:",
+  ops:["Sales biliares","Enzimas pancreáticas","Ácido clorhídrico","Moco gástrico"],
+  ok:0,
+  exp:"Las sales biliares emulsifican las grasas, reduciendo el tamaño de las gotas lipídicas y aumentando la superficie de acción de la lipasa pancreática." },
+
+{ cat:"Grasas", tipo:"teoria",
+  q:"La enzima principal que hidroliza los triglicéridos en ácidos grasos y monoglicéridos es:",
+  ops:["La amilasa pancreática","La lipasa pancreática","La tripsina","La lactasa"],
+  ok:1,
+  exp:"La lipasa pancreática hidroliza los triglicéridos en ácidos grasos libres y monoglicéridos, que luego se incorporan a micelas." },
+
+{ cat:"Grasas", tipo:"teoria",
+  q:"Las micelas de sales biliares transportan:",
+  ops:["Carbohidratos","Ácidos grasos, monoglicéridos y vitaminas liposolubles","Aminoácidos","Electrolitos"],
+  ok:1,
+  exp:"Las micelas solubilizan los productos de la digestión de las grasas (ácidos grasos, monoglicéridos, colesterol y vitaminas liposolubles) y los transportan a la membrana del enterocito." },
+
+{ cat:"Grasas", tipo:"teoria",
+  q:"En ausencia de micelas, la absorción de grasas es de aproximadamente:",
+  ops:["97%","40-50%","10%","80%"],
+  ok:1,
+  exp:"Cuando hay micelas abundantes, la absorción de grasas alcanza hasta el 97%. En ausencia de micelas, solo se absorbe entre el 40 y el 50%." },
+
+{ cat:"Grasas", tipo:"caso",
+  q:"Paciente con obstrucción del conducto colédoco que presenta esteatorrea. ¿Por qué ocurre?",
+  ops:["Falta de sales biliares en el intestino","Exceso de lipasa pancreática","Aumento de la absorción de grasas","Deficiencia de amilasa"],
+  ok:0,
+  exp:"La obstrucción biliar impide el paso de bilis al intestino, por lo que faltan sales biliares para emulsificar las grasas. Esto reduce la digestión y absorción de lípidos, causando esteatorrea." },
+
+{ cat:"Grasas", tipo:"teoria",
+  q:"Los triglicéridos de cadena media se absorben directamente en:",
+  ops:["Los vasos linfáticos","La vena porta","El colon","El estómago"],
+  ok:1,
+  exp:"Los triglicéridos de cadena media (TCM) se absorben directamente en la vena porta sin necesidad de formar quilomicrones, por lo que se usan en pacientes con malabsorción de grasas." },
+
+{ cat:"Grasas", tipo:"teoria",
+  q:"Los quilomicrones transportan:",
+  ops:["Aminoácidos","Grasas absorbidas","Glucosa","Vitaminas hidrosolubles"],
+  ok:1,
+  exp:"Los quilomicrones son lipoproteínas que transportan los triglicéridos, el colesterol y las vitaminas liposolubles absorbidos desde el enterocito hacia la linfa y luego a la circulación sistémica." },
+
+{ cat:"Grasas", tipo:"caso",
+  q:"Paciente con fibrosis quística que presenta esteatorrea. ¿Qué mecanismo explica la malabsorción de grasas?",
+  ops:["Deficiencia de enzimas pancreáticas","Exceso de sales biliares","Aumento de la motilidad","Deficiencia de lactasa"],
+  ok:0,
+  exp:"La fibrosis quística obstruye los conductos pancreáticos y reduce la secreción de enzimas pancreáticas, incluyendo la lipasa, lo que impide la digestión adecuada de las grasas." },
+
+{ cat:"Grasas", tipo:"teoria",
+  q:"La lipasa gástrica digiere aproximadamente:",
+  ops:["El 50% de los triglicéridos","El 10% de los triglicéridos","El 90% de los triglicéridos","El 0% de los triglicéridos"],
+  ok:1,
+  exp:"La lipasa gástrica, secretada por las glándulas gástricas, digiere solo alrededor del 10% de los triglicéridos. La mayor parte de la digestión de grasas ocurre en el intestino delgado por la lipasa pancreática." },
+
+{ cat:"Grasas", tipo:"teoria",
+  q:"¿Qué hormona estimula la contracción de la vesícula biliar?",
+  ops:["Secretina","Colecistoquinina (CCK)","Gastrina","Motilina"],
+  ok:1,
+  exp:"La CCK, liberada en respuesta a grasas y proteínas en el duodeno, estimula la contracción de la vesícula biliar y la relajación del esfínter de Oddi, permitiendo el flujo de bilis al intestino." },
+
+{ cat:"Grasas", tipo:"caso",
+  q:"Paciente con ictericia obstructiva y esteatorrea. ¿Qué deficiencia vitamínica es más probable?",
+  ops:["Vitamina C","Vitaminas liposolubles (A, D, E, K)","Vitamina B12","Ácido fólico"],
+  ok:1,
+  exp:"La obstrucción biliar reduce la absorción de vitaminas liposolubles (A, D, E, K). La deficiencia de vitamina K puede causar diátesis hemorrágica." },
+
+{ cat:"Grasas", tipo:"teoria",
+  q:"Las sales biliares se reabsorben principalmente en:",
+  ops:["El duodeno","El yeyuno","El íleon terminal","El colon"],
+  ok:2,
+  exp:"Las sales biliares se reabsorben en el íleon terminal mediante transporte activo y retornan al hígado por la circulación enterohepática." },
+
+{ cat:"Grasas", tipo:"teoria",
+  q:"La colipasa es una proteína pancreática que:",
+  ops:["Activa la lipasa pancreática","Inhibe la lipasa","Emulsifica las grasas","Neutraliza el ácido gástrico"],
+  ok:0,
+  exp:"La colipasa se une a la lipasa pancreática y a las gotas lipídicas, permitiendo que la lipasa actúe en la interfase agua-lípido. Es esencial para una digestión eficiente de las grasas." },
+
+{ cat:"Grasas", tipo:"teoria",
+  q:"La bilis contiene:",
+  ops:["Sales biliares, bilirrubina, colesterol y fosfolípidos","Solo agua y electrolitos","Enzimas proteolíticas","Ácido clorhídrico"],
+  ok:0,
+  exp:"La bilis contiene sales biliares, bilirrubina, colesterol, fosfolípidos, agua y electrolitos. Las sales biliares son los componentes funcionales más importantes para la digestión de grasas." },
+
+{ cat:"Grasas", tipo:"teoria",
+  q:"La vesícula biliar concentra la bilis mediante:",
+  ops:["Secreción de agua","Absorción de agua y electrolitos","Producción de bilis","Almacenamiento de enzimas"],
+  ok:1,
+  exp:"La vesícula biliar absorbe agua y electrolitos, concentrando la bilis hasta 5-10 veces. Esto aumenta la concentración de sales biliares." },
+
+{ cat:"Grasas", tipo:"caso",
+  q:"Paciente con colelitiasis (cálculos biliares) que presenta dolor cólico. ¿Qué factor contribuye a la formación de cálculos?",
+  ops:["Exceso de sales biliares","Colesterol elevado en la bilis","Exceso de agua en la bilis","Deficiencia de bilirrubina"],
+  ok:1,
+  exp:"La formación de cálculos de colesterol se debe a un desequilibrio entre el colesterol y las sales biliares en la bilis, lo que lleva a la precipitación del colesterol." },
+
+{ cat:"Grasas", tipo:"teoria",
+  q:"La bilis emulsiona las grasas porque:",
+  ops:["Las sales biliares son anfipáticas","Contiene enzimas lipolíticas","Es rica en bicarbonato","Contiene ácido clorhídrico"],
+  ok:0,
+  exp:"Las sales biliares son moléculas anfipáticas (con una parte hidrofílica y otra lipofílica) que se orientan en la interfase agua-grasa, emulsionando las gotas lipídicas." },
+
+/* =========================================================
+   ABSORCIÓN DE AGUA Y ELECTROLITOS (66-82)
+   ========================================================= */
+{ cat:"Agua y electrolitos", tipo:"teoria",
+  q:"La absorción de agua en el intestino delgado es un proceso:",
+  ops:["Activo, con gasto de ATP","Pasivo, por ósmosis","Por pinocitosis","Por transporte de sodio"],
+  ok:1,
+  exp:"El agua se absorbe por ósmosis, siguiendo los gradientes de concentración creados por la absorción activa de sodio y otros solutos." },
+
+{ cat:"Agua y electrolitos", tipo:"teoria",
+  q:"¿Qué porcentaje del agua ingerida y secretada se absorbe en el intestino delgado?",
+  ops:["10-20%","40-50%","80-90%","100%"],
+  ok:2,
+  exp:"El intestino delgado absorbe el 80-90% del agua, y el colon absorbe el 10-20% restante. El colon tiene una capacidad máxima de absorción de 5-8 litros al día." },
+
+{ cat:"Agua y electrolitos", tipo:"teoria",
+  q:"La absorción de sodio en el intestino delgado se acopla a:",
+  ops:["La absorción de glucosa y aminoácidos","La secreción de bicarbonato","La absorción de calcio","La secreción de potasio"],
+  ok:0,
+  exp:"El sodio se absorbe por cotransporte con glucosa y aminoácidos, y por intercambio con hidrógeno. La ATPasa Na+/K+ en la membrana basolateral mantiene el gradiente." },
+
+{ cat:"Agua y electrolitos", tipo:"teoria",
+  q:"La aldosterona aumenta la absorción de sodio en:",
+  ops:["El duodeno","El yeyuno","El colon","El estómago"],
+  ok:2,
+  exp:"La aldosterona estimula la absorción de sodio y la secreción de potasio en el colon, contribuyendo a la regulación del equilibrio hidroelectrolítico." },
+
+{ cat:"Agua y electrolitos", tipo:"caso",
+  q:"Paciente con diarrea secretora grave por cólera. ¿Qué mecanismo explica la pérdida masiva de agua?",
+  ops:["Aumento de la secreción intestinal de cloro y agua","Exceso de absorción de sodio","Deficiencia de lactasa","Aumento de la motilidad gástrica"],
+  ok:0,
+  exp:"La toxina del cólera activa la adenilato ciclasa y aumenta el AMPc, lo que estimula la secreción de cloro y agua hacia la luz intestinal, superando la capacidad de absorción del colon." },
+
+{ cat:"Agua y electrolitos", tipo:"teoria",
+  q:"El colon puede absorber un máximo de:",
+  ops:["1-2 litros de líquido al día","5-8 litros de líquido al día","10-12 litros de líquido al día","20 litros de líquido al día"],
+  ok:1,
+  exp:"El colon tiene una capacidad máxima de absorción de 5-8 litros de líquido y electrolitos al día. Si se supera, aparece diarrea." },
+
+{ cat:"Agua y electrolitos", tipo:"teoria",
+  q:"La absorción de cloro en el íleon y el colon se acopla a:",
+  ops:["La absorción de sodio","La secreción de potasio","La absorción de calcio","La secreción de bicarbonato"],
+  ok:0,
+  exp:"El cloro se absorbe pasivamente siguiendo al sodio (arrastre eléctrico) y también por intercambio con bicarbonato en el íleon y el colon." },
+
+{ cat:"Agua y electrolitos", tipo:"caso",
+  q:"Paciente con insuficiencia renal que presenta acidosis metabólica. ¿Qué mecanismo intestinal puede contribuir a la pérdida de bicarbonato?",
+  ops:["Diarrea con pérdida de bicarbonato","Aumento de la absorción de bicarbonato","Exceso de secreción ácida","Deficiencia de aldosterona"],
+  ok:0,
+  exp:"En la diarrea se pierde bicarbonato por las heces, lo que puede causar acidosis metabólica hiperclorémica, especialmente en diarreas graves o crónicas." },
+
+{ cat:"Agua y electrolitos", tipo:"teoria",
+  q:"El potasio se absorbe principalmente en:",
+  ops:["El estómago","El intestino delgado","El colon","El esófago"],
+  ok:1,
+  exp:"El potasio se absorbe de forma pasiva en el intestino delgado, siguiendo los gradientes eléctricos y osmóticos creados por la absorción de sodio y agua." },
+
+{ cat:"Agua y electrolitos", tipo:"teoria",
+  q:"La absorción de calcio en el intestino delgado es estimulada por:",
+  ops:["La aldosterona","El calcitriol (vitamina D activa)","La insulina","El glucagón"],
+  ok:1,
+  exp:"El calcitriol (1,25-dihidroxicolecalciferol) estimula la síntesis de calbindina y la absorción activa de calcio en el duodeno y yeyuno." },
+
+{ cat:"Agua y electrolitos", tipo:"caso",
+  q:"Paciente con enfermedad de Crohn que afecta el íleon terminal. ¿Qué deficiencia es más probable?",
+  ops:["Deficiencia de vitamina B12","Deficiencia de vitamina C","Deficiencia de hierro","Deficiencia de calcio"],
+  ok:0,
+  exp:"El íleon terminal es el sitio de absorción de la vitamina B12 unida al factor intrínseco. Su afectación o resección causa deficiencia de B12 y anemia megaloblástica." },
+
+{ cat:"Agua y electrolitos", tipo:"teoria",
+  q:"La absorción de hierro en el intestino delgado se facilita por:",
+  ops:["La vitamina C (ácido ascórbico)","La vitamina K","El calcio","La fibra dietética"],
+  ok:0,
+  exp:"El hierro hemo se absorbe directamente, mientras que el hierro no hemo requiere un medio ácido y se facilita por la vitamina C, que lo reduce a Fe2+ y aumenta su absorción." },
+
+{ cat:"Agua y electrolitos", tipo:"teoria",
+  q:"¿En qué porción del intestino se absorbe la mayor parte de los nutrientes?",
+  ops:["El duodeno","El yeyuno","El íleon","El colon"],
+  ok:1,
+  exp:"El yeyuno es la porción donde se produce la mayor parte de la absorción de nutrientes (carbohidratos, proteínas, grasas, vitaminas y electrolitos)." },
+
+{ cat:"Agua y electrolitos", tipo:"teoria",
+  q:"Las válvulas conniventes (pliegues de Kerckring) aumentan la superficie de absorción aproximadamente:",
+  ops:["3 veces","30 veces","600 veces","1000 veces"],
+  ok:1,
+  exp:"Las válvulas conniventes aumentan la superficie de absorción unas 3 veces; las vellosidades la aumentan 30 veces y las microvellosidades 600 veces, alcanzando una superficie total enorme." },
+
+{ cat:"Agua y electrolitos", tipo:"caso",
+  q:"Paciente con síndrome de intestino corto tras resección masiva. ¿Qué mecanismo compensatorio permite la adaptación intestinal?",
+  ops:["Hiperplasia de las criptas y aumento de la superficie de absorción","Disminución de la motilidad","Aumento de la secreción gástrica","Deficiencia de lactasa"],
+  ok:0,
+  exp:"Tras la resección intestinal, el intestino restante desarrolla hiperplasia de las criptas y elongación de las vellosidades para aumentar la superficie de absorción, proceso mediado por factores de crecimiento." },
+
+{ cat:"Agua y electrolitos", tipo:"teoria",
+  q:"La vitamina B12 se absorbe en:",
+  ops:["El duodeno","El yeyuno","El íleon terminal","El colon"],
+  ok:2,
+  exp:"La vitamina B12 unida al factor intrínseco se absorbe en el íleon terminal mediante receptores específicos. La resección o enfermedad del íleon terminal causa deficiencia de B12." },
+
+{ cat:"Agua y electrolitos", tipo:"teoria",
+  q:"El hierro se absorbe principalmente en:",
+  ops:["El estómago","El duodeno y yeyuno proximal","El íleon","El colon"],
+  ok:1,
+  exp:"El hierro se absorbe en el duodeno y yeyuno proximal. El hierro hemo se absorbe directamente, mientras que el hierro no hemo requiere un medio ácido y se facilita por la vitamina C." },
+
+/* =========================================================
+   CASOS CLÍNICOS INTEGRADORES (83-100)
+   ========================================================= */
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con pancreatitis crónica que presenta esteatorrea y pérdida de peso. ¿Qué mecanismo explica la esteatorrea?",
+  ops:["Deficiencia de enzimas pancreáticas","Exceso de ácido gástrico","Aumento de la motilidad intestinal","Deficiencia de lactasa"],
+  ok:0,
+  exp:"La pancreatitis crónica reduce la secreción de enzimas pancreáticas (lipasa, tripsina, etc.), lo que impide la digestión adecuada de grasas y proteínas, causando esteatorrea y malnutrición." },
+
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con ictericia obstructiva que presenta heces acólicas y esteatorrea. ¿Qué falta en el intestino?",
+  ops:["Sales biliares","Enzimas pancreáticas","Ácido clorhídrico","Factor intrínseco"],
+  ok:0,
+  exp:"La obstrucción biliar impide el paso de bilis (y sales biliares) al intestino. Sin sales biliares, las grasas no se emulsifican ni se absorben, causando esteatorrea y heces claras (acólicas)." },
+
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con resección ileal extensa que presenta diarrea crónica. ¿Qué mecanismo explica la diarrea?",
+  ops:["Malabsorción de ácidos biliares","Exceso de absorción de agua","Aumento de la motilidad gástrica","Deficiencia de lactasa"],
+  ok:0,
+  exp:"La resección ileal impide la reabsorción de ácidos biliares, que llegan al colon y estimulan la secreción de agua y electrolitos, causando diarrea secretora crónica." },
+
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con gastrectomía total que presenta anemia megaloblástica. ¿Por qué ocurre?",
+  ops:["Falta de factor intrínseco","Falta de ácido clorhídrico","Falta de pepsina","Falta de gastrina"],
+  ok:0,
+  exp:"La gastrectomía total elimina las células parietales que secretan factor intrínseco. Sin factor intrínseco, la vitamina B12 no puede absorberse en el íleon terminal, causando anemia megaloblástica." },
+
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con obstrucción intestinal que presenta vómitos y distensión. ¿Qué alteración electrolítica es más probable?",
+  ops:["Hipopotasemia e hipocloremia","Hipercalcemia","Hipernatremia","Hiperpotasemia"],
+  ok:0,
+  exp:"Los vómitos prolongados causan pérdida de potasio, cloro e hidrógeno, lo que puede llevar a hipopotasemia, hipocloremia y alcalosis metabólica." },
+
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con diarrea grave por cólera que presenta deshidratación hiponatrémica. ¿Qué tratamiento inicial es fundamental?",
+  ops:["Rehidratación oral o intravenosa","Antibióticos","Loperamida","Antiácidos"],
+  ok:0,
+  exp:"La rehidratación agresiva con soluciones de rehidratación oral o intravenosa es la piedra angular del tratamiento del cólera. Los antibióticos son adyuvantes para reducir la duración y la diseminación." },
+
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con esteatorrea y deficiencia de vitaminas liposolubles. ¿Qué vitamina es responsable de la diátesis hemorrágica?",
+  ops:["Vitamina K","Vitamina C","Vitamina B12","Ácido fólico"],
+  ok:0,
+  exp:"La deficiencia de vitamina K (liposoluble) reduce la síntesis de factores de coagulación II, VII, IX y X, causando diátesis hemorrágica." },
+
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con enfermedad celíaca que presenta atrofia de las vellosidades intestinales. ¿Qué consecuencia funcional tiene?",
+  ops:["Disminución de la superficie de absorción","Aumento de la secreción ácida","Aumento de la motilidad","Deficiencia de lactasa"],
+  ok:0,
+  exp:"La atrofia de las vellosidades intestinales reduce la superficie de absorción y la actividad de las enzimas del borde en cepillo, causando malabsorción de nutrientes." },
+
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con síndrome de intestino corto tras resección masiva. ¿Qué mecanismo compensatorio permite la adaptación intestinal?",
+  ops:["Hiperplasia de las criptas y aumento de la superficie de absorción","Disminución de la motilidad","Aumento de la secreción gástrica","Deficiencia de lactasa"],
+  ok:0,
+  exp:"Tras la resección intestinal, el intestino restante desarrolla hiperplasia de las criptas y elongación de las vellosidades para aumentar la superficie de absorción, proceso mediado por factores de crecimiento." },
+
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con aclorhidria que presenta infecciones gastrointestinales recurrentes. ¿Qué mecanismo explica esta susceptibilidad?",
+  ops:["Pérdida de la barrera ácida gástrica","Aumento de la secreción de moco","Aumento de la motilidad intestinal","Deficiencia de lactasa"],
+  ok:0,
+  exp:"El ácido clorhídrico gástrico es una barrera importante contra bacterias ingeridas. La aclorhidria reduce esta barrera y aumenta el riesgo de infecciones gastrointestinales." },
+
+{ cat:"Casos integradores", tipo:"teoria",
+  q:"La hidrólisis de los triglicéridos requiere la adición de:",
+  ops:["Tres moléculas de agua","Una molécula de agua","Dos moléculas de agua","Ninguna molécula de agua"],
+  ok:0,
+  exp:"La digestión de los triglicéridos consiste en la adición de tres moléculas de agua a los triglicéridos, lo que separa los ácidos grasos del glicerol (hidrólisis)." },
+
+{ cat:"Casos integradores", tipo:"teoria",
+  q:"La hidrólisis de las proteínas requiere enzimas que devuelvan a las proteínas:",
+  ops:["Iones H e hidroxilo del agua","Solo iones H","Solo iones hidroxilo","Moléculas de glucosa"],
+  ok:0,
+  exp:"Las enzimas proteolíticas devuelven los iones H e hidroxilo de las moléculas de agua a las proteínas para separarlas en los aminoácidos constituyentes." },
+
+{ cat:"Casos integradores", tipo:"teoria",
+  q:"El proceso de hidrólisis es común a los tres tipos principales de alimentos; la diferencia está en:",
+  ops:["Las enzimas requeridas","La temperatura","El pH","La presión osmótica"],
+  ok:0,
+  exp:"El proceso básico de hidrólisis es el mismo para carbohidratos, grasas y proteínas; la única diferencia son las enzimas específicas que se requieren para cada tipo de enlace." },
+
+{ cat:"Casos integradores", tipo:"teoria",
+  q:"La mucosa gastrointestinal no puede absorber los macronutrientes en su forma natural porque:",
+  ops:["Son demasiado grandes y necesitan hidrólisis previa","Son tóxicos sin digerir","No son solubles en agua","Carecen de transportadores"],
+  ok:0,
+  exp:"Los macronutrientes deben ser hidrolizados a sus unidades absorbibles (monosacáridos, aminoácidos, ácidos grasos) antes de poder atravesar la mucosa intestinal." },
+
+{ cat:"Casos integradores", tipo:"teoria",
+  q:"Las enzimas digestivas son de naturaleza:",
+  ops:["Lipídica","Proteica","Glucídica","Mineral"],
+  ok:1,
+  exp:"Todas las enzimas digestivas son proteínas secretadas por las glándulas gastrointestinales. Actúan como catalizadores de las reacciones de hidrólisis." },
+
+{ cat:"Casos integradores", tipo:"teoria",
+  q:"La condensación de monosacáridos para formar polisacáridos implica:",
+  ops:["La eliminación de una molécula de agua","La adición de una molécula de agua","La oxidación de la glucosa","La fosforilación"],
+  ok:0,
+  exp:"La condensación une monosacáridos eliminando una molécula de agua por enlace. La digestión invierte este proceso mediante hidrólisis." },
+
+{ cat:"Casos integradores", tipo:"teoria",
+  q:"El producto final de la digestión de los carbohidratos es:",
+  ops:["Maltosa","Monosacáridos","Almidón","Glucógeno"],
+  ok:1,
+  exp:"La digestión de los carbohidratos termina en monosacáridos (glucosa, galactosa y fructosa), que son hidrosolubles y se absorben de inmediato hacia la sangre portal." },
+
+{ cat:"Casos integradores", tipo:"teoria",
+  q:"La digestión de las grasas requiere inicialmente:",
+  ops:["Emulsificación por sales biliares","Hidrólisis por amilasa","Desnaturalización por ácido","Fosforilación"],
+  ok:0,
+  exp:"Las grasas deben ser emulsificadas por las sales biliares para reducir el tamaño de los glóbulos lipídicos y aumentar la superficie de acción de la lipasa pancreática, que es hidrosoluble." },
+
+{ cat:"Casos integradores", tipo:"teoria",
+  q:"La lipasa pancreática hidroliza los triglicéridos en:",
+  ops:["Ácidos grasos y monoglicéridos","Glucosa y galactosa","Aminoácidos libres","Colesterol libre"],
+  ok:0,
+  exp:"La lipasa pancreática, junto con la colipasa, hidroliza los triglicéridos en ácidos grasos libres y monoglicéridos, que luego se incorporan a las micelas." }
+
+];
+
+/* =========================================================
+   LÓGICA (sin reinicio ni mezcla)
+   ========================================================= */
+const cont = document.getElementById('quiz');
+const marcador = document.getElementById('marcador');
+let respondidas = 0, aciertos = 0;
+
+function actualizarMarcador() {
+  marcador.textContent = `Respondidas: ${respondidas} / ${preguntas.length} · Aciertos: ${aciertos}`;
+}
+
+function responder(card, caja, exp, p, elegida) {
+  if (card.dataset.respondida) return;
+  card.dataset.respondida = "1";
+  caja.querySelectorAll('.opcion').forEach((b, j) => {
+    b.disabled = true;
+    if (j === p.ok) b.classList.add('correcta');
+    if (j === elegida && elegida !== p.ok) b.classList.add('incorrecta');
+  });
+  const acerto = elegida === p.ok;
+  respondidas++;
+  if (acerto) aciertos++;
+  actualizarMarcador();
+  exp.innerHTML = `<strong>${acerto ? '✅ ¡Correcto!' : '❌ Respuesta incorrecta.'}</strong> ${p.exp}`;
+  exp.classList.add('visible');
+}
+
+function construir() {
+  cont.innerHTML = "";
+  respondidas = 0; aciertos = 0;
+  actualizarMarcador();
+
+  preguntas.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'card ' + p.tipo;
+
+    const cab = document.createElement('div');
+    cab.className = 'cabecera';
+    cab.innerHTML =
+      `<div class="numero">${i + 1}</div>
+       <span class="etiqueta ${p.tipo === 'caso' ? 'c' : 't'}">
+         ${p.tipo === 'caso' ? 'Caso clínico' : 'Teoría'}
+       </span>
+       <span class="etiqueta materia">${p.cat}</span>`;
+    card.appendChild(cab);
+
+    const enun = document.createElement('p');
+    enun.className = 'enunciado';
+    enun.textContent = p.q;
+    card.appendChild(enun);
+
+    const caja = document.createElement('div');
+    caja.className = 'opciones';
+    const exp = document.createElement('div');
+    exp.className = 'explicacion';
+
+    p.ops.forEach((op, j) => {
+      const b = document.createElement('button');
+      b.className = 'opcion';
+      b.innerHTML = `<span class="letra">${'ABCD'[j]}</span><span>${op}</span>`;
+      b.addEventListener('click', () => responder(card, caja, exp, p, j));
+      caja.appendChild(b);
+    });
+
+    card.appendChild(caja);
+    card.appendChild(exp);
+    cont.appendChild(card);
+  });
+}
+
+preguntas.forEach((p, i) => {
+  const max = Math.max(...p.ops.map(o => o.length));
+  if (p.ops[p.ok].length === max) {
+    console.warn(`Aviso Q${i+1}: la correcta es (o empata como) la más larga.`);
+  }
+});
+
+construir();
+</script>
+
+</body>
+</html>
