@@ -113,24 +113,16 @@
     to   { opacity: 1; transform: translateY(0); }
   }
   footer { text-align: center; font-size: .8rem; color: #64748b; margin-top: 34px; }
-
   .volver {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 100;
-    background: #2563eb;
-    color: #fff;
-    padding: 10px 18px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 600;
+    position: fixed; bottom: 20px; left: 20px; z-index: 100;
+    background: #2563eb; color: #fff;
+    padding: 10px 18px; border-radius: 30px;
+    text-decoration: none; font-weight: 600;
     box-shadow: 0 4px 14px rgba(37,99,235,.4);
     font-size: .9rem;
     transition: background .2s, transform .15s;
   }
   .volver:hover { background: #1d4ed8; transform: translateY(-2px); }
-
   @media (max-width: 560px) {
     header { padding: 22px 18px; }
     header h1 { font-size: 1.18rem; }
@@ -161,10 +153,10 @@
 <script>
 const preguntas = [
 
-/* ========== MASTICACIÓN Y DEGLUCIÓN (1-15) ========== */
+/* ========= MASTICACIÓN Y DEGLUCIÓN (1-15) ========= */
 { cat:"Masticación y deglución", tipo:"teoria",
   q:"¿Cuál es la función principal de la masticación?",
-  ops:["Aumentar la superficie de contacto del alimento","Iniciar la digestión enzimática de las proteínas en la boca","Neutralizar la acidez del bolo antes de la deglución","Estimular la secreción de ácido clorhídrico gástrico"],
+  ops:["Aumentar la superficie de contacto del alimento","Iniciar la digestión de proteínas en la boca","Neutralizar la acidez del bolo antes de la deglución","Estimular la secreción de ácido clorhídrico gástrico"],
   ok:0,
   exp:"La masticación tritura y mezcla los alimentos con la saliva, aumentando la superficie de contacto para las enzimas digestivas y facilitando la deglución." },
 
@@ -188,7 +180,7 @@ const preguntas = [
 
 { cat:"Masticación y deglución", tipo:"teoria",
   q:"Durante la deglución, la elevación del paladar blando:",
-  ops:["Cierra la nasofaringe","Abre la glotis durante la deglución","Cierra el esófago proximal","Estimula la secreción salival"],
+  ops:["Cierra la nasofaringe","Abre la glotis","Cierra el esófago proximal","Estimula la secreción salival"],
   ok:0,
   exp:"La elevación del paladar blando cierra la nasofaringe e impide que el alimento pase a la cavidad nasal durante la deglución." },
 
@@ -206,7 +198,7 @@ const preguntas = [
 
 { cat:"Masticación y deglución", tipo:"teoria",
   q:"La peristalsis primaria del esófago es iniciada por:",
-  ops:["Distensión local del esófago por el bolo","El ácido gástrico que refluye","La gravedad durante la bipedestación","El reflejo de la deglución"],
+  ops:["Distensión local del esófago","El ácido gástrico que refluye","La gravedad durante la bipedestación","El reflejo de la deglución"],
   ok:3,
   exp:"La peristalsis primaria es una onda coordinada que se inicia por el reflejo de deglución y recorre todo el esófago." },
 
@@ -252,7 +244,7 @@ const preguntas = [
   ok:2,
   exp:"La laringe y la epiglotis deben cerrarse durante la deglución para evitar la aspiración. Su fallo produce tos, voz húmeda y riesgo de neumonía por aspiración." },
 
-/* ========== MOTILIDAD GÁSTRICA (16-40) ========== */
+/* ========= MOTILIDAD GÁSTRICA (16-40) ========= */
 { cat:"Motilidad gástrica", tipo:"teoria",
   q:"La relajación receptiva del estómago permite:",
   ops:["Aumentar la presión intragástrica notablemente","Cerrar el píloro durante la ingesta","Estimular la secreción ácida gástrica","Aumentar volumen sin subir presión"],
@@ -403,7 +395,7 @@ const preguntas = [
   ok:3,
   exp:"El objetivo del tratamiento procinético en la gastroparesia es acelerar el vaciamiento gástrico, mejorando la saciedad precoz, las náuseas y los vómitos." },
 
-/* ========== MOTILIDAD DEL INTESTINO DELGADO (41-60) ========== */
+/* ========= MOTILIDAD INTESTINO DELGADO (41-60) ========= */
 { cat:"Motilidad intestinal", tipo:"teoria",
   q:"La segmentación del intestino delgado tiene como función principal:",
   ops:["Mezclar el quimo con enzimas","Propulsar el quimo hacia el colon","Regular el esfínter ileocecal","Aumentar la absorción de agua"],
@@ -524,7 +516,7 @@ const preguntas = [
   ok:3,
   exp:"La neostigmina, inhibidor de la acetilcolinesterasa, aumenta la acetilcolina y estimula la motilidad intestinal en el íleo paralítico refractario." },
 
-/* ========== MOTILIDAD DEL COLON Y DEFECACIÓN (61-80) ========== */
+/* ========= MOTILIDAD COLÓNICA (61-80) ========= */
 { cat:"Motilidad colónica", tipo:"teoria",
   q:"Las haustraciones del colon tienen como función:",
   ops:["Mezclar el contenido fecal","Propulsar las heces al recto","Cerrar el esfínter anal interno","Regular la secreción de moco"],
@@ -645,7 +637,7 @@ const preguntas = [
   ok:3,
   exp:"La defecación requiere la relajación coordinada del esfínter anal interno y externo, junto con la contracción del recto y la presión abdominal." },
 
-/* ========== VÓMITO Y REFLEJOS (81-90) ========== */
+/* ========= VÓMITO Y REFLEJOS (81-90) ========= */
 { cat:"Vómito y reflejos", tipo:"teoria",
   q:"El centro del vómito se localiza en:",
   ops:["Bulbo raquídeo","Corteza cerebral motora","Hipotálamo posterior","Médula espinal cervical"],
@@ -706,7 +698,7 @@ const preguntas = [
   ok:1,
   exp:"Los vómitos prolongados causan pérdida de ácido clorhídrico y potasio, lo que lleva a alcalosis metabólica hipoclorémica e hipopotasemia." },
 
-/* ========== CASOS INTEGRADORES (91-100) ========== */
+/* ========= CASOS INTEGRADORES (91-100) ========= */
 { cat:"Casos integradores", tipo:"caso",
   q:"Paciente de 55 años, fumador, con disfagia progresiva de 4 meses (inicialmente a sólidos, luego a líquidos) y pérdida de 10 kg. Endoscopia: lesión estenosante en esófago distal. ¿Diagnóstico más probable?",
   ops:["Acalasia idiopática del esófago","Espasmo esofágico difuso","Carcinoma esofágico","Estenosis péptica por reflujo"],
@@ -769,13 +761,27 @@ const preguntas = [
 
 ];
 
-/* ========== LÓGICA ========== */
+/* ========= LÓGICA CON EMBARALHAMIENTO REAL ========= */
 const cont = document.getElementById('quiz');
 const marcador = document.getElementById('marcador');
 let respondidas = 0, aciertos = 0;
 
 function actualizarMarcador() {
   marcador.textContent = `Respondidas: ${respondidas} / ${preguntas.length} · Aciertos: ${aciertos}`;
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function shuffleOptions(p) {
+  const idx = p.ops.map((_, i) => i);
+  shuffle(idx);
+  return { ...p, ops: idx.map(i => p.ops[i]), ok: idx.indexOf(p.ok) };
 }
 
 function responder(card, caja, exp, p, elegida) {
@@ -799,7 +805,9 @@ function construir() {
   respondidas = 0; aciertos = 0;
   actualizarMarcador();
 
-  preguntas.forEach((p, i) => {
+  const lote = preguntas.map(shuffleOptions);
+
+  lote.forEach((p, i) => {
     const card = document.createElement('div');
     card.className = 'card ' + p.tipo;
 
@@ -835,14 +843,30 @@ function construir() {
     card.appendChild(exp);
     cont.appendChild(card);
   });
-}
 
-preguntas.forEach((p, i) => {
-  const max = Math.max(...p.ops.map(o => o.length));
-  if (p.ops[p.ok].length === max) {
-    console.warn(`Aviso Q${i+1}: la correcta es (o empata como) la más larga.`);
-  }
-});
+  /* Diagnóstico en consola: muestra la distribución de esta sesión */
+  const letras = {A:0, B:0, C:0, D:0};
+  const posLarga = {A:0, B:0, C:0, D:0};
+  const posCorta = {A:0, B:0, C:0, D:0};
+  let correctaLarga = 0, correctaCorta = 0, correctaMedia = 0;
+  lote.forEach(p => {
+    letras['ABCD'[p.ok]]++;
+    const largos = p.ops.map(o => o.length);
+    const max = Math.max(...largos);
+    const min = Math.min(...largos);
+    const lc = largos[p.ok];
+    posLarga['ABCD'[largos.indexOf(max)]]++;
+    posCorta['ABCD'[largos.indexOf(min)]]++;
+    if (lc === max) correctaLarga++;
+    else if (lc === min) correctaCorta++;
+    else correctaMedia++;
+  });
+  console.log('=== Distribución de ESTA sesión ===');
+  console.log('Respuestas correctas por letra:', letras);
+  console.log('Posición de la opción MÁS LARGA:', posLarga);
+  console.log('Posición de la opción MÁS CORTA:', posCorta);
+  console.log('Correcta más larga:', correctaLarga, '| más corta:', correctaCorta, '| intermedia:', correctaMedia);
+}
 
 construir();
 </script>
