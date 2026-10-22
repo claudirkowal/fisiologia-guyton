@@ -303,6 +303,15 @@
       border-top: 1px solid #f1f5f9;
       padding-top: 12px;
     }
+    .card .meta .arrow {
+      color: #2563eb;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: transform .2s;
+    }
+    .card:hover .meta .arrow {
+      transform: translateX(4px);
+    }
     .empty {
       text-align: center;
       color: #64748b;
@@ -374,11 +383,10 @@
   // ============================================================
   // CATÁLOGO DE CAPÍTULOS
   // ------------------------------------------------------------
-  // Guyton & Hall, 13ª edición — Fisiología gastrointestinal
-  //   63 → Principios Generales (motilidad, control nervioso y circulación)
-  //   64 → Propulsión y Mezcla
-  //   65 → Funciones Secretoras
-  //   66 → Digestión y Absorción
+  // Para añadir un nuevo capítulo:
+  //   1. Guarda el archivo HTML en la misma carpeta del index
+  //   2. Copia un bloque { ... } y ajusta numero, titulo,
+  //      descricao y arquivo (el nombre del archivo debe coincidir)
   // ============================================================
   const catalogo = [
     {
@@ -388,29 +396,25 @@
           numero: "63",
           titulo: "Principios Generales",
           descricao: "Motilidad gastrointestinal, control nervioso entérico y circulación sanguínea esplácnica.",
-          arquivo: "capitulo-63.html",
-          perguntas: 96
+          arquivo: "capitulo-63.html"
         },
         {
           numero: "64",
           titulo: "Propulsión y Mezcla",
           descricao: "Masticación, deglución, motilidad esofágica, vaciamiento gástrico, motilidad intestinal y defecación.",
-          arquivo: "capitulo-64.html",
-          perguntas: 100
+          arquivo: "capitulo-64.html"
         },
         {
           numero: "65",
           titulo: "Funciones Secretoras",
           descricao: "Glándulas digestivas, saliva, secreción gástrica, páncreas, bilis y secreción intestinal.",
-          arquivo: "capitulo-65.html",
-          perguntas: 99
+          arquivo: "capitulo-65.html"
         },
         {
           numero: "66",
           titulo: "Digestión y Absorción",
           descricao: "Digestión y absorción de carbohidratos, proteínas, grasas, agua y electrolitos.",
-          arquivo: "capitulo-66.html",
-          perguntas: 96
+          arquivo: "capitulo-66.html"
         }
       ]
     }
@@ -422,8 +426,7 @@
     //       numero: "1",
     //       titulo: "AINEs y Analgésicos",
     //       descricao: "Mecanismos de acción, efectos adversos y casos clínicos.",
-    //       arquivo: "farmaco-aines.html",
-    //       perguntas: 100
+    //       arquivo: "farmaco-aines.html"
     //     }
     //   ]
     // }
@@ -436,11 +439,8 @@
   const buscaEl    = document.getElementById('busca');
   const statsEl    = document.getElementById('stats');
 
-  function totalPerguntas() {
-    return catalogo.reduce(
-      (acc, d) => acc + d.capitulos.reduce((a, c) => a + (c.perguntas || 0), 0),
-      0
-    );
+  function contarCapitulos() {
+    return catalogo.reduce((acc, d) => acc + d.capitulos.length, 0);
   }
 
   function renderizar(filtro = '') {
@@ -478,7 +478,8 @@
           <h3>${c.titulo}</h3>
           <p>${c.descricao}</p>
           <div class="meta">
-            <span>${c.perguntas ? c.perguntas + ' preguntas' : 'Ver ejercicio'}</span>
+            <span>Abrir ejercicio</span>
+            <span class="arrow">→</span>
           </div>
         `;
         grid.appendChild(a);
@@ -496,7 +497,7 @@
 
     statsEl.textContent =
       visiveis + ' capítulo' + (visiveis !== 1 ? 's' : '') +
-      ' · ' + totalPerguntas() + ' preguntas en total';
+      ' de ' + contarCapitulos() + ' disponibles';
   }
 
   buscaEl.addEventListener('input', e => renderizar(e.target.value));
