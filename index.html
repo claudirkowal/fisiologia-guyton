@@ -303,17 +303,6 @@
       border-top: 1px solid #f1f5f9;
       padding-top: 12px;
     }
-    .card.visited-card {
-      border-left: 4px solid #22c55e;
-    }
-    .card.visited-card .meta .visited {
-      color: #15803d;
-    }
-    .card.em-breve {
-      opacity: .6;
-      pointer-events: none;
-      border-style: dashed;
-    }
     .empty {
       text-align: center;
       color: #64748b;
@@ -402,27 +391,25 @@
           perguntas: 99
         },
         {
-          numero: "66",
-          titulo: "Digestión y Absorción",
-          descricao: "Digestión y absorción de carbohidratos, proteínas, grasas, agua, electrolitos y vitaminas.",
-          arquivo: "capitulo-66.html",
-          perguntas: 100
-        },
-        {
           numero: "64",
           titulo: "Funciones Secretoras",
           descricao: "Glándulas digestivas, saliva, secreción gástrica, páncreas, bilis y secreción intestinal.",
           arquivo: "capitulo-64.html",
-          perguntas: 100,
-          emBreve: true
+          perguntas: 100
         },
         {
           numero: "65",
           titulo: "Digestión y Absorción (principios)",
           descricao: "Principios generales de la digestión y absorción de nutrientes.",
           arquivo: "capitulo-65.html",
-          perguntas: 100,
-          emBreve: true
+          perguntas: 100
+        },
+        {
+          numero: "66",
+          titulo: "Digestión y Absorción",
+          descricao: "Digestión y absorción de carbohidratos, proteínas, grasas, agua, electrolitos y vitaminas.",
+          arquivo: "capitulo-66.html",
+          perguntas: 100
         }
       ]
     }
@@ -447,14 +434,6 @@
   const catalogoEl = document.getElementById('catalogo');
   const buscaEl    = document.getElementById('busca');
   const statsEl    = document.getElementById('stats');
-
-  function foiVisitado(arquivo) {
-    try { return localStorage.getItem('visita:' + arquivo) === '1'; }
-    catch { return false; }
-  }
-  function marcarVisitado(arquivo) {
-    try { localStorage.setItem('visita:' + arquivo, '1'); } catch {}
-  }
 
   function totalPerguntas() {
     return catalogo.reduce(
@@ -490,22 +469,15 @@
 
       filtrados.forEach(c => {
         visiveis++;
-        const visitado = foiVisitado(c.arquivo);
         const a = document.createElement('a');
-        a.className = 'card' +
-          (visitado && !c.emBreve ? ' visited-card' : '') +
-          (c.emBreve ? ' em-breve' : '');
-        a.href = c.emBreve ? '#' : c.arquivo;
-        if (!c.emBreve) {
-          a.addEventListener('click', () => marcarVisitado(c.arquivo));
-        }
+        a.className = 'card';
+        a.href = c.arquivo;
         a.innerHTML = `
           <span class="badge">Capítulo ${c.numero}</span>
           <h3>${c.titulo}</h3>
           <p>${c.descricao}</p>
           <div class="meta">
-            <span>${c.emBreve ? 'Próximamente' : (c.perguntas ? c.perguntas + ' preguntas' : 'Ver ejercicio')}</span>
-            ${!c.emBreve && visitado ? '<span class="visited">✓ Visitado</span>' : ''}
+            <span>${c.perguntas ? c.perguntas + ' preguntas' : 'Ver ejercicio'}</span>
           </div>
         `;
         grid.appendChild(a);
