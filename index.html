@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,7 @@
     }
 
     /* ============================================================
-       CABEÇALHO REDESENHADO
+       CABECERA
        ============================================================ */
     header {
       position: relative;
@@ -34,7 +34,6 @@
       50%      { background-position: 100% 50%; }
     }
 
-    /* Grades/linhas decorativas no fundo */
     header::before {
       content: '';
       position: absolute;
@@ -48,7 +47,6 @@
       z-index: -1;
     }
 
-    /* Orbes de luz */
     header::after {
       content: '';
       position: absolute;
@@ -73,7 +71,6 @@
       z-index: 1;
     }
 
-    /* Badge superior */
     .header-badge {
       display: inline-flex;
       align-items: center;
@@ -105,7 +102,6 @@
       100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
     }
 
-    /* Título */
     header h1 {
       margin: 0 0 18px;
       font-size: 2.6rem;
@@ -126,7 +122,6 @@
       color: transparent;
     }
 
-    /* Bandeiras */
     header .flags {
       display: inline-flex;
       align-items: center;
@@ -158,7 +153,6 @@
       transform: rotate(6deg) translateY(-2px);
     }
 
-    /* Ícone */
     header .icone {
       font-size: 2.1rem;
       line-height: 1;
@@ -171,7 +165,6 @@
       50%      { transform: translateY(-6px); }
     }
 
-    /* Subtítulo em pill */
     header p {
       display: inline-block;
       margin: 0;
@@ -187,7 +180,6 @@
       -webkit-backdrop-filter: blur(6px);
     }
 
-    /* Onda inferior */
     .header-wave {
       position: absolute;
       left: 0;
@@ -200,7 +192,7 @@
     }
 
     /* ============================================================
-       CONTEÚDO PRINCIPAL
+       CONTENIDO PRINCIPAL
        ============================================================ */
     main {
       max-width: 1150px;
@@ -330,9 +322,6 @@
       font-size: .95rem;
     }
 
-    /* ============================================================
-       RESPONSIVO
-       ============================================================ */
     @media (max-width: 600px) {
       header { padding: 55px 18px 90px; }
       header h1 { font-size: 1.6rem; gap: 12px; }
@@ -357,14 +346,14 @@
 
       <h1>
         <span class="flags" aria-hidden="true">
-          <!-- Bandeira do Brasil -->
+          <!-- Bandera de Brasil -->
           <svg class="flag" viewBox="0 0 720 504" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Brasil">
             <rect width="720" height="504" fill="#009c3b"/>
             <polygon points="360,42 685,252 360,462 35,252" fill="#ffdf00"/>
             <circle cx="360" cy="252" r="100" fill="#002776"/>
             <path d="M 285 232 Q 360 208 435 232 Q 400 272 360 275 Q 320 272 285 232 Z" fill="#ffffff" opacity="0.85"/>
           </svg>
-          <!-- Bandeira da Bolívia -->
+          <!-- Bandera de Bolivia -->
           <svg class="flag" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bolivia">
             <rect width="22" height="5" y="0"  fill="#d52b1e"/>
             <rect width="22" height="5" y="5"  fill="#f9e300"/>
@@ -378,7 +367,6 @@
       <p>Ejercicios de fisiología para practicar</p>
     </div>
 
-    <!-- Onda decorativa -->
     <svg class="header-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,40 L1440,80 L0,80 Z" fill="#f0f4f8"/>
     </svg>
@@ -404,14 +392,14 @@
   // ============================================================
   const catalogo = [
     {
-      disciplina: "Fisiología – Guyton",
+      disciplina: "Basado en el libro de Guyton & Hall, 13ª edición",
       capitulos: [
         {
           numero: "63",
           titulo: "Propulsión y Mezcla",
           descricao: "Masticación, deglución, motilidad esofágica, vaciamiento gástrico, motilidad intestinal y defecación.",
           arquivo: "capitulo-63.html",
-          perguntas: 100
+          perguntas: 99
         },
         {
           numero: "66",
@@ -443,7 +431,7 @@
     //   disciplina: "Farmacología",
     //   capitulos: [
     //     {
-    //       numero: "—",
+    //       numero: "1",
     //       titulo: "AINEs y Analgésicos",
     //       descricao: "Mecanismos de acción, efectos adversos y casos clínicos.",
     //       arquivo: "farmaco-aines.html",
@@ -454,7 +442,7 @@
   ];
 
   // ------------------------------------------------------------
-  // Renderização dinâmica
+  // Renderización dinámica
   // ------------------------------------------------------------
   const catalogoEl = document.getElementById('catalogo');
   const buscaEl    = document.getElementById('busca');
@@ -512,11 +500,11 @@
           a.addEventListener('click', () => marcarVisitado(c.arquivo));
         }
         a.innerHTML = `
-          <span class="badge">Cap. ${c.numero}</span>
+          <span class="badge">Capítulo ${c.numero}</span>
           <h3>${c.titulo}</h3>
           <p>${c.descricao}</p>
           <div class="meta">
-            <span>${c.emBreve ? 'Em breve' : (c.perguntas ? c.perguntas + ' preguntas' : 'Ver ejercicio')}</span>
+            <span>${c.emBreve ? 'Próximamente' : (c.perguntas ? c.perguntas + ' preguntas' : 'Ver ejercicio')}</span>
             ${!c.emBreve && visitado ? '<span class="visited">✓ Visitado</span>' : ''}
           </div>
         `;
