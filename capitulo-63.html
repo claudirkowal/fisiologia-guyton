@@ -6,7 +6,8 @@
 <title>Examen Guyton Cap. 63 – Propulsión y Mezcla</title>
 <style>
   * { box-sizing: border-box; }
-  body {
+  body 
+ {
     margin: 0;
     font-family: "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
     background: linear-gradient(165deg, #eef2f9 0%, #dde6f2 100%);
@@ -119,9 +120,33 @@
     .card { padding: 16px 15px 12px; }
     .opcion { font-size: .88rem; }
   }
+     /* Botão flutuante "Início" */
+    .volver {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 100;
+      background: #2563eb;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(37,99,235,.4);
+      font-size: .9rem;
+      transition: background .2s, transform .15s;
+    }
+    .volver:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+    @media (max-width: 560px) {
+      .volver { bottom: 14px; left: 14px; padding: 8px 14px; font-size: .82rem; }
+    }
 </style>
 </head>
 <body>
+ <a href="index.html" class="volver">🏠 Início</a>
 
 <div class="contenedor">
   <header>
