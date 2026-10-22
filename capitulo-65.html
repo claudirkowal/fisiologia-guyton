@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Examen Guyton Cap. 65 – Funciones Secretoras del Tubo Digestivo</title>
+<title>Guyton Cap. 65 – Funciones Secretoras del Tubo Digestivo</title>
 <style>
   * { box-sizing: border-box; }
   body {
@@ -114,7 +114,6 @@
   }
   footer { text-align: center; font-size: .8rem; color: #64748b; margin-top: 34px; }
 
-  /* Botão flutuante "Início" */
   .volver {
     position: fixed;
     bottom: 20px;
@@ -130,10 +129,7 @@
     font-size: .9rem;
     transition: background .2s, transform .15s;
   }
-  .volver:hover {
-    background: #1d4ed8;
-    transform: translateY(-2px);
-  }
+  .volver:hover { background: #1d4ed8; transform: translateY(-2px); }
 
   @media (max-width: 560px) {
     header { padding: 22px 18px; }
@@ -150,7 +146,7 @@
 
 <div class="contenedor">
   <header>
-    <h1>📖 Guyton Cap. 64 – Funciones Secretoras del Tubo Digestivo</h1>
+    <h1>📖 Guyton Cap. 65 – Funciones Secretoras del Tubo Digestivo</h1>
     <p>Glándulas · Saliva · Secreción gástrica · Páncreas · Bilis · Secreción intestinal · Casos clínicos</p>
   </header>
 
@@ -165,611 +161,609 @@
 <script>
 const preguntas = [
 
-/* =========================================================
-   PRINCIPIOS GENERALES DE LA SECRECIÓN (1-20)
-   ========================================================= */
+/* ============ PRINCIPIOS GENERALES (1-15) ============ */
 { cat:"Principios generales", tipo:"teoria",
-  q:"¿Cuáles son las dos misiones fundamentales de las glándulas secretoras del tubo digestivo?",
-  ops:["Secretar enzimas digestivas y moco","Absorber nutrientes y agua","Producir hormonas y bilis","Regular el pH y la motilidad"],
+  q:"¿Cuáles son las dos misiones fundamentales de las glándulas secretoras digestivas?",
+  ops:["Secretar enzimas y moco","Absorber nutrientes y agua del quimo hacia la sangre portal","Producir hormonas y sales biliares para la digestión","Regular el pH y la motilidad del tubo digestivo entero"],
   ok:0,
-  exp:"Las glándulas del tubo digestivo secretan enzimas digestivas (desde la boca hasta el íleon distal) y moco (desde la boca hasta el ano) para lubricación y protección." },
+  exp:"Las glándulas digestivas secretan enzimas digestivas (desde la boca hasta el íleon distal) y moco (desde la boca hasta el ano) para digestión y protección." },
 
 { cat:"Principios generales", tipo:"teoria",
-  q:"Las células mucosas unicelulares o caliciformes responden principalmente a:",
-  ops:["Estimulación hormonal","Irritación local del epitelio","Estimulación parasimpática","Distensión gástrica"],
+  q:"Las células caliciformes responden principalmente a:",
+  ops:["Estimulación hormonal por gastrina y secretina","Irritación local del epitelio","Estimulación parasimpática vagal directa","Distensión de la pared gástrica por el bolo"],
   ok:1,
-  exp:"Las células caliciformes expulsan moco directamente a la superficie epitelial en respuesta a la irritación local, actuando como lubricante protector contra la excoriación y la digestión." },
+  exp:"Las células caliciformes expulsan moco en respuesta a la irritación local del epitelio, actuando como lubricante protector contra la excoriación y la digestión." },
 
 { cat:"Principios generales", tipo:"teoria",
   q:"Las criptas de Lieberkühn son:",
-  ops:["Glándulas tubulares profundas del estómago","Invaginaciones del epitelio intestinal","Conductos de las glándulas salivales","Vellosidades del intestino delgado"],
-  ok:1,
+  ops:["Glándulas tubulares profundas de la mucosa gástrica del antro","Conductos excretores de las glándulas salivales mayores","Invaginaciones del epitelio intestinal","Vellosidades digitiformes del intestino delgado proximal"],
+  ok:2,
   exp:"Las criptas de Lieberkühn son invaginaciones del epitelio hacia la submucosa en el intestino delgado. Contienen células secretoras especializadas." },
 
 { cat:"Principios generales", tipo:"teoria",
   q:"Las glándulas oxínticas se localizan en:",
-  ops:["El intestino delgado","El estómago y duodeno proximal","Las glándulas salivales","El colon"],
-  ok:1,
+  ops:["El intestino delgado, principalmente duodeno distal y yeyuno","Las glándulas salivales parótidas y submandibulares","El colon ascendente y transverso proximal","El estómago y duodeno proximal"],
+  ok:3,
   exp:"Las glándulas oxínticas (tubulares profundas) se encuentran en el estómago y la porción proximal del duodeno. Secretan ácido clorhídrico y pepsinógeno." },
 
 { cat:"Principios generales", tipo:"teoria",
   q:"¿Cuáles son glándulas complejas asociadas al tubo digestivo?",
-  ops:["Salivales, páncreas e hígado","Caliciformes y oxínticas","Criptas de Lieberkühn","Glándulas mucosas simples"],
+  ops:["Salivales, páncreas e hígado","Caliciformes, oxínticas y pilóricas del antro gástrico","Criptas de Lieberkühn y glándulas de Brunner duodenales","Glándulas mucosas simples y células argentafines"],
   ok:0,
   exp:"Las glándulas salivales, el páncreas y el hígado son glándulas complejas que proporcionan secreciones para la digestión o emulsión de los alimentos." },
 
 { cat:"Principios generales", tipo:"teoria",
-  q:"Las glándulas salivales y el páncreas están formados por glándulas:",
-  ops:["Tubulares simples","Acinosas","Mucosas unicelulares","Endocrinas"],
+  q:"Las glándulas salivales y el páncreas son glándulas:",
+  ops:["Tubulares simples con secreción mucosa predominante","Acinosas","Mucosas unicelulares dispersas en el epitelio","Endocrinas con secreción hacia la circulación sistémica"],
   ok:1,
   exp:"Las glándulas salivales y el páncreas son glándulas acinosas (acinares), formadas por acinos que secretan el componente primario de la secreción." },
 
 { cat:"Principios generales", tipo:"teoria",
-  q:"El contacto de los alimentos con el epitelio estimula la secreción mediante:",
-  ops:["Solo hormonas","Estímulos nerviosos entéricos","Solo el sistema nervioso central","Solo el simpático"],
-  ok:1,
+  q:"El contacto del alimento con el epitelio estimula la secreción mediante:",
+  ops:["Solo hormonas gastrointestinales liberadas a la sangre","Únicamente el sistema nervioso central por vía cortical","Estímulos nerviosos entéricos","Solo el sistema nervioso simpático por vía refleja"],
+  ok:2,
   exp:"El contacto del alimento con el epitelio activa el sistema nervioso entérico mediante estímulos táctiles, irritación química y distensión de la pared intestinal." },
 
 { cat:"Principios generales", tipo:"teoria",
-  q:"La estimulación parasimpática del tubo digestivo:",
-  ops:["Disminuye la secreción glandular","Aumenta la velocidad de secreción glandular","No afecta la secreción","Solo afecta la motilidad"],
-  ok:1,
-  exp:"La estimulación parasimpática aumenta la velocidad de secreción glandular del tubo digestivo, especialmente en las glándulas de la parte superior (glosofaríngeo y vago)." },
+  q:"La estimulación parasimpática del tubo digestivo produce:",
+  ops:["Disminución de la secreción glandular digestiva","Inhibición completa de la motilidad gastrointestinal","Vasoconstricción marcada de la mucosa digestiva","Aumento de la secreción glandular"],
+  ok:3,
+  exp:"La estimulación parasimpática (vago y glosofaríngeo) aumenta la velocidad de secreción glandular del tubo digestivo, especialmente en las glándulas de la parte superior." },
 
 { cat:"Principios generales", tipo:"teoria",
   q:"La estimulación simpática aislada sobre las glándulas digestivas produce:",
-  ops:["Aumento copioso de la secreción","Ligero aumento de la secreción","Inhibición total","Ningún efecto"],
-  ok:1,
-  exp:"La estimulación simpática aislada suele provocar un ligero aumento de la secreción. Sin embargo, si hay secreción copiosa por estimulación parasimpática u hormonal, el simpático la reduce por vasoconstricción." },
+  ops:["Ligero aumento de la secreción","Aumento copioso de la secreción glandular","Inhibición total e inmediata de la secreción","Ningún efecto sobre la secreción glandular"],
+  ok:0,
+  exp:"La estimulación simpática aislada suele provocar un ligero aumento de la secreción. Sin embargo, si hay secreción copiosa por parasimpático u hormonal, el simpático la reduce por vasoconstricción." },
 
 { cat:"Principios generales", tipo:"teoria",
   q:"Cuando la estimulación simpática se superpone a la parasimpática, la secreción:",
-  ops:["Aumenta aún más","Disminuye por vasoconstricción","No cambia","Se vuelve ácida"],
+  ops:["Aumenta aún más por sinergia de ambos sistemas","Disminuye por vasoconstricción","No cambia significativamente en ningún caso","Se vuelve más ácida y abundante en enzimas"],
   ok:1,
-  exp:"La estimulación simpática sobreañadida a la parasimpática reduce la secreción, a menudo en gran medida, sobre todo por disminución del flujo sanguíneo glandular (vasoconstricción)." },
+  exp:"La estimulación simpática sobreañadida a la parasimpática reduce la secreción, a menudo en gran medida, sobre todo por disminución del flujo sanguíneo glandular." },
 
 { cat:"Principios generales", tipo:"teoria",
   q:"Las hormonas gastrointestinales regulan la secreción al ser liberadas hacia:",
-  ops:["La luz intestinal","La sangre","El sistema linfático","El sistema nervioso"],
-  ok:1,
+  ops:["La luz intestinal directamente sobre las glándulas","El sistema linfático mesentérico hacia el conducto torácico","La sangre","El sistema nervioso entérico por sinapsis directas"],
+  ok:2,
   exp:"Las hormonas gastrointestinales se liberan de la mucosa intestinal hacia la sangre, que las transporta hasta las glándulas para estimular la secreción." },
 
 { cat:"Principios generales", tipo:"teoria",
   q:"En el mecanismo básico de secreción, las vesículas se liberan por:",
-  ops:["Difusión simple","Exocitosis mediada por calcio","Pinocitosis","Transporte activo"],
-  ok:1,
+  ops:["Difusión simple a través de la membrana apical","Pinocitosis inversa mediada por clatrina","Transporte activo primario con gasto de ATP","Exocitosis mediada por calcio"],
+  ok:3,
   exp:"Las vesículas secretoras se almacenan hasta que un influjo de calcio desencadena su exocitosis, liberando el contenido al exterior celular." },
 
 { cat:"Principios generales", tipo:"teoria",
   q:"El moco es resistente a la digestión porque:",
-  ops:["Contiene enzimas proteolíticas","Es una glucoproteína con propiedades anfóteras","Es un lípido","Es una proteína simple"],
-  ok:1,
+  ops:["Es una glucoproteína anfótera","Contiene enzimas proteolíticas que se autodigieren","Es un lípido complejo insoluble en medio acuoso","Es una proteína simple de alto peso molecular"],
+  ok:0,
   exp:"El moco está formado por glucoproteínas con propiedades anfóteras, capaces de tamponar ácidos y álcalis. Es adherente, lubrica y resiste la digestión." },
 
 { cat:"Principios generales", tipo:"teoria",
   q:"La secreción de las glándulas digestivas requiere:",
-  ops:["Solo agua","ATP y mitocondrias","Solo iones","Solo hormonas"],
+  ops:["Solo agua y electrolitos del plasma sanguíneo","ATP y mitocondrias","Solo iones sodio y potasio disponibles","Solo hormonas gastrointestinales circulantes"],
   ok:1,
   exp:"La secreción glandular requiere energía (ATP) producida por las mitocondrias para la síntesis de sustancias orgánicas y el transporte activo de iones." },
 
 { cat:"Principios generales", tipo:"teoria",
   q:"La modificación de la secreción primaria ocurre en:",
-  ops:["Los acinos","Los conductos","El tejido conectivo","La sangre"],
-  ok:1,
+  ops:["Los acinos secretores primarios de las glándulas","El tejido conectivo intersticial periductal","Los conductos","La sangre que perfunde la glándula"],
+  ok:2,
   exp:"La secreción primaria producida por los acinos se modifica en los conductos mediante procesos de transporte activo (reabsorción de sodio, secreción de potasio y bicarbonato)." },
 
-{ cat:"Principios generales", tipo:"teoria",
-  q:"La sangre es la fuente última de los componentes secretores porque:",
-  ops:["Transporta oxígeno","Aporta materiales y energía a las glándulas","Contiene hormonas","Lleva CO2"],
-  ok:1,
-  exp:"La sangre aporta los materiales necesarios (agua, electrolitos, nutrientes) y la energía para la formación de las secreciones digestivas." },
-
-{ cat:"Principios generales", tipo:"teoria",
-  q:"Las glándulas mucosas simples tienen como función principal:",
-  ops:["Secretar enzimas","Lubricar y proteger el epitelio","Absorber nutrientes","Producir hormonas"],
-  ok:1,
-  exp:"Las glándulas mucosas simples (células caliciformes) secretan moco para lubricar y proteger el epitelio de la irritación y la digestión." },
-
-{ cat:"Principios generales", tipo:"teoria",
-  q:"La estimulación táctil del epitelio digestivo activa:",
-  ops:["El sistema nervioso entérico","Solo hormonas","El sistema nervioso central","La médula ósea"],
-  ok:0,
-  exp:"La estimulación táctil, junto con la irritación química y la distensión, activa el sistema nervioso entérico, que estimula la secreción glandular." },
-
-{ cat:"Principios generales", tipo:"teoria",
-  q:"Las glándulas complejas del tubo digestivo incluyen:",
-  ops:["Salivales, páncreas e hígado","Caliciformes y oxínticas","Solo las salivales","Solo el páncreas"],
-  ok:0,
-  exp:"Las glándulas complejas son las salivales, el páncreas y el hígado. Proporcionan secreciones para la digestión o emulsión de los alimentos." },
-
-{ cat:"Principios generales", tipo:"teoria",
-  q:"La secreción digestiva se produce principalmente en respuesta a:",
-  ops:["El ayuno","La presencia de alimento","El sueño","El ejercicio"],
-  ok:1,
-  exp:"Las glándulas secretoras del tubo digestivo secretan enzimas digestivas y moco formados principalmente en respuesta a la presencia de alimento." },
-
-/* =========================================================
-   SECRECIÓN SALIVAL (21-38)
-   ========================================================= */
+/* ============ SECRECIÓN SALIVAL (16-30) ============ */
 { cat:"Secreción salival", tipo:"teoria",
-  q:"¿Cuáles son las glándulas salivales principales?",
-  ops:["Parótida, submandibular y sublingual","Solo la parótida","Caliciformes y oxínticas","Criptas de Lieberkühn"],
-  ok:0,
+  q:"Las glándulas salivales principales son:",
+  ops:["Solo la glándula parótida bilateral","Solo las glándulas sublinguales anteriores","Las células caliciformes y las glándulas oxínticas","Parótida, submandibular y sublingual"],
+  ok:3,
   exp:"Las glándulas salivales principales son la parótida, la submandibular y la sublingual, además de numerosas glándulas bucales pequeñas." },
 
 { cat:"Secreción salival", tipo:"teoria",
   q:"La glándula parótida secreta principalmente:",
-  ops:["Secreción mucosa","Secreción serosa","Secreción mixta","Solo agua"],
-  ok:1,
-  exp:"La glándula parótida secreta casi exclusivamente saliva de tipo seroso, que contiene ptialina (α-amilasa). Las submandibulares y sublinguales secretan seroso y mucoso." },
+  ops:["Secreción serosa","Secreción mucosa espesa y abundante","Secreción mixta seromucosa equilibrada","Solo agua con electrolitos sin enzimas"],
+  ok:0,
+  exp:"La glándula parótida secreta casi exclusivamente saliva serosa, que contiene ptialina (α-amilasa). Las submandibulares y sublinguales secretan seroso y mucoso." },
 
 { cat:"Secreción salival", tipo:"teoria",
   q:"Las glándulas submandibulares y sublinguales secretan:",
-  ops:["Solo seroso","Solo mucoso","Seroso y mucoso","Solo enzimas"],
-  ok:2,
+  ops:["Solo seroso con alta concentración de amilasa","Seroso y mucoso","Solo mucoso con baja concentración proteica","Solo enzimas digestivas sin componente acuoso"],
+  ok:1,
   exp:"Las glándulas submandibulares y sublinguales secretan una mezcla de seroso y mucoso. Las glándulas bucales secretan solo moco." },
 
 { cat:"Secreción salival", tipo:"teoria",
   q:"El pH de la saliva es aproximadamente:",
-  ops:["2-3","6-7","8-9","4-5"],
-  ok:1,
+  ops:["2-3 por la acción de la ptialina salival","8-9 por la alta concentración de bicarbonato","6-7","4-5 por la mezcla con jugo gástrico"],
+  ok:2,
   exp:"El pH de la saliva es de 6-7, favorable para la acción de la ptialina (α-amilasa salival)." },
 
 { cat:"Secreción salival", tipo:"teoria",
   q:"La ptialina salival es una enzima que:",
-  ops:["Digiere proteínas","Inicia la digestión del almidón","Digiere grasas","Neutraliza el ácido"],
-  ok:1,
+  ops:["Digiere proteínas en péptidos pequeños","Digiere grasas en ácidos grasos libres","Neutraliza el ácido clorhídrico gástrico","Inicia la digestión del almidón"],
+  ok:3,
   exp:"La ptialina (α-amilasa salival) inicia la hidrólisis del almidón y del glucógeno en maltosa y polímeros pequeños de glucosa." },
 
 { cat:"Secreción salival", tipo:"teoria",
   q:"La secreción salival es un proceso de:",
-  ops:["Una etapa","Dos etapas","Tres etapas","Cuatro etapas"],
-  ok:1,
-  exp:"La secreción salival es un proceso de dos etapas: los acinos secretan la secreción primaria y los conductos la modifican mediante transporte activo de sodio, potasio y bicarbonato." },
+  ops:["Dos etapas","Una sola etapa simple de filtración","Tres etapas con modificación gástrica","Cuatro etapas con control hormonal complejo"],
+  ok:0,
+  exp:"La secreción salival es un proceso de dos etapas: los acinos secretan la secreción primaria y los conductos la modifican mediante transporte activo." },
 
 { cat:"Secreción salival", tipo:"teoria",
   q:"En los conductos salivales, el sodio se:",
-  ops:["Secreta activamente","Reabsorbe activamente","No se modifica","Se filtra"],
+  ops:["Secreta activamente hacia la luz ductal","Reabsorbe activamente","No se modifica, permanece constante","Se filtra pasivamente sin control"],
   ok:1,
   exp:"En los conductos salivales, el sodio se reabsorbe activamente y el potasio se secreta activamente en intercambio, lo que hace la saliva hipotónica." },
 
 { cat:"Secreción salival", tipo:"teoria",
   q:"La saliva contiene grandes cantidades de:",
-  ops:["Sodio y cloro","Potasio y bicarbonato","Calcio y fosfato","Hierro y cobre"],
-  ok:1,
+  ops:["Sodio y cloro, semejante al plasma","Calcio y fosfato, formando sales insolubles","Potasio y bicarbonato","Hierro y cobre, como cofactores enzimáticos"],
+  ok:2,
   exp:"La saliva contiene grandes cantidades de potasio y bicarbonato, y es hipotónica respecto al plasma." },
 
 { cat:"Secreción salival", tipo:"teoria",
   q:"La saliva ayuda a la higiene oral porque contiene:",
-  ops:["Solo agua","Lisozima e inmunoglobulinas","Ácido clorhídrico","Pepsina"],
-  ok:1,
+  ops:["Solo agua con pH neutro fisiológico","Ácido clorhídrico con acción bactericida","Pepsina con actividad proteolítica directa","Lisozima e inmunoglobulinas"],
+  ok:3,
   exp:"La saliva contiene lisozima, tiocianato, enzimas proteolíticas e inmunoglobulinas que destruyen bacterias orales y ayudan a la higiene bucal." },
 
 { cat:"Secreción salival", tipo:"teoria",
   q:"La secreción salival está controlada por:",
-  ops:["Solo hormonas","Vías parasimpáticas de los núcleos salivales","Solo el simpático","La médula suprarrenal"],
-  ok:1,
+  ops:["Vías parasimpáticas","Solo hormonas como la aldosterona","Solo el sistema simpático toracolumbar","La médula suprarrenal por catecolaminas"],
+  ok:0,
   exp:"La secreción salival está controlada por vías nerviosas parasimpáticas desde los núcleos salivales superior e inferior del tronco encefálico." },
 
 { cat:"Secreción salival", tipo:"caso",
-  q:"Paciente con xerostomía (sequedad bucal) por disfunción de las glándulas salivales. ¿Qué consecuencia es más probable?",
-  ops:["Aumento de la digestión del almidón","Mayor riesgo de caries e infecciones orales","Aumento de la secreción gástrica","Mejora de la deglución"],
+  q:"Paciente de 65 años con radioterapia cervical por carcinoma laríngeo presenta sequedad bucal, disfagia y caries múltiples de rápida progresión. ¿Qué mecanismo explica estos síntomas?",
+  ops:["Aumento compensador de la digestión del almidón","Disminución de la secreción salival","Aumento de la secreción gástrica refleja","Mejora compensadora de la deglución"],
   ok:1,
-  exp:"La saliva lubrica, tampona y contiene factores antibacterianos. Su ausencia (xerostomía) aumenta el riesgo de caries, infecciones orales y dificulta la deglución." },
+  exp:"La radioterapia cervical lesiona las glándulas salivales. La xerostomía resultante aumenta el riesgo de caries, infecciones orales y dificultad para la deglución." },
 
 { cat:"Secreción salival", tipo:"teoria",
   q:"La lipasa lingual es una enzima salival que:",
-  ops:["Digiere proteínas","Inicia la digestión de grasas","Digiere almidón","Neutraliza el ácido"],
-  ok:1,
+  ops:["Digiere proteínas en aminoácidos libres","Digiere almidón en maltosa y glucosa","Inicia la digestión de grasas","Neutraliza el ácido gástrico del estómago"],
+  ok:2,
   exp:"La lipasa lingual inicia la digestión de los triglicéridos en la boca y el estómago, aunque su acción es limitada." },
 
 { cat:"Secreción salival", tipo:"teoria",
   q:"La saliva favorece la deglución porque:",
-  ops:["Aumenta el pH","Humedecer y lubrica el bolo alimenticio","Digiere proteínas","Produce ácido"],
-  ok:1,
+  ops:["Aumenta el pH del bolo alimenticio","Digiere las proteínas del bolo en la boca","Produce ácido que estimula el peristaltismo","Humedecer y lubrica el bolo"],
+  ok:3,
   exp:"La saliva humedece y lubrica los alimentos, formando el bolo alimenticio y facilitando la deglución." },
 
 { cat:"Secreción salival", tipo:"teoria",
   q:"Las glándulas bucales secretan principalmente:",
-  ops:["Seroso","Mucoso","Mixto","Enzimas"],
-  ok:1,
+  ops:["Mucoso","Seroso con alta actividad amilásica","Mixto con predominio seroso","Enzimas proteolíticas activas"],
+  ok:0,
   exp:"Las glándulas bucales pequeñas secretan solo moco, que lubrica la mucosa oral." },
 
 { cat:"Secreción salival", tipo:"teoria",
   q:"La producción diaria de saliva es aproximadamente:",
-  ops:["0.1-0.5 L","1-2 L","3-4 L","5-6 L"],
+  ops:["0.1-0.5 L en condiciones basales","1-2 L","3-4 L con estímulo máximo","5-6 L en condiciones normales"],
   ok:1,
   exp:"Se producen entre 1 y 2 litros de saliva al día, lo que representa aproximadamente el 98% de agua." },
 
-{ cat:"Secreción salival", tipo:"caso",
-  q:"Paciente con parotiditis (paperas) que presenta inflamación de la glándula parótida. ¿Qué tipo de secreción está afectada?",
-  ops:["Mucosa","Serosa","Mixta","Lipídica"],
-  ok:1,
-  exp:"La glándula parótida secreta principalmente saliva serosa rica en ptialina. La parotiditis inflama esta glándula y puede reducir la secreción serosa." },
+/* ============ SECRECIÓN GÁSTRICA (31-55) ============ */
+{ cat:"Secreción gástrica", tipo:"caso",
+  q:"Paciente de 45 años con anemia perniciosa. ¿Qué células gástricas están destruidas?",
+  ops:["Células principales secretoras de pepsinógeno","Células G antrales productoras de gastrina","Células parietales","Células mucosas superficiales del epitelio"],
+  ok:2,
+  exp:"La anemia perniciosa se debe a la destrucción autoinmune de las células parietales, que secretan factor intrínseco. Sin factor intrínseco, la vitamina B12 no se absorbe." },
 
-{ cat:"Secreción salival", tipo:"teoria",
-  q:"La saliva es hipotónica respecto al plasma debido a:",
-  ops:["Reabsorción de sodio en los conductos","Secreción de potasio","Falta de proteínas","Ausencia de bicarbonato"],
-  ok:0,
-  exp:"La reabsorción activa de sodio en los conductos salivales, junto con la secreción de potasio y bicarbonato, hace que la saliva final sea hipotónica." },
-
-{ cat:"Secreción salival", tipo:"teoria",
-  q:"La secreción salival aumenta por:",
-  ops:["Estimulación parasimpática","Estimulación simpática aislada","El sueño","La deshidratación"],
-  ok:0,
-  exp:"La estimulación parasimpática (glosofaríngeo y vago) aumenta la secreción salival. El simpático puede aumentarla ligeramente si actúa solo, pero la reduce si hay secreción copiosa." },
-
-/* =========================================================
-   SECRECIÓN GÁSTRICA (39-60)
-   ========================================================= */
 { cat:"Secreción gástrica", tipo:"teoria",
   q:"Las glándulas oxínticas secretan:",
-  ops:["Ácido clorhídrico y pepsinógeno","Solo moco","Bicarbonato","Bilis"],
-  ok:0,
+  ops:["Solo moco alcalino protector de la mucosa","Bicarbonato y agua para neutralizar el quimo","Bilis emulsionante de grasas dietéticas","Ácido clorhídrico y pepsinógeno"],
+  ok:3,
   exp:"Las glándulas oxínticas del estómago y duodeno proximal secretan ácido clorhídrico, pepsinógeno, factor intrínseco y moco." },
 
 { cat:"Secreción gástrica", tipo:"teoria",
   q:"Las células parietales secretan:",
-  ops:["Pepsinógeno","Ácido clorhídrico y factor intrínseco","Gastrina","Moco"],
-  ok:1,
+  ops:["Ácido clorhídrico y factor intrínseco","Pepsinógeno inactivo como precursor","Gastrina que estimula la secreción ácida","Moco viscoso protector de la mucosa gástrica"],
+  ok:0,
   exp:"Las células parietales secretan ácido clorhídrico y factor intrínseco. El factor intrínseco es esencial para la absorción de vitamina B12." },
 
 { cat:"Secreción gástrica", tipo:"teoria",
   q:"Las células principales secretan:",
-  ops:["Ácido clorhídrico","Pepsinógeno","Gastrina","Factor intrínseco"],
+  ops:["Ácido clorhídrico concentrado y factor intrínseco","Pepsinógeno","Gastrina estimulante de la secreción","Factor intrínseco para vitamina B12"],
   ok:1,
   exp:"Las células principales (peptídicas) secretan pepsinógeno, que se activa en pepsina en el ambiente ácido del estómago." },
 
 { cat:"Secreción gástrica", tipo:"teoria",
   q:"Las células G del antro secretan:",
-  ops:["Pepsinógeno","Gastrina","Ácido clorhídrico","Factor intrínseco"],
-  ok:1,
+  ops:["Pepsinógeno como precursor inactivo","Ácido clorhídrico y factor intrínseco","Gastrina","Factor intrínseco para B12"],
+  ok:2,
   exp:"Las células G del antro gástrico secretan gastrina, que estimula la secreción de ácido clorhídrico por las células parietales." },
 
 { cat:"Secreción gástrica", tipo:"teoria",
   q:"La fase cefálica de la secreción gástrica es mediada por:",
-  ops:["Solo gastrina","El nervio vago","Solo el simpático","La secretina"],
-  ok:1,
+  ops:["Solo gastrina liberada por células G antrales","Solo el sistema nervioso simpático toracolumbar","Secretina liberada por el duodeno acidificado","El nervio vago"],
+  ok:3,
   exp:"La fase cefálica (aproximadamente 30% de la secreción ácida) es mediada por el nervio vago en respuesta a estímulos sensoriales (visión, olor, pensamiento de comida)." },
 
 { cat:"Secreción gástrica", tipo:"teoria",
   q:"La fase gástrica de la secreción ácida es estimulada por:",
-  ops:["La distensión del antro y productos proteicos","La visión de la comida","El pH ácido del duodeno","La grasa en el íleon"],
+  ops:["Distensión del antro y productos proteicos","La visión, el olor y el pensamiento de comida","El pH ácido del duodeno proximal","La presencia de grasa en el íleon distal"],
   ok:0,
   exp:"La fase gástrica (60% de la secreción) se desencadena por la distensión del estómago y la presencia de productos de la digestión de proteínas, que estimulan la liberación de gastrina." },
 
 { cat:"Secreción gástrica", tipo:"teoria",
   q:"La fase intestinal de la secreción gástrica representa aproximadamente:",
-  ops:["10% de la secreción ácida","30%","60%","90%"],
-  ok:0,
+  ops:["30% de la secreción ácida total","10%","60% de la secreción ácida total","90% de la secreción ácida total"],
+  ok:1,
   exp:"La fase intestinal representa alrededor del 10% de la secreción ácida total y se debe a la presencia de alimento en el duodeno." },
 
 { cat:"Secreción gástrica", tipo:"teoria",
   q:"La gastrina estimula directamente la secreción de:",
-  ops:["Moco","Ácido clorhídrico","Bicarbonato","Bilis"],
-  ok:1,
+  ops:["Moco alcalino de células mucosas","Bicarbonato por conductos pancreáticos","Ácido clorhídrico","Bilis por los hepatocitos"],
+  ok:2,
   exp:"La gastrina estimula a las células parietales para secretar ácido clorhídrico y también estimula a las células principales para secretar pepsinógeno." },
 
 { cat:"Secreción gástrica", tipo:"teoria",
-  q:"La somatostatina gástrica:",
-  ops:["Estimula la secreción ácida","Inhibe la liberación de gastrina","Aumenta la motilidad","Neutraliza el ácido"],
-  ok:1,
+  q:"La somatostatina gástrica produce:",
+  ops:["Estimulación de la secreción ácida gástrica","Aumento de la motilidad gastrointestinal","Neutralización del ácido clorhídrico","Inhibición de la liberación de gastrina"],
+  ok:3,
   exp:"La somatostatina, liberada por las células D del estómago, inhibe la liberación de gastrina por las células G y reduce la secreción ácida." },
 
 { cat:"Secreción gástrica", tipo:"caso",
-  q:"Paciente con anemia perniciosa. ¿Qué células gástricas están destruidas?",
-  ops:["Células principales","Células parietales","Células G","Células mucosas"],
-  ok:1,
-  exp:"La anemia perniciosa se debe a la destrucción autoinmune de las células parietales, que secretan factor intrínseco. Sin factor intrínseco, la vitamina B12 no se absorbe." },
+  q:"Paciente de 55 años con anemia megaloblástica. Endoscopia: atrofia gástrica difusa con pérdida de células parietales. ¿Qué deficiencia causa la anemia?",
+  ops:["Vitamina B12 por falta de FI","Hierro por aclorhidria y malabsorción","Ácido fólico por malabsorción intestinal","Cobre por déficit de transporte"],
+  ok:0,
+  exp:"Sin factor intrínseco, la vitamina B12 no puede absorberse en el íleon terminal, causando anemia megaloblástica (perniciosa)." },
 
 { cat:"Secreción gástrica", tipo:"caso",
-  q:"Paciente con úlcera duodenal e infección por H. pylori. ¿Qué célula es estimulada en exceso?",
-  ops:["Célula principal","Célula parietal","Célula caliciforme","Célula D"],
+  q:"Paciente de 40 años con úlcera duodenal activa e infección por H. pylori confirmada. ¿Qué célula es estimulada en exceso?",
+  ops:["Célula principal secretora de pepsinógeno","Célula parietal","Célula caliciforme secretora de moco","Célula D productora de somatostatina"],
   ok:1,
   exp:"H. pylori estimula la secreción de gastrina y de ácido clorhídrico por las células parietales, lo que contribuye a la lesión de la mucosa duodenal." },
 
 { cat:"Secreción gástrica", tipo:"teoria",
   q:"El factor intrínseco es esencial para la absorción de:",
-  ops:["Hierro","Vitamina B12","Calcio","Ácido fólico"],
-  ok:1,
+  ops:["Hierro en el duodeno proximal","Calcio en el yeyuno medio","Vitamina B12","Ácido fólico en el íleon distal"],
+  ok:2,
   exp:"El factor intrínseco se une a la vitamina B12 y permite su absorción en el íleon terminal. Su deficiencia causa anemia perniciosa." },
 
 { cat:"Secreción gástrica", tipo:"teoria",
   q:"La pepsina es más activa a un pH de:",
-  ops:["7-8","2-3","5-6","9-10"],
-  ok:1,
+  ops:["7-8 en el duodeno proximal","5-6 en el antro gástrico","9-10 en el íleon terminal","2-3"],
+  ok:3,
   exp:"La pepsina alcanza su máxima actividad a pH 2-3 y se inactiva a pH superior a 5. Por eso la digestión de proteínas en el estómago depende del ambiente ácido." },
 
 { cat:"Secreción gástrica", tipo:"teoria",
   q:"La barrera gástrica está formada por:",
-  ops:["Moco y uniones estrechas","Ácido clorhídrico","Pepsina","Gastrina"],
+  ops:["Moco y uniones estrechas","Ácido clorhídrico concentrado y pepsina","Pepsina activa y factor intrínseco","Gastrina y células G antrales"],
   ok:0,
   exp:"La barrera gástrica consiste en una capa de moco viscoso y uniones estrechas entre las células epiteliales, que protegen la mucosa de la acción del ácido y la pepsina." },
 
 { cat:"Secreción gástrica", tipo:"caso",
-  q:"Paciente con gastrectomía total que presenta anemia megaloblástica. ¿Por qué ocurre?",
-  ops:["Falta de factor intrínseco","Falta de ácido clorhídrico","Falta de pepsina","Falta de gastrina"],
-  ok:0,
-  exp:"La gastrectomía total elimina las células parietales que secretan factor intrínseco. Sin factor intrínseco, la vitamina B12 no puede absorberse en el íleon terminal, causando anemia megaloblástica." },
+  q:"Paciente de 60 años con gastrectomía total por carcinoma gástrico, presenta anemia megaloblástica a los 8 meses. ¿Por qué ocurre?",
+  ops:["Falta de ácido clorhídrico gástrico para absorber hierro","Falta de factor intrínseco","Falta de pepsina que degrada proteínas","Falta de gastrina que estimula la médula ósea"],
+  ok:1,
+  exp:"La gastrectomía total elimina las células parietales que secretan factor intrínseco. Sin factor intrínseco, la vitamina B12 no puede absorberse en el íleon terminal." },
 
 { cat:"Secreción gástrica", tipo:"teoria",
   q:"El ácido clorhídrico gástrico es necesario para:",
-  ops:["Absorber glucosa","Convertir pepsinógeno en pepsina","Absorber calcio","Producir bilis"],
-  ok:1,
+  ops:["Absorber glucosa en el intestino delgado","Absorber calcio en el duodeno proximal","Convertir pepsinógeno en pepsina","Producir bilis en el hígado"],
+  ok:2,
   exp:"El ácido clorhídrico activa el pepsinógeno en pepsina, que es la enzima activa para la digestión de proteínas en el estómago." },
 
 { cat:"Secreción gástrica", tipo:"teoria",
   q:"La secreción gástrica está inhibida por:",
-  ops:["Gastrina","Somatostatina y pH ácido","Acetilcolina","Histamina"],
-  ok:1,
+  ops:["Gastrina liberada por células G antrales","Acetilcolina del nervio vago","Histamina liberada por células ECL","Somatostatina y pH ácido"],
+  ok:3,
   exp:"La somatostatina y el pH ácido del antro inhiben la liberación de gastrina y reducen la secreción ácida, como mecanismo de retroalimentación negativa." },
 
 { cat:"Secreción gástrica", tipo:"caso",
-  q:"Paciente con síndrome de Zollinger-Ellison. ¿Qué hormona está elevada?",
-  ops:["Secretina","Gastrina","CCK","Motilina"],
-  ok:1,
-  exp:"El síndrome de Zollinger-Ellison se debe a un gastrinoma que secreta grandes cantidades de gastrina, lo que estimula la hipersecreción ácida y causa úlceras pépticas múltiples." },
+  q:"Paciente de 50 años con úlceras pépticas múltiples recurrentes y diarrea. Gastrina sérica en ayunas muy elevada. TC: masa pancreática. ¿Diagnóstico?",
+  ops:["Gastrinoma (Zollinger-Ellison)","Síndrome carcinoide","Insulinoma pancreático","VIPoma intestinal"],
+  ok:0,
+  exp:"El síndrome de Zollinger-Ellison se debe a un gastrinoma que secreta grandes cantidades de gastrina, causando hipersecreción ácida y úlceras múltiples." },
 
 { cat:"Secreción gástrica", tipo:"teoria",
   q:"La histamina estimula la secreción ácida al unirse a receptores:",
-  ops:["H1 en células parietales","H2 en células parietales","H3 en células G","H1 en células principales"],
+  ops:["H1 en células parietales gástricas","H2","H3 en células G antrales","H1 en células principales secretoras"],
   ok:1,
   exp:"La histamina se une a los receptores H2 de las células parietales y estimula la secreción de ácido clorhídrico. Los antagonistas H2 bloquean este efecto." },
 
 { cat:"Secreción gástrica", tipo:"caso",
-  q:"Paciente con úlcera gástrica que presenta dolor epigástrico que empeora con la comida. ¿Qué factor agrava la lesión?",
-  ops:["La secreción ácida y la pepsina","La deficiencia de lactasa","El exceso de bicarbonato","La disminución de la motilidad"],
-  ok:0,
-  exp:"La úlcera gástrica se debe al desequilibrio entre los factores agresivos (ácido, pepsina, H. pylori, AINEs) y los protectores (moco, bicarbonato, prostaglandinas). El dolor empeora con la comida porque el ácido estimula la secreción." },
+  q:"Paciente de 55 años con úlcera gástrica y dolor epigástrico que empeora con la comida. ¿Qué factor agrava la lesión?",
+  ops:["Deficiencia de lactasa intestinal yeyunal","Exceso de bicarbonato duodenal","Secreción ácida y pepsina","Disminución de la motilidad gástrica"],
+  ok:2,
+  exp:"La úlcera gástrica resulta del desequilibrio entre factores agresivos (ácido, pepsina, H. pylori, AINEs) y protectores (moco, bicarbonato, prostaglandinas)." },
 
-/* =========================================================
-   SECRECIÓN PANCREÁTICA (61-78)
-   ========================================================= */
+{ cat:"Secreción gástrica", tipo:"teoria",
+  q:"La secreción ácida gástrica está estimulada directamente por:",
+  ops:["Solo la somatostatina de células D","Solo el pH alcalino del antro gástrico","Solo la secretina duodenal alcalina","Acetilcolina, histamina y gastrina"],
+  ok:3,
+  exp:"La acetilcolina (vago), la histamina (células ECL) y la gastrina (células G) son los tres principales estimuladores de la secreción ácida por las células parietales." },
+
+{ cat:"Secreción gástrica", tipo:"teoria",
+  q:"La fase cefálica representa aproximadamente:",
+  ops:["30% de la secreción ácida","60% de la secreción ácida","10% de la secreción ácida","90% de la secreción ácida"],
+  ok:0,
+  exp:"La fase cefálica (30%) es la respuesta vagal a estímulos sensoriales. La fase gástrica aporta el 60% y la intestinal el 10%." },
+
+{ cat:"Secreción gástrica", tipo:"caso",
+  q:"Paciente de 30 años con dolor abdominal súbito en puñalada, defensa abdominal y neumoperitoneo en la radiografía. Antecedente de úlcera gástrica. ¿Qué mecanismo contribuye a la úlcera perforada?",
+  ops:["Aumento de la secreción de moco protector","Desequilibrio agresivo-defensivo","Aumento de prostaglandinas protectoras","Inhibición de la secreción ácida gástrica"],
+  ok:1,
+  exp:"La úlcera péptica perforada resulta del desequilibrio entre factores agresivos (ácido, pepsina, H. pylori) y protectores (moco, bicarbonato, prostaglandinas)." },
+
+{ cat:"Secreción gástrica", tipo:"teoria",
+  q:"La pentagastrina se utiliza clínicamente para:",
+  ops:["Tratar la úlcera péptica activa","Inhibir la secreción ácida gástrica","Evaluar la función secretora gástrica","Prevenir el sangrado digestivo alto"],
+  ok:2,
+  exp:"La pentagastrina (análogo de gastrina) estimula la secreción ácida y se usa en el test de estimulación para evaluar la función secretora gástrica (por ejemplo, en sospecha de aclorhidria o gastrinoma)." },
+
+/* ============ SECRECIÓN PANCREÁTICA (56-75) ============ */
 { cat:"Secreción pancreática", tipo:"teoria",
   q:"El páncreas exocrino secreta:",
-  ops:["Solo enzimas","Enzimas y bicarbonato","Solo moco","Solo hormonas"],
-  ok:1,
+  ops:["Solo enzimas digestivas sin componente acuoso","Solo moco alcalino para proteger el duodeno","Solo hormonas gastrointestinales endocrinas","Enzimas y bicarbonato"],
+  ok:3,
   exp:"El páncreas exocrino secreta enzimas digestivas (producidas por los acinos) y una solución rica en bicarbonato (secretada por los conductos) para neutralizar el quimo ácido." },
 
 { cat:"Secreción pancreática", tipo:"teoria",
   q:"Las enzimas pancreáticas son secretadas por:",
-  ops:["Los conductos","Los acinos","Las células G","El hígado"],
-  ok:1,
+  ops:["Los acinos","Los conductos intercalares y colectores","Las células G del páncreas endocrino","El hígado por vía canalicular biliar"],
+  ok:0,
   exp:"Los acinos pancreáticos secretan las enzimas digestivas (tripsina, quimotripsina, amilasa, lipasa, etc.), mientras que los conductos secretan bicarbonato." },
 
 { cat:"Secreción pancreática", tipo:"teoria",
   q:"La secretina estimula la secreción pancreática de:",
-  ops:["Enzimas","Bicarbonato","Moco","Bilis"],
+  ops:["Enzimas digestivas por los acinos","Bicarbonato","Moco alcalino protector duodenal","Bilis emulsionante de grasas"],
   ok:1,
   exp:"La secretina, liberada por las células S del duodeno en respuesta al pH ácido, estimula la secreción de bicarbonato por los conductos pancreáticos." },
 
 { cat:"Secreción pancreática", tipo:"teoria",
   q:"La colecistoquinina (CCK) estimula la secreción pancreática de:",
-  ops:["Bicarbonato","Enzimas","Moco","Agua"],
-  ok:1,
+  ops:["Bicarbonato por los conductos","Moco alcalino duodenal","Enzimas","Agua y electrolitos"],
+  ok:2,
   exp:"La CCK, liberada por las células I del intestino delgado en respuesta a grasas y proteínas, estimula la secreción de enzimas pancreáticas por los acinos." },
 
 { cat:"Secreción pancreática", tipo:"teoria",
   q:"La tripsina se activa a partir de:",
-  ops:["El tripsinógeno por la enterocinasa","La pepsina por el ácido","La quimotripsina por la bilis","La amilasa por el calcio"],
-  ok:0,
-  exp:"El tripsinógeno pancreático se activa en el duodeno por la enterocinasa (enteroquinasa) del borde en cepillo, convirtiéndose en tripsina activa. La tripsina luego activa otras enzimas pancreáticas." },
+  ops:["La pepsina por el ácido clorhídrico gástrico","La quimotripsina por la bilis duodenal","La amilasa por el calcio duodenal","El tripsinógeno por enterocinasa"],
+  ok:3,
+  exp:"El tripsinógeno pancreático se activa en el duodeno por la enterocinasa del ribete en cepillo, convirtiéndose en tripsina activa. La tripsina luego activa otras enzimas pancreáticas." },
 
 { cat:"Secreción pancreática", tipo:"teoria",
   q:"La amilasa pancreática digiere:",
-  ops:["Proteínas","Almidón","Grasas","Ácidos nucleicos"],
-  ok:1,
+  ops:["Almidón","Proteínas en péptidos pequeños","Grasas en ácidos grasos libres","Ácidos nucleicos en nucleótidos"],
+  ok:0,
   exp:"La amilasa pancreática hidroliza el almidón en maltosa y polímeros pequeños de glucosa, completando la digestión de los carbohidratos." },
 
 { cat:"Secreción pancreática", tipo:"teoria",
   q:"La lipasa pancreática digiere:",
-  ops:["Proteínas","Triglicéridos","Almidón","Ácidos nucleicos"],
+  ops:["Proteínas en aminoácidos libres","Triglicéridos","Almidón en maltosa y glucosa","Ácidos nucleicos en bases púricas"],
   ok:1,
   exp:"La lipasa pancreática, junto con la colipasa, hidroliza los triglicéridos en ácidos grasos libres y monoglicéridos." },
 
 { cat:"Secreción pancreática", tipo:"caso",
-  q:"Paciente con pancreatitis crónica que presenta esteatorrea. ¿Qué mecanismo explica la esteatorrea?",
-  ops:["Deficiencia de enzimas pancreáticas","Exceso de ácido gástrico","Aumento de la motilidad intestinal","Deficiencia de lactasa"],
-  ok:0,
-  exp:"La pancreatitis crónica reduce la secreción de enzimas pancreáticas (lipasa, tripsina, etc.), lo que impide la digestión adecuada de grasas y proteínas, causando esteatorrea y malnutrición." },
+  q:"Paciente de 45 años con pancreatitis crónica por alcoholismo, presenta esteatorrea y pérdida de 12 kg en 1 año. ¿Qué mecanismo explica la esteatorrea?",
+  ops:["Exceso de ácido gástrico en el duodeno","Aumento de la motilidad intestinal","Deficiencia de enzimas pancreáticas","Deficiencia de lactasa intestinal yeyunal"],
+  ok:2,
+  exp:"La pancreatitis crónica reduce la secreción de enzimas pancreáticas (lipasa, tripsina, etc.), lo que impide la digestión adecuada de grasas y proteínas, causando esteatorrea." },
 
 { cat:"Secreción pancreática", tipo:"caso",
-  q:"Paciente con fibrosis quística que presenta malabsorción de grasas. ¿Qué mecanismo es responsable?",
-  ops:["Obstrucción de los conductos pancreáticos","Aumento de la secreción biliar","Aumento de la motilidad intestinal","Deficiencia de lactasa"],
-  ok:0,
-  exp:"La fibrosis quística produce moco espeso que obstruye los conductos pancreáticos, impidiendo la llegada de enzimas al duodeno. Esto causa maldigestión y malabsorción de grasas y proteínas." },
+  q:"Paciente de 8 años con fibrosis quística confirmada por test del sudor, presenta esteatorrea y desnutrición. ¿Qué mecanismo es responsable?",
+  ops:["Aumento de la secreción biliar duodenal","Aumento de la motilidad intestinal","Deficiencia de lactasa intestinal","Obstrucción de conductos pancreáticos"],
+  ok:3,
+  exp:"La fibrosis quística produce moco espeso que obstruye los conductos pancreáticos, impidiendo la llegada de enzimas al duodeno y causando maldigestión y malabsorción." },
 
 { cat:"Secreción pancreática", tipo:"teoria",
   q:"La colipasa es una proteína pancreática que:",
-  ops:["Activa la lipasa pancreática","Inhibe la lipasa","Emulsifica las grasas","Neutraliza el ácido gástrico"],
+  ops:["Activa la lipasa pancreática","Inhibe la lipasa pancreática","Emulsifica las grasas dietéticas","Neutraliza el ácido gástrico"],
   ok:0,
   exp:"La colipasa se une a la lipasa pancreática y a las gotas lipídicas, permitiendo que la lipasa actúe en la interfase agua-lípido. Es esencial para una digestión eficiente de las grasas." },
 
 { cat:"Secreción pancreática", tipo:"teoria",
   q:"La secreción pancreática es rica en:",
-  ops:["Ácido clorhídrico","Bicarbonato","Pepsina","Bilis"],
+  ops:["Ácido clorhídrico concentrado","Bicarbonato","Pepsina activa","Bilis emulsionante de grasas"],
   ok:1,
   exp:"El páncreas secreta una solución rica en bicarbonato que neutraliza el quimo ácido procedente del estómago, protegiendo la mucosa duodenal y permitiendo la acción de las enzimas pancreáticas." },
 
 { cat:"Secreción pancreática", tipo:"teoria",
   q:"La enterocinasa (enteroquinasa) se localiza en:",
-  ops:["El estómago","El borde en cepillo del duodeno","El colon","El esófago"],
-  ok:1,
-  exp:"La enterocinasa es una enzima del borde en cepillo del duodeno que activa el tripsinógeno en tripsina, iniciando la cascada de activación de las enzimas pancreáticas." },
+  ops:["El estómago, en las criptas gástricas","El colon, en las células caliciformes","El ribete en cepillo duodenal","El esófago distal, en glándulas mucosas"],
+  ok:2,
+  exp:"La enterocinasa es una enzima del ribete en cepillo del duodeno que activa el tripsinógeno en tripsina, iniciando la cascada de activación de las enzimas pancreáticas." },
 
 { cat:"Secreción pancreática", tipo:"teoria",
   q:"La secreción pancreática está regulada principalmente por:",
-  ops:["Gastrina y somatostatina","Secretina y CCK","Insulina y glucagón","Aldosterona y ADH"],
-  ok:1,
+  ops:["Gastrina y somatostatina gastrointestinales","Insulina y glucagón del páncreas endocrino","Aldosterona y ADH de la hipófisis posterior","Secretina y CCK"],
+  ok:3,
   exp:"La secreción pancreática exocrina está regulada por la secretina (bicarbonato) y la CCK (enzimas), liberadas en respuesta al quimo ácido y a los nutrientes en el duodeno." },
 
 { cat:"Secreción pancreática", tipo:"caso",
-  q:"Paciente con pancreatitis aguda que presenta dolor abdominal intenso y elevación de amilasa. ¿Qué mecanismo explica la elevación de amilasa?",
-  ops:["Obstrucción del conducto pancreático","Aumento de la secreción gástrica","Deficiencia de lactasa","Aumento de la absorción intestinal"],
+  q:"Paciente de 50 años con pancreatitis aguda, dolor abdominal intenso transfixiante y amilasa sérica 5 veces el valor normal. ¿Qué mecanismo explica la elevación de amilasa?",
+  ops:["Obstrucción del conducto pancreático","Aumento de la secreción gástrica ácida","Deficiencia de lactasa intestinal","Aumento de la absorción intestinal"],
   ok:0,
   exp:"La pancreatitis aguda causa edema e inflamación que obstruyen el conducto pancreático, impidiendo el paso de las enzimas al duodeno. Las enzimas se liberan a la sangre, elevando la amilasa y la lipasa séricas." },
 
 { cat:"Secreción pancreática", tipo:"teoria",
   q:"Las enzimas pancreáticas se secretan en forma de:",
-  ops:["Enzimas activas","Precursores inactivos (zimógenos)","Cofactores","Hormonas"],
+  ops:["Enzimas activas listas para actuar","Precursores inactivos (zimógenos)","Cofactores que activan otras enzimas","Hormonas gastrointestinales precursoras"],
   ok:1,
   exp:"Las enzimas proteolíticas pancreáticas (tripsinógeno, quimotripsinógeno, procarboxipeptidasa) se secretan como zimógenos inactivos para evitar la autodigestión del páncreas." },
 
 { cat:"Secreción pancreática", tipo:"teoria",
   q:"La secreción pancreática de bicarbonato neutraliza:",
-  ops:["El quimo ácido del estómago","La bilis","El moco","Las enzimas"],
-  ok:0,
+  ops:["La bilis que llega desde la vesícula","El moco duodenal alcalino ya secretado","El quimo ácido del estómago","Las enzimas pancreáticas ya activadas"],
+  ok:2,
   exp:"El bicarbonato pancreático neutraliza el ácido clorhídrico del quimo gástrico en el duodeno, creando un pH óptimo para la acción de las enzimas pancreáticas." },
 
 { cat:"Secreción pancreática", tipo:"caso",
-  q:"Paciente con obstrucción del conducto pancreático que presenta esteatorrea e ictericia. ¿Qué estructura está obstruida?",
-  ops:["Conducto colédoco","Conducto pancreático","Conducto cístico","Esfínter esofágico"],
-  ok:1,
+  q:"Paciente de 60 años con obstrucción del conducto pancreático distal, presenta esteatorrea e ictericia progresiva. ¿Qué estructura está obstruida?",
+  ops:["Conducto colédoco exclusivamente biliar","Conducto cístico de la vesícula biliar","Esfínter esofágico inferior distal","Conducto pancreático"],
+  ok:3,
   exp:"La obstrucción del conducto pancreático impide la llegada de enzimas y bicarbonato al duodeno, causando maldigestión de grasas (esteatorrea). Si la obstrucción es en la ampolla de Vater, también puede causar ictericia." },
 
 { cat:"Secreción pancreática", tipo:"teoria",
   q:"La CCK también estimula:",
-  ops:["La contracción de la vesícula biliar","La secreción de ácido gástrico","La absorción de calcio","La motilidad del colon"],
+  ops:["Contracción de la vesícula biliar","La secreción de ácido gástrico","La absorción de calcio intestinal","La motilidad del colon proximal"],
   ok:0,
   exp:"La CCK estimula la contracción de la vesícula biliar y la relajación del esfínter de Oddi, favoreciendo el flujo de bilis al duodeno." },
 
-/* =========================================================
-   SECRECIÓN BILIAR (79-90)
-   ========================================================= */
+{ cat:"Secreción pancreática", tipo:"caso",
+  q:"Paciente de 35 años con fibrosis quística y esteatorrea. ¿Qué terapia inicial es más adecuada para mejorar la digestión de grasas?",
+  ops:["Antibióticos de amplio espectro profilácticos","Enzimas pancreáticas con las comidas","Antiácidos para alcalinizar el duodeno","Loperamida para reducir la motilidad"],
+  ok:1,
+  exp:"La terapia de reemplazo con enzimas pancreáticas (pancrelipasa) junto con las comidas es esencial en la insuficiencia pancreática exocrina por fibrosis quística." },
+
+{ cat:"Secreción pancreática", tipo:"teoria",
+  q:"La tripsina activa a partir del tripsinógeno mediante:",
+  ops:["El pH ácido del estómago proximal","La pepsina activa duodenal","La enterocinasa duodenal","La bilis proveniente del hígado"],
+  ok:2,
+  exp:"La enterocinasa duodenal es la enzima que convierte el tripsinógeno en tripsina activa, iniciando la cascada de activación de las enzimas pancreáticas." },
+
+/* ============ SECRECIÓN BILIAR (76-88) ============ */
 { cat:"Secreción biliar", tipo:"teoria",
   q:"La bilis es producida por:",
-  ops:["La vesícula biliar","El hígado","El páncreas","El duodeno"],
-  ok:1,
+  ops:["La vesícula biliar en respuesta a CCK","El páncreas exocrino junto a las enzimas","El duodeno por células enteroendocrinas","El hígado"],
+  ok:3,
   exp:"La bilis es producida continuamente por el hígado y almacenada y concentrada en la vesícula biliar." },
 
 { cat:"Secreción biliar", tipo:"teoria",
   q:"Las sales biliares son esenciales para la digestión de:",
-  ops:["Proteínas","Grasas","Carbohidratos","Ácidos nucleicos"],
-  ok:1,
+  ops:["Grasas","Proteínas en péptidos pequeños","Carbohidratos complejos","Ácidos nucleicos en bases"],
+  ok:0,
   exp:"Las sales biliares emulsifican las grasas, reduciendo el tamaño de las gotas lipídicas y aumentando la superficie de acción de la lipasa pancreática." },
 
 { cat:"Secreción biliar", tipo:"teoria",
   q:"La bilis contiene:",
-  ops:["Sales biliares, bilirrubina, colesterol y fosfolípidos","Solo agua y electrolitos","Enzimas proteolíticas","Ácido clorhídrico"],
-  ok:0,
+  ops:["Solo agua y electrolitos disueltos","Sales biliares, bilirrubina y colesterol","Enzimas proteolíticas activas","Ácido clorhídrico concentrado"],
+  ok:1,
   exp:"La bilis contiene sales biliares, bilirrubina, colesterol, fosfolípidos, agua y electrolitos. Las sales biliares son los componentes funcionales más importantes para la digestión de grasas." },
 
 { cat:"Secreción biliar", tipo:"teoria",
   q:"La vesícula biliar concentra la bilis mediante:",
-  ops:["Secreción de agua","Absorción de agua y electrolitos","Producción de bilis","Almacenamiento de enzimas"],
-  ok:1,
+  ops:["Secreción activa de agua hacia la bilis","Producción continua de nueva bilis","Absorción de agua y electrolitos","Almacenamiento de enzimas digestivas"],
+  ok:2,
   exp:"La vesícula biliar absorbe agua y electrolitos, concentrando la bilis hasta 5-10 veces. Esto aumenta la concentración de sales biliares." },
 
 { cat:"Secreción biliar", tipo:"teoria",
   q:"La contracción de la vesícula biliar es estimulada por:",
-  ops:["Secretina","Colecistoquinina (CCK)","Gastrina","Motilina"],
-  ok:1,
+  ops:["Secretina duodenal en respuesta ácida","Gastrina antral en respuesta proteica","Motilina intestinal en ayunas","Colecistoquinina (CCK)"],
+  ok:3,
   exp:"La CCK, liberada en respuesta a grasas y proteínas en el duodeno, estimula la contracción de la vesícula biliar y la relajación del esfínter de Oddi." },
 
 { cat:"Secreción biliar", tipo:"caso",
-  q:"Paciente con ictericia obstructiva y esteatorrea. ¿Qué falta en el intestino?",
-  ops:["Sales biliares","Enzimas pancreáticas","Ácido clorhídrico","Factor intrínseco"],
+  q:"Paciente de 55 años con ictericia obstructiva por carcinoma de la cabeza del páncreas, presenta esteatorrea y heces acólicas. ¿Qué falta en el intestino?",
+  ops:["Sales biliares","Enzimas pancreáticas","Ácido clorhídrico gástrico","Factor intrínseco duodenal"],
   ok:0,
-  exp:"La obstrucción biliar impide el paso de bilis (y sales biliares) al intestino. Sin sales biliares, las grasas no se emulsifican ni se absorben, causando esteatorrea y heces claras (acólicas)." },
+  exp:"La obstrucción biliar impide el paso de bilis (y sales biliares) al intestino. Sin sales biliares, las grasas no se emulsifican ni se absorben, causando esteatorrea y heces acólicas." },
 
 { cat:"Secreción biliar", tipo:"teoria",
   q:"La bilirrubina es un pigmento que proviene de la degradación de:",
-  ops:["Proteínas","Hemoglobina","Grasas","Carbohidratos"],
+  ops:["Proteínas plasmáticas y albúmina","Hemoglobina","Grasas y triglicéridos","Carbohidratos complejos"],
   ok:1,
   exp:"La bilirrubina es un producto de la degradación del hemo de la hemoglobina. Se conjuga en el hígado y se excreta en la bilis." },
 
 { cat:"Secreción biliar", tipo:"teoria",
   q:"Las sales biliares se reabsorben principalmente en:",
-  ops:["El duodeno","El yeyuno","El íleon terminal","El colon"],
+  ops:["El duodeno proximal","El yeyuno medio","El íleon terminal","El colon ascendente"],
   ok:2,
   exp:"Las sales biliares se reabsorben en el íleon terminal mediante transporte activo y retornan al hígado por la circulación enterohepática." },
 
 { cat:"Secreción biliar", tipo:"teoria",
   q:"La secreción biliar está regulada por:",
-  ops:["Solo gastrina","CCK y secretina","Solo el simpático","Solo el vago"],
-  ok:1,
+  ops:["Solo gastrina antral en respuesta proteica","Solo el sistema simpático toracolumbar","Solo el nervio vago por reflejo cefálico","CCK y secretina"],
+  ok:3,
   exp:"La secreción biliar está regulada por la CCK (contracción de la vesícula) y la secretina (secreción de bicarbonato y agua por los conductos biliares)." },
 
 { cat:"Secreción biliar", tipo:"caso",
-  q:"Paciente con colelitiasis (cálculos biliares) que presenta dolor cólico. ¿Qué factor contribuye a la formación de cálculos?",
-  ops:["Exceso de sales biliares","Colesterol elevado en la bilis","Exceso de agua en la bilis","Deficiencia de bilirrubina"],
-  ok:1,
-  exp:"La formación de cálculos de colesterol se debe a un desequilibrio entre el colesterol y las sales biliares en la bilis, lo que lleva a la precipitación del colesterol." },
+  q:"Paciente de 45 años con cólico biliar recurrente. Ecografía: múltiples cálculos en la vesícula biliar. ¿Qué factor contribuye a la formación de cálculos?",
+  ops:["Colesterol elevado en la bilis","Exceso de sales biliares en la bilis","Exceso de agua y electrolitos","Deficiencia de bilirrubina conjugada"],
+  ok:0,
+  exp:"La colelitiasis de colesterol se debe a un desequilibrio entre el colesterol y las sales biliares/fosfolípidos en la bilis, que lleva a la precipitación del colesterol." },
 
 { cat:"Secreción biliar", tipo:"teoria",
   q:"La bilis emulsiona las grasas porque:",
-  ops:["Las sales biliares son anfipáticas","Contiene enzimas lipolíticas","Es rica en bicarbonato","Contiene ácido clorhídrico"],
-  ok:0,
+  ops:["Contiene enzimas lipolíticas activas","Las sales biliares son anfipáticas","Es rica en bicarbonato alcalino","Contiene ácido clorhídrico concentrado"],
+  ok:1,
   exp:"Las sales biliares son moléculas anfipáticas (con una parte hidrofílica y otra lipofílica) que se orientan en la interfase agua-grasa, emulsionando las gotas lipídicas." },
 
-/* =========================================================
-   SECRECIÓN INTESTINAL Y CASOS INTEGRADORES (91-100)
-   ========================================================= */
+{ cat:"Secreción biliar", tipo:"caso",
+  q:"Paciente de 60 años con obstrucción biliar completa, presenta coluria y acolia. ¿Qué pigmento tiñe la orina de color oscuro?",
+  ops:["Bilirrubina indirecta no conjugada","Urobilinógeno intestinal reabsorbido","Bilirrubina directa","Estercobilinógeno fecal eliminado"],
+  ok:2,
+  exp:"En la obstrucción biliar, la bilirrubina conjugada (directa) pasa a la sangre y se filtra por el riñón, causando coluria (orina oscura) y acolia (heces claras)." },
+
+/* ============ SECRECIÓN INTESTINAL (89-100) ============ */
 { cat:"Secreción intestinal", tipo:"teoria",
   q:"Las criptas de Lieberkühn del intestino delgado secretan:",
-  ops:["Solo moco","Agua y electrolitos","Bilis","Ácido clorhídrico"],
-  ok:1,
+  ops:["Agua y electrolitos","Solo moco protector espeso","Bilis emulsionante de grasas","Ácido clorhídrico concentrado"],
+  ok:0,
   exp:"Las criptas de Lieberkühn secretan agua y electrolitos (jugo intestinal) que ayudan a fluidificar el contenido intestinal y facilitar la absorción." },
 
 { cat:"Secreción intestinal", tipo:"teoria",
   q:"Las glándulas de Brunner del duodeno secretan:",
-  ops:["Enzimas proteolíticas","Moco alcalino","Bilis","Ácido clorhídrico"],
+  ops:["Enzimas proteolíticas activas","Moco alcalino","Bilis emulsionante de grasas","Ácido clorhídrico gástrico"],
   ok:1,
   exp:"Las glándulas de Brunner del duodeno secretan un moco alcalino que protege la mucosa duodenal de la acidez del quimo gástrico." },
 
 { cat:"Secreción intestinal", tipo:"caso",
-  q:"Paciente con úlcera duodenal que presenta dolor que mejora con la comida. ¿Qué mecanismo protector falla?",
-  ops:["Secreción de moco y bicarbonato","Secreción de ácido clorhídrico","Secreción de pepsina","Secreción de gastrina"],
-  ok:0,
-  exp:"La úlcera duodenal se debe a un desequilibrio entre los factores agresivos (ácido, pepsina, H. pylori) y los protectores (moco, bicarbonato). El dolor mejora con la comida porque el alimento tampona el ácido." },
+  q:"Paciente de 40 años con úlcera duodenal y dolor epigástrico que mejora con la ingesta. ¿Qué mecanismo protector falla en la mucosa duodenal?",
+  ops:["Secreción excesiva de ácido clorhídrico gástrico","Secreción excesiva de pepsina activa","Secreción de moco y bicarbonato","Secreción excesiva de gastrina antral"],
+  ok:2,
+  exp:"La úlcera duodenal se debe a un desequilibrio entre los factores agresivos y los protectores (moco, bicarbonato). El dolor mejora con la comida porque el alimento tampona el ácido." },
 
 { cat:"Secreción intestinal", tipo:"teoria",
   q:"La secreción intestinal está regulada por:",
-  ops:["Solo hormonas","Estimulación nerviosa entérica y hormonal","Solo el simpático","Solo el vago"],
-  ok:1,
+  ops:["Solo hormonas gastrointestinales circulantes","Solo el sistema simpático toracolumbar","Solo el nervio vago en su totalidad","Estimulación nerviosa y hormonal"],
+  ok:3,
   exp:"La secreción intestinal está regulada por estímulos nerviosos entéricos (táctiles, químicos, distensión) y por hormonas gastrointestinales." },
 
 { cat:"Secreción intestinal", tipo:"caso",
-  q:"Paciente con diarrea secretora grave por cólera. ¿Qué mecanismo explica la pérdida masiva de agua?",
-  ops:["Aumento de la secreción intestinal de cloro y agua","Exceso de absorción de sodio","Deficiencia de lactasa","Aumento de la motilidad gástrica"],
+  q:"Paciente de 30 años con diarrea secretora grave por cólera, presenta deshidratación hipovolémica y pérdida masiva de líquido. ¿Qué mecanismo explica la pérdida masiva de agua?",
+  ops:["Aumento de secreción de cloro y agua","Exceso de absorción de sodio intestinal","Deficiencia de lactasa intestinal","Aumento de la motilidad gástrica"],
   ok:0,
   exp:"La toxina del cólera activa la adenilato ciclasa y aumenta el AMPc, lo que estimula la secreción de cloro y agua hacia la luz intestinal, superando la capacidad de absorción del colon." },
 
 { cat:"Secreción intestinal", tipo:"teoria",
   q:"El jugo intestinal es:",
-  ops:["Ácido","Alcalino","Neutro","Muy ácido"],
+  ops:["Ácido por la secreción de HCl","Alcalino","Neutro sin efecto sobre el pH","Muy ácido con pH menor a 3"],
   ok:1,
   exp:"El jugo intestinal es alcalino, rico en bicarbonato, lo que ayuda a neutralizar el quimo ácido y proporcionar un ambiente adecuado para las enzimas pancreáticas." },
 
 { cat:"Secreción intestinal", tipo:"caso",
-  q:"Paciente con síndrome de intestino corto tras resección masiva. ¿Qué mecanismo compensatorio permite la adaptación intestinal?",
-  ops:["Hiperplasia de las criptas y aumento de la superficie de absorción","Disminución de la motilidad","Aumento de la secreción gástrica","Deficiencia de lactasa"],
-  ok:0,
+  q:"Paciente de 45 años con síndrome de intestino corto tras resección masiva por isquemia mesentérica, presenta adaptación intestinal progresiva. ¿Qué mecanismo compensatorio lo permite?",
+  ops:["Disminución de la motilidad intestinal","Aumento de la secreción gástrica ácida","Hiperplasia de criptas y vellosidades","Deficiencia de lactasa secundaria"],
+  ok:2,
   exp:"Tras la resección intestinal, el intestino restante desarrolla hiperplasia de las criptas y elongación de las vellosidades para aumentar la superficie de absorción, proceso mediado por factores de crecimiento." },
 
 { cat:"Secreción intestinal", tipo:"teoria",
   q:"La secreción de moco por las células caliciformes intestinales se debe a:",
-  ops:["Estimulación hormonal","Irritación local del epitelio","Estimulación parasimpática","Distensión gástrica"],
-  ok:1,
+  ops:["Estimulación hormonal por gastrina","Estimulación parasimpática vagal","Distensión gástrica por el bolo","Irritación local del epitelio"],
+  ok:3,
   exp:"Las células caliciformes responden a la irritación local del epitelio, expulsando moco directamente a la superficie para lubricar y proteger." },
 
 { cat:"Secreción intestinal", tipo:"caso",
-  q:"Paciente con enfermedad celíaca que presenta atrofia de las vellosidades intestinales. ¿Qué consecuencia funcional tiene?",
-  ops:["Disminución de la superficie de absorción","Aumento de la secreción ácida","Aumento de la motilidad","Deficiencia de lactasa"],
+  q:"Paciente de 30 años con enfermedad celíaca, presenta diarrea crónica, pérdida de peso y anemia ferropénica. Biopsia yeyunal: atrofia vellositaria. ¿Qué consecuencia funcional tiene?",
+  ops:["Disminución de superficie de absorción","Aumento de la secreción ácida","Aumento de la motilidad intestinal","Deficiencia de lactasa como causa"],
   ok:0,
-  exp:"La atrofia de las vellosidades intestinales reduce la superficie de absorción y la actividad de las enzimas del borde en cepillo, causando malabsorción de nutrientes." },
+  exp:"La atrofia de las vellosidades intestinales reduce la superficie de absorción y la actividad de las enzimas del ribete en cepillo, causando malabsorción de nutrientes." },
 
 { cat:"Secreción intestinal", tipo:"caso",
-  q:"Paciente con obstrucción intestinal que presenta vómitos y distensión. ¿Qué alteración electrolítica es más probable?",
-  ops:["Hipopotasemia e hipocloremia","Hipercalcemia","Hipernatremia","Hiperpotasemia"],
-  ok:0,
-  exp:"Los vómitos prolongados causan pérdida de potasio, cloro e hidrógeno, lo que puede llevar a hipopotasemia, hipocloremia y alcalosis metabólica." }
+  q:"Paciente de 60 años con obstrucción intestinal mecánica por bridas, presenta vómitos prolongados de 4 días. En urgencias: pH 7.52, K+ 2.8, Cl- 86. ¿Qué alteración electrolítica espera?",
+  ops:["Hipercalcemia e hiperfosfatemia","Hipopotasemia e hipocloremia","Hipernatremia con acidosis","Hiperpotasemia con acidosis"],
+  ok:1,
+  exp:"Los vómitos prolongados causan pérdida de potasio, cloro e hidrógeno, lo que puede llevar a hipopotasemia, hipocloremia y alcalosis metabólica." },
+
+{ cat:"Secreción intestinal", tipo:"teoria",
+  q:"La secreción intestinal de agua y electrolitos es estimulada por:",
+  ops:["Solo el sistema simpático toracolumbar","Solo la aldosterona suprarrenal","Toxinas bacterianas como la del cólera","Solo la somatostatina pancreática"],
+  ok:2,
+  exp:"Las toxinas bacterianas como la del Vibrio cholerae aumentan el AMPc intracelular y estimulan la secreción de cloro y agua hacia la luz intestinal." },
+
+{ cat:"Secreción intestinal", tipo:"caso",
+  q:"Paciente de 25 años con diarrea acuosa masiva, deshidratación y heces en agua de arroz, procedente de zona endémica. Coprocultivo: Vibrio cholerae. ¿Qué mecanismo molecular subyace?",
+  ops:["Inhibición de la adenilato ciclasa enterocítica","Bloqueo de los canales de cloro CFTR","Inhibición de la bomba Na+/K+-ATPasa","Aumento de AMPc intracelular"],
+  ok:3,
+  exp:"La toxina del cólera ADP-ribosila la subunidad Gs, activando permanentemente la adenilato ciclasa y aumentando el AMPc, lo que estimula la secreción de cloro y agua." }
 
 ];
 
-/* =========================================================
-   LÓGICA (sin reinicio ni mezcla)
-   ========================================================= */
+/* ============ LÓGICA ============ */
 const cont = document.getElementById('quiz');
 const marcador = document.getElementById('marcador');
 let respondidas = 0, aciertos = 0;
@@ -837,7 +831,6 @@ function construir() {
   });
 }
 
-/* Diagnóstico silencioso: alerta si la correcta es (o empata como) la más larga */
 preguntas.forEach((p, i) => {
   const max = Math.max(...p.ops.map(o => o.length));
   if (p.ops[p.ok].length === max) {
