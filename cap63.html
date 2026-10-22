@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examen Guyton Cap. 63 – Propulsión y Mezcla</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+    background: linear-gradient(165deg, #eef2f9 0%, #dde6f2 100%);
+    color: #1e293b;
+    line-height: 1.55;
+    padding: 26px 14px 90px;
+    min-height: 100vh;
+  }
+  .contenedor { max-width: 880px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #0ea5e9 100%);
+    color: #fff;
+    padding: 30px 28px;
+    border-radius: 20px;
+    box-shadow: 0 14px 34px rgba(30, 58, 138, .3);
+    margin-bottom: 24px;
+  }
+  header h1 { margin: 0 0 8px; font-size: 1.45rem; letter-spacing: -.3px; }
+  header p { margin: 0; font-size: .92rem; opacity: .93; }
+  .panel {
+    position: sticky; top: 12px; z-index: 20;
+    display: flex; flex-wrap: wrap; gap: 10px;
+    align-items: center; justify-content: space-between;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(10px);
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 12px 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 6px 20px rgba(15,23,42,.09);
+    font-size: .9rem;
+    font-weight: 600;
+  }
+  .panel .marcador { color: #2563eb; }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 22px 16px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 16px rgba(15,23,42,.07);
+    border-left: 6px solid #cbd5e1;
+    transition: box-shadow .25s;
+  }
+  .card:hover { box-shadow: 0 6px 22px rgba(15,23,42,.11); }
+  .card.teoria { border-left-color: #3b82f6; }
+  .card.caso   { border-left-color: #f59e0b; }
+  .cabecera { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+  .numero {
+    background: #1e293b; color: #fff;
+    font-size: .72rem; font-weight: 700;
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex: 0 0 auto;
+  }
+  .etiqueta {
+    font-size: .68rem; font-weight: 700; letter-spacing: .6px;
+    text-transform: uppercase;
+    padding: 3px 10px; border-radius: 20px;
+  }
+  .etiqueta.t { background: #dbeafe; color: #1d4ed8; }
+  .etiqueta.c { background: #fef3c7; color: #b45309; }
+  .etiqueta.materia { background: #f1f5f9; color: #475569; }
+  .enunciado {
+    margin: 0 0 6px;
+    font-weight: 600;
+    font-size: .98rem;
+    color: #0f172a;
+  }
+  .opciones { margin-top: 8px; }
+  .opcion {
+    display: flex; align-items: flex-start; gap: 10px;
+    width: 100%; text-align: left;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 11px;
+    padding: 11px 14px;
+    margin-top: 9px;
+    font: inherit;
+    font-size: .93rem;
+    color: #1e293b;
+    cursor: pointer;
+    transition: background .18s, border-color .18s, transform .12s;
+  }
+  .opcion:hover:not(:disabled) { background: #eff6ff; border-color: #93c5fd; transform: translateX(2px); }
+  .opcion:disabled { cursor: default; }
+  .letra { font-weight: 800; color: #64748b; flex: 0 0 auto; min-width: 16px; }
+  .opcion.correcta { background: #dcfce7; border-color: #22c55e; font-weight: 600; }
+  .opcion.correcta .letra { color: #15803d; }
+  .opcion.incorrecta { background: #fee2e2; border-color: #ef4444; }
+  .opcion.incorrecta .letra { color: #b91c1c; }
+  .explicacion {
+    display: none;
+    margin-top: 14px;
+    padding: 13px 16px;
+    border-radius: 11px;
+    background: #f0f9ff;
+    border-left: 4px solid #0ea5e9;
+    font-size: .89rem;
+    color: #0c4a6e;
+  }
+  .explicacion.visible { display: block; animation: aparecer .28s ease; }
+  @keyframes aparecer {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  footer { text-align: center; font-size: .8rem; color: #64748b; margin-top: 34px; }
+  @media (max-width: 560px) {
+    header { padding: 22px 18px; }
+    header h1 { font-size: 1.18rem; }
+    .card { padding: 16px 15px 12px; }
+    .opcion { font-size: .88rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="contenedor">
+  <header>
+    <h1>📖 Guyton Cap. 63 – Propulsión y Mezcla en el Tubo Digestivo</h1>
+    <p>Masticación · Deglución · Motilidad esofágica · Vaciamiento gástrico · Motilidad intestinal · Defecación · Casos clínicos</p>
+  </header>
+
+  <div class="panel">
+    <span class="marcador" id="marcador">Respondidas: 0 / 0 · Aciertos: 0</span>
+  </div>
+
+  <div id="quiz"></div>
+  <footer>Selecciona una opción para ver la explicación inmediata.</footer>
+</div>
+
+<script>
+const preguntas = [
+
+/* =========================================================
+   MASTICACIÓN Y DEGLUCIÓN (1-20)
+   ========================================================= */
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"¿Cuál es la función principal de la masticación?",
+  ops:["Aumentar la superficie de contacto del alimento","Iniciar la digestión de proteínas","Neutralizar el ácido gástrico","Estimular la secreción biliar"],
+  ok:0,
+  exp:"La masticación tritura y mezcla los alimentos con la saliva, aumentando la superficie de contacto para facilitar la digestión y la deglución." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"El reflejo masticatorio está controlado por:",
+  ops:["Núcleos del tronco encefálico","La corteza motora únicamente","El cerebelo","La médula espinal"],
+  ok:0,
+  exp:"El reflejo masticatorio está coordinado por núcleos del tronco encefálico, que controlan la apertura y cierre de la mandíbula y los movimientos de la lengua." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"La deglución se divide en tres fases:",
+  ops:["Oral, faríngea y esofágica","Gástrica, duodenal e intestinal","Cefálica, gástrica e intestinal","Masticatoria, salival y gástrica"],
+  ok:0,
+  exp:"Las tres fases de la deglución son: oral (voluntaria), faríngea (involuntaria) y esofágica (involuntaria)." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"La fase faríngea de la deglución es un acto:",
+  ops:["Voluntario","Involuntario reflejo","Consciente","Solo muscular"],
+  ok:1,
+  exp:"La fase faríngea es un acto reflejo involuntario que se desencadena cuando el bolo alimenticio estimula los receptores de la faringe." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"Durante la fase faríngea, el paladar blando se eleva para:",
+  ops:["Cerrar la nasofaringe","Abrir la glotis","Cerrar el esófago","Estimular la saliva"],
+  ok:0,
+  exp:"La elevación del paladar blando cierra la nasofaringe e impide que el alimento pase a la cavidad nasal durante la deglución." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"La epiglotis durante la deglución:",
+  ops:["Se eleva para abrir la glotis","Se inclina para cerrar la laringe","Se contrae para cerrar el esófago","Se relaja para permitir el paso"],
+  ok:1,
+  exp:"La epiglotis se inclina hacia atrás y cierra la laringe, protegiendo las vías respiratorias y dirigiendo el bolo hacia el esófago." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"El esfínter esofágico superior (EES) está formado principalmente por:",
+  ops:["Músculo liso circular","Músculo estriado (cricofaríngeo)","Cartílago hialino","Tejido conectivo"],
+  ok:1,
+  exp:"El EES está formado por el músculo cricofaríngeo, de tipo estriado, y se relaja durante la fase faríngea para permitir el paso del bolo." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"La fase esofágica de la deglución es impulsada por:",
+  ops:["Peristalsis primaria y secundaria","Solo gravedad","Contracción del diafragma","Movimientos voluntarios"],
+  ok:0,
+  exp:"La fase esofágica se debe a la peristalsis primaria (iniciada por la deglución) y secundaria (por distensión local), que impulsan el bolo hacia el estómago." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"La peristalsis primaria del esófago es iniciada por:",
+  ops:["La distensión del esófago","El reflejo de deglución","El ácido gástrico","La gravedad"],
+  ok:1,
+  exp:"La peristalsis primaria es una onda coordinada que se inicia por el reflejo de deglución y recorre todo el esófago." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"La peristalsis secundaria del esófago se desencadena por:",
+  ops:["La deglución voluntaria","La distensión del esófago por alimento retenido","El pH ácido gástrico","La contracción del diafragma"],
+  ok:1,
+  exp:"La peristalsis secundaria se produce cuando la distensión del esófago por alimento retenido activa reflejos locales que generan una nueva onda peristáltica." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"El esfínter esofágico inferior (EEI) está formado por:",
+  ops:["Músculo estriado voluntario","Músculo liso circular","Cartílago","Tejido fibroso"],
+  ok:1,
+  exp:"El EEI es un engrosamiento de músculo liso circular en la unión esofagogástrica. Su tono basal evita el reflujo gastroesofágico." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"La relajación del EEI durante la deglución es mediada por:",
+  ops:["El nervio vago (inhibitorio)","El simpático","La gastrina","La secretina"],
+  ok:0,
+  exp:"La relajación del EEI está mediada por fibras vagales inhibitorias que liberan óxido nítrico y péptido intestinal vasoactivo (VIP)." },
+
+{ cat:"Masticación y deglución", tipo:"caso",
+  q:"Paciente con disfagia y regurgitación que presenta falta de relajación del EEI. ¿Qué trastorno es más probable?",
+  ops:["Acalasia","Reflujo gastroesofágico","Estenosis pilórica","Síndrome de Zollinger-Ellison"],
+  ok:0,
+  exp:"La acalasia se caracteriza por la falta de relajación del EEI durante la deglución, lo que causa disfagia, regurgitación y dilatación esofágica." },
+
+{ cat:"Masticación y deglución", tipo:"caso",
+  q:"Paciente con pirosis y regurgitación ácida. ¿Qué alteración motora subyace?",
+  ops:["Hipertonía del EEI","Relajación transitoria del EEI","Acalasia","Espasmo esofágico"],
+  ok:1,
+  exp:"El reflujo gastroesofágico se debe a relajaciones transitorias del EEI o a hipotonía del esfínter, que permiten el paso del contenido gástrico al esófago." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"La musculatura del tercio superior del esófago es:",
+  ops:["Músculo liso","Músculo estriado","Mixta","Cartilaginosa"],
+  ok:1,
+  exp:"El tercio superior del esófago está formado por músculo estriado, el tercio medio por una mezcla y el tercio inferior por músculo liso." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"El centro de la deglución se localiza en:",
+  ops:["La médula espinal","El bulbo raquídeo","El cerebelo","La corteza cerebral"],
+  ok:1,
+  exp:"El centro de la deglución se encuentra en el bulbo raquídeo y coordina las fases faríngea y esofágica de la deglución." },
+
+{ cat:"Masticación y deglución", tipo:"caso",
+  q:"Paciente con accidente cerebrovascular que presenta disfagia y aspiración. ¿Qué fase de la deglución está afectada con mayor frecuencia?",
+  ops:["Fase oral","Fase faríngea","Fase esofágica","Fase gástrica"],
+  ok:1,
+  exp:"La fase faríngea es la más afectada en pacientes con ACV, lo que puede causar aspiración y neumonía por aspiración." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"El bolo alimenticio pasa de la faringe al esófago a través del:",
+  ops:["Esfínter esofágico inferior","Esfínter esofágico superior","Píloro","Esfínter de Oddi"],
+  ok:1,
+  exp:"El bolo pasa al esófago a través del esfínter esofágico superior (EES), que se relaja durante la fase faríngea de la deglución." },
+
+{ cat:"Masticación y deglución", tipo:"caso",
+  q:"Paciente con halitosis y retención de alimento en el esófago. ¿Qué alteración motora puede causar esto?",
+  ops:["Acalasia","Reflujo gastroesofágico","Gastroparesia","Síndrome de intestino irritable"],
+  ok:0,
+  exp:"La acalasia causa estasis esofágica y retención de alimento, lo que puede provocar halitosis, regurgitación y riesgo de aspiración." },
+
+{ cat:"Masticación y deglución", tipo:"teoria",
+  q:"La masticación es importante para la digestión porque:",
+  ops:["Aumenta la superficie de contacto","Neutraliza el ácido","Estimula la bilis","Produce enzimas"],
+  ok:0,
+  exp:"La masticación tritura los alimentos y aumenta la superficie de contacto para las enzimas digestivas, facilitando la digestión y absorción." },
+
+/* =========================================================
+   MOTILIDAD GÁSTRICA Y VACIAMIENTO (21-45)
+   ========================================================= */
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"La relajación receptiva del estómago permite:",
+  ops:["Aumentar el volumen sin aumentar la presión","Aumentar la presión intragástrica","Cerrar el píloro","Estimular la secreción ácida"],
+  ok:0,
+  exp:"La relajación receptiva es un reflejo vagal que permite que el estómago se distienda y acomode el alimento sin un aumento significativo de la presión intragástrica." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"Las ondas peristálticas gástricas se originan en:",
+  ops:["El píloro","La región del marcapasos en el cuerpo gástrico","El fundus","El esófago"],
+  ok:1,
+  exp:"Las ondas peristálticas gástricas se generan en una región marcapasos en el cuerpo gástrico y se propagan hacia el píloro." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"La función principal de la motilidad gástrica es:",
+  ops:["Mezclar el alimento con jugo gástrico","Absorber nutrientes","Secretar bilis","Regular el pH"],
+  ok:0,
+  exp:"La motilidad gástrica mezcla el alimento con el jugo gástrico y lo tritura en partículas pequeñas (quimo) para facilitar la digestión y el vaciamiento." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"El vaciamiento gástrico está regulado principalmente por:",
+  ops:["El píloro y factores duodenales","La gravedad","La presión abdominal","La saliva"],
+  ok:0,
+  exp:"El vaciamiento gástrico está regulado por la actividad del píloro y por señales del duodeno (volumen, osmolaridad, pH, grasas) que modulan la velocidad de vaciamiento." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"La distensión gástrica aumenta el vaciamiento por:",
+  ops:["Estimular el reflejo vagal y la gastrina","Inhibir el píloro","Reducir la motilidad","Estimular la secretina"],
+  ok:0,
+  exp:"La distensión de la pared gástrica estimula reflejos vagales y la liberación de gastrina, que aumentan la motilidad y el vaciamiento." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"La presencia de grasa en el duodeno:",
+  ops:["Acelera el vaciamiento gástrico","Enlentece el vaciamiento gástrico","No afecta el vaciamiento","Aumenta la secreción ácida"],
+  ok:1,
+  exp:"La grasa en el duodeno estimula la liberación de CCK, que inhibe la motilidad gástrica y enlentece el vaciamiento para permitir una digestión adecuada de las grasas." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"La acidificación del duodeno:",
+  ops:["Acelera el vaciamiento","Enlentece el vaciamiento","No afecta","Aumenta la motilidad gástrica"],
+  ok:1,
+  exp:"El pH ácido en el duodeno estimula la liberación de secretina y reduce la motilidad gástrica, enlenteciendo el vaciamiento hasta que el ácido sea neutralizado." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"La osmolaridad elevada del quimo duodenal:",
+  ops:["Acelera el vaciamiento","Enlentece el vaciamiento","No afecta","Aumenta la secreción gástrica"],
+  ok:1,
+  exp:"La alta osmolaridad en el duodeno activa osmorreceptores que reducen la motilidad gástrica y enlentecen el vaciamiento, evitando sobrecarga osmótica." },
+
+{ cat:"Motilidad gástrica", tipo:"caso",
+  q:"Paciente diabético con neuropatía que presenta saciedad precoz y vómitos. ¿Qué trastorno es más probable?",
+  ops:["Gastroparesia diabética","Síndrome de dumping","Acalasia","Reflujo gastroesofágico"],
+  ok:0,
+  exp:"La gastroparesia diabética se debe a neuropatía autonómica que reduce la motilidad gástrica, causando saciedad precoz, náuseas y vómitos." },
+
+{ cat:"Motilidad gástrica", tipo:"caso",
+  q:"Paciente sometido a gastrectomía que presenta mareo, sudoración y diarrea tras comer. ¿Qué síndrome es?",
+  ops:["Síndrome de dumping","Gastroparesia","Acalasia","Síndrome de Zollinger-Ellison"],
+  ok:0,
+  exp:"El síndrome de dumping ocurre por vaciamiento gástrico acelerado tras cirugía gástrica, causando síntomas vasomotores y diarrea osmótica." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"El píloro actúa como:",
+  ops:["Una bomba que impulsa el quimo","Un esfínter que regula el vaciamiento","Una válvula que impide el reflujo biliar","Un reservorio de alimento"],
+  ok:1,
+  exp:"El píloro es un esfínter que regula el paso del quimo al duodeno, permitiendo el vaciamiento controlado y evitando el reflujo duodenogástrico." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"La motilidad gástrica en ayunas se caracteriza por:",
+  ops:["Ondas peristálticas continuas","Complejo motor migratorio","Relajación receptiva","Contracciones tónicas"],
+  ok:1,
+  exp:"En ayunas, el estómago presenta el complejo motor migratorio (CMM), que barre los residuos y tiene función de limpieza." },
+
+{ cat:"Motilidad gástrica", tipo:"caso",
+  q:"Paciente con obstrucción pilórica que presenta vómitos alimentarios sin bilis. ¿Qué alteración existe?",
+  ops:["Obstrucción del vaciamiento gástrico","Acalasia","Reflujo biliar","Gastroparesia"],
+  ok:0,
+  exp:"La obstrucción pilórica impide el paso del quimo al duodeno, causando vómitos de contenido gástrico sin bilis y distensión gástrica." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"La gastrina tiene efecto sobre la motilidad gástrica:",
+  ops:["Inhibidor","Estimulante","Neutro","Solo sobre la secreción"],
+  ok:1,
+  exp:"La gastrina estimula la motilidad gástrica y la secreción ácida, favoreciendo el vaciamiento." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"La secretina y la CCK tienen efecto sobre la motilidad gástrica:",
+  ops:["Estimulante","Inhibidor","Neutro","Solo sobre la secreción"],
+  ok:1,
+  exp:"La secretina y la CCK inhiben la motilidad gástrica y enlentecen el vaciamiento, permitiendo una digestión adecuada en el duodeno." },
+
+{ cat:"Motilidad gástrica", tipo:"caso",
+  q:"Paciente con vómitos frecuentes que presenta alcalosis metabólica e hipopotasemia. ¿Qué mecanismo explica estos hallazgos?",
+  ops:["Pérdida de ácido y potasio por vómitos","Aumento de la absorción de bicarbonato","Exceso de secreción de gastrina","Deficiencia de lactasa"],
+  ok:0,
+  exp:"Los vómitos prolongados causan pérdida de ácido clorhídrico y potasio, lo que lleva a alcalosis metabólica hipoclorémica e hipopotasemia." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"El vaciamiento gástrico de líquidos es:",
+  ops:["Más rápido que el de sólidos","Más lento que el de sólidos","Igual que el de sólidos","No ocurre"],
+  ok:0,
+  exp:"Los líquidos se vacían más rápidamente que los sólidos, ya que no requieren trituración y pueden pasar fácilmente por el píloro." },
+
+{ cat:"Motilidad gástrica", tipo:"caso",
+  q:"Paciente con esclerodermia que presenta disfagia y reflujo. ¿Qué alteración motora es típica?",
+  ops:["Hipomotilidad esofágica y del EEI","Hipermotilidad esofágica","Acalasia","Espasmo esofágico"],
+  ok:0,
+  exp:"La esclerodermia causa fibrosis y hipomotilidad del esófago y del EEI, lo que provoca disfagia y reflujo gastroesofágico." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"La contracción del píloro es estimulada por:",
+  ops:["La distensión gástrica","La presencia de ácido en el duodeno","La gastrina","La secretina"],
+  ok:1,
+  exp:"La presencia de ácido, grasa o alta osmolaridad en el duodeno estimula reflejos que contraen el píloro y enlentecen el vaciamiento." },
+
+{ cat:"Motilidad gástrica", tipo:"caso",
+  q:"Paciente con úlcera duodenal que presenta vaciamiento gástrico acelerado. ¿Qué factor contribuye?",
+  ops:["Hipersecreción ácida","Aumento de secretina","Deficiencia de gastrina","Aumento de CCK"],
+  ok:0,
+  exp:"La hipersecreción ácida, como en la infección por H. pylori o el síndrome de Zollinger-Ellison, puede acelerar el vaciamiento y contribuir a la lesión duodenal." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"La motilidad gástrica está controlada por:",
+  ops:["Solo el sistema nervioso entérico","Sistema nervioso entérico y hormonas","Solo hormonas","Solo el vago"],
+  ok:1,
+  exp:"La motilidad gástrica está regulada por el sistema nervioso entérico, el vago y hormonas como gastrina, CCK y secretina." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"La trituración gástrica de los alimentos ocurre principalmente en:",
+  ops:["El fundus","El cuerpo y antro gástrico","El píloro","El esófago"],
+  ok:1,
+  exp:"La trituración gástrica ocurre en el cuerpo y el antro, donde las ondas peristálticas mezclan y trituran el alimento en partículas pequeñas." },
+
+{ cat:"Motilidad gástrica", tipo:"caso",
+  q:"Paciente con vómitos en escopetazo (sin náuseas) y cefalea. ¿Qué causa es más probable?",
+  ops:["Hipertensión intracraneal","Gastroparesia","Acalasia","Reflujo gastroesofágico"],
+  ok:0,
+  exp:"Los vómitos en escopetazo, sin náuseas previas, sugieren hipertensión intracraneal y estimulación directa del centro del vómito." },
+
+{ cat:"Motilidad gástrica", tipo:"teoria",
+  q:"La relajación receptiva está mediada por:",
+  ops:["El nervio vago","El simpático","La gastrina","La secretina"],
+  ok:0,
+  exp:"La relajación receptiva es un reflejo vagal que permite la distensión gástrica durante la ingesta." },
+
+/* =========================================================
+   MOTILIDAD DEL INTESTINO DELGADO (46-65)
+   ========================================================= */
+{ cat:"Motilidad intestinal", tipo:"teoria",
+  q:"La segmentación del intestino delgado tiene como función:",
+  ops:["Mezclar el quimo con enzimas","Propulsar el quimo hacia el colon","Cerrar el esfínter ileocecal","Secretar bilis"],
+  ok:0,
+  exp:"La segmentación consiste en contracciones localizadas que mezclan el quimo con las enzimas y lo ponen en contacto con la mucosa para la absorción." },
+
+{ cat:"Motilidad intestinal", tipo:"teoria",
+  q:"La peristalsis del intestino delgado:",
+  ops:["Mezcla el contenido","Propulsa el contenido hacia el colon","Cierra el píloro","Estimula la secreción ácida"],
+  ok:1,
+  exp:"La peristalsis es un movimiento propulsivo coordinado que impulsa el quimo a lo largo del intestino delgado hacia el colon." },
+
+{ cat:"Motilidad intestinal", tipo:"teoria",
+  q:"El complejo motor migratorio (CMM) ocurre:",
+  ops:["Durante la digestión","En ayunas","Después de comer","Solo en el colon"],
+  ok:1,
+  exp:"El CMM es un patrón de motilidad que ocurre en ayunas cada 1.5-2 horas, impulsado por la motilina, y tiene función de limpieza." },
+
+{ cat:"Motilidad intestinal", tipo:"teoria",
+  q:"La motilina es una hormona que:",
+  ops:["Inicia el CMM","Inhibe la motilidad","Estimula la secreción ácida","Cierra el píloro"],
+  ok:0,
+  exp:"La motilina es secretada por las células endocrinas del intestino delgado y desencadena el complejo motor migratorio en ayunas." },
+
+{ cat:"Motilidad intestinal", tipo:"teoria",
+  q:"El esfínter ileocecal regula:",
+  ops:["El paso del quimo del íleon al colon","El paso del quimo del estómago al duodeno","El reflujo gastroesofágico","La secreción biliar"],
+  ok:0,
+  exp:"El esfínter ileocecal controla el paso del contenido ileal al colon y evita el reflujo del contenido colónico hacia el íleon." },
+
+{ cat:"Motilidad intestinal", tipo:"teoria",
+  q:"La distensión del íleon:",
+  ops:["Relaja el esfínter ileocecal","Contrae el esfínter ileocecal","No afecta","Aumenta el vaciamiento gástrico"],
+  ok:1,
+  exp:"La distensión del íleon produce contracción del esfínter ileocecal (reflejo ileocecal), enlenteciendo el paso al colon y permitiendo la absorción." },
+
+{ cat:"Motilidad intestinal", tipo:"teoria",
+  q:"La distensión del colon:",
+  ops:["Relaja el esfínter ileocecal","Contrae el esfínter ileocecal","Aumenta la motilidad ileal","No afecta"],
+  ok:0,
+  exp:"La distensión del colon relaja el esfínter ileocecal (reflejo coloileal), permitiendo el vaciamiento del íleon cuando el colon está listo." },
+
+{ cat:"Motilidad intestinal", tipo:"caso",
+  q:"Paciente con obstrucción intestinal que presenta distensión y vómitos. ¿Qué alteración motora predomina?",
+  ops:["Hipermotilidad","Íleo paralítico","Acalasia","Gastroparesia"],
+  ok:1,
+  exp:"En la obstrucción intestinal se produce íleo paralítico con disminución de la motilidad, distensión y vómitos." },
+
+{ cat:"Motilidad intestinal", tipo:"caso",
+  q:"Paciente postoperatorio con distensión abdominal y ausencia de ruidos intestinales. ¿Qué trastorno es?",
+  ops:["Íleo paralítico","Obstrucción mecánica","Gastroparesia","Síndrome de dumping"],
+  ok:0,
+  exp:"El íleo paralítico postoperatorio cursa con ausencia de motilidad intestinal, distensión y ausencia de ruidos hidroaéreos." },
+
+{ cat:"Motilidad intestinal", tipo:"teoria",
+  q:"La motilidad del intestino delgado está regulada por:",
+  ops:["Sistema nervioso entérico y hormonas","Solo el vago","Solo el simpático","Solo la gastrina"],
+  ok:0,
+  exp:"La motilidad intestinal está regulada por el sistema nervioso entérico y por hormonas como motilina, CCK y secretina." },
+
+{ cat:"Motilidad intestinal", tipo:"teoria",
+  q:"La serotonina (5-HT) en el intestino:",
+  ops:["Inhibe la motilidad","Estimula la motilidad","No afecta","Solo secreta ácido"],
+  ok:1,
+  exp:"La serotonina es un neurotransmisor entérico que estimula la motilidad y los reflejos secretores." },
+
+{ cat:"Motilidad intestinal", tipo:"caso",
+  q:"Paciente con síndrome de intestino irritable que presenta diarrea y dolor abdominal. ¿Qué alteración motora es frecuente?",
+  ops:["Hipermotilidad","Hipomotilidad","Acalasia","Íleo paralítico"],
+  ok:0,
+  exp:"El SII se asocia a alteraciones de la motilidad, con hipermotilidad en los episodios de diarrea y dolor abdominal." },
+
+{ cat:"Motilidad intestinal", tipo:"teoria",
+  q:"La válvula ileocecal evita:",
+  ops:["El reflujo del contenido colónico al íleon","El paso del quimo al colon","La absorción de agua","La secreción biliar"],
+  ok:0,
+  exp:"La válvula ileocecal impide el reflujo del contenido colónico hacia el íleon, protegiendo el intestino delgado de la flora colónica." },
+
+{ cat:"Motilidad intestinal", tipo:"teoria",
+  q:"La motilidad intestinal en ayunas se caracteriza por:",
+  ops:["Segmentación","Complejo motor migratorio","Peristalsis continua","Relajación receptiva"],
+  ok:1,
+  exp:"En ayunas predomina el complejo motor migratorio, que barre el intestino y tiene función de limpieza." },
+
+{ cat:"Motilidad intestinal", tipo:"caso",
+  q:"Paciente con gastroenteritis que presenta diarrea y cólicos. ¿Qué mecanismo explica la diarrea?",
+  ops:["Aumento de la motilidad y secreción","Disminución de la motilidad","Obstrucción mecánica","Acalasia"],
+  ok:0,
+  exp:"La gastroenteritis causa inflamación y aumento de la motilidad y secreción intestinal, produciendo diarrea y cólicos." },
+
+{ cat:"Motilidad intestinal", tipo:"teoria",
+  q:"El reflejo peristáltico está mediado por:",
+  ops:["Sistema nervioso entérico","Solo el vago","Solo hormonas","Médula espinal"],
+  ok:0,
+  exp:"El reflejo peristáltico está mediado por el sistema nervioso entérico (plexo mientérico), que coordina la contracción proximal y la relajación distal." },
+
+{ cat:"Motilidad intestinal", tipo:"teoria",
+  q:"La distensión intestinal intensa puede provocar:",
+  ops:["Reflejo peristáltico","Íleo paralítico","Acalasia","Gastroparesia"],
+  ok:1,
+  exp:"La distensión intensa puede inhibir la motilidad y provocar íleo paralítico, como ocurre en la obstrucción intestinal." },
+
+{ cat:"Motilidad intestinal", tipo:"caso",
+  q:"Paciente con enfermedad de Crohn que presenta dolor cólico y diarrea. ¿Qué alteración motora contribuye?",
+  ops:["Hipermotilidad por inflamación","Hipomotilidad","Acalasia","Obstrucción mecánica"],
+  ok:0,
+  exp:"La inflamación en la enfermedad de Crohn altera la motilidad y aumenta la actividad contráctil, causando dolor cólico y diarrea." },
+
+{ cat:"Motilidad intestinal", tipo:"teoria",
+  q:"La motilidad del intestino delgado aumenta con:",
+  ops:["La distensión","La somatostatina","La secretina","La hiperosmolaridad"],
+  ok:0,
+  exp:"La distensión intestinal estimula reflejos entéricos que aumentan la motilidad, favoreciendo la propulsión del contenido." },
+
+{ cat:"Motilidad intestinal", tipo:"caso",
+  q:"Paciente con íleo paralítico que no responde a medidas conservadoras. ¿Qué fármaco puede estimular la motilidad?",
+  ops:["Neostigmina","Loperamida","Atropina","Ondansetrón"],
+  ok:0,
+  exp:"La neostigmina, inhibidor de la acetilcolinesterasa, aumenta la acetilcolina y estimula la motilidad intestinal en el íleo paralítico refractario." },
+
+/* =========================================================
+   MOTILIDAD DEL COLON Y DEFECACIÓN (66-85)
+   ========================================================= */
+{ cat:"Motilidad colónica", tipo:"teoria",
+  q:"Las haustraciones del colon tienen como función:",
+  ops:["Mezclar el contenido fecal","Propulsar las heces al recto","Cerrar el esfínter anal","Secretar moco"],
+  ok:0,
+  exp:"Las haustraciones son contracciones segmentarias del colon que mezclan el contenido fecal y facilitan la absorción de agua y electrolitos." },
+
+{ cat:"Motilidad colónica", tipo:"teoria",
+  q:"Los movimientos de masa del colon:",
+  ops:["Mezclan el contenido","Propulsan las heces hacia el recto","Cierran el esfínter anal","Secretan moco"],
+  ok:1,
+  exp:"Los movimientos de masa son contracciones propulsivas que impulsan el contenido fecal hacia el recto, desencadenando el reflejo defecatorio." },
+
+{ cat:"Motilidad colónica", tipo:"teoria",
+  q:"El reflejo defecatorio se desencadena por:",
+  ops:["La distensión rectal","La distensión gástrica","El pH ácido","La secreción biliar"],
+  ok:0,
+  exp:"La distensión del recto por las heces desencadena el reflejo defecatorio, que incluye la relajación del esfínter anal interno y la contracción del recto." },
+
+{ cat:"Motilidad colónica", tipo:"teoria",
+  q:"El esfínter anal externo está formado por:",
+  ops:["Músculo liso","Músculo estriado voluntario","Tejido conectivo","Cartílago"],
+  ok:1,
+  exp:"El esfínter anal externo es de músculo estriado y está bajo control voluntario, permitiendo la continencia fecal." },
+
+{ cat:"Motilidad colónica", tipo:"teoria",
+  q:"El esfínter anal interno está formado por:",
+  ops:["Músculo liso","Músculo estriado","Tejido conectivo","Cartílago"],
+  ok:0,
+  exp:"El esfínter anal interno es de músculo liso y está bajo control involuntario (autónomo)." },
+
+{ cat:"Motilidad colónica", tipo:"caso",
+  q:"Paciente con lesión medular que presenta incontinencia fecal. ¿Qué mecanismo está alterado?",
+  ops:["Control voluntario del esfínter anal externo","Motilidad gástrica","Secreción biliar","Absorción de agua"],
+  ok:0,
+  exp:"La lesión medular altera el control voluntario del esfínter anal externo, lo que puede causar incontinencia fecal." },
+
+{ cat:"Motilidad colónica", tipo:"caso",
+  q:"Paciente con estreñimiento crónico que presenta esfuerzo defecatorio. ¿Qué alteración motora es frecuente?",
+  ops:["Hipomotilidad colónica","Hipermotilidad","Acalasia","Gastroparesia"],
+  ok:0,
+  exp:"El estreñimiento crónico por hipomotilidad colónica se caracteriza por disminución de los movimientos de masa y esfuerzo defecatorio." },
+
+{ cat:"Motilidad colónica", tipo:"teoria",
+  q:"La continencia fecal depende de:",
+  ops:["Esfínteres anales y reflejos","Solo el esfínter interno","Solo el esfínter externo","La motilidad gástrica"],
+  ok:0,
+  exp:"La continencia fecal depende de la función coordinada del esfínter anal interno, el externo y los reflejos rectoanales." },
+
+{ cat:"Motilidad colónica", tipo:"caso",
+  q:"Paciente con enfermedad de Hirschsprung que presenta megacolon y estreñimiento grave. ¿Qué alteración subyace?",
+  ops:["Ausencia de células ganglionares","Exceso de células ganglionares","Hipermotilidad","Acalasia"],
+  ok:0,
+  exp:"La enfermedad de Hirschsprung se debe a la ausencia de células ganglionares en el plexo mientérico de un segmento del colon, lo que impide la relajación y causa dilatación proximal." },
+
+{ cat:"Motilidad colónica", tipo:"teoria",
+  q:"El reflejo gastrocólico se desencadena por:",
+  ops:["La distensión gástrica","La distensión rectal","El pH ácido","La secreción biliar"],
+  ok:0,
+  exp:"El reflejo gastrocólico es la aparición de movimientos de masa en el colon tras la distensión gástrica por la comida, facilitando la defecación." },
+
+{ cat:"Motilidad colónica", tipo:"teoria",
+  q:"La defecación es un acto:",
+  ops:["Solo voluntario","Voluntario e involuntario coordinado","Solo involuntario","Solo reflejo"],
+  ok:1,
+  exp:"La defecación es un acto coordinado que incluye componentes involuntarios (reflejo defecatorio) y voluntarios (relajación del esfínter anal externo)." },
+
+{ cat:"Motilidad colónica", tipo:"caso",
+  q:"Paciente con fisura anal que presenta dolor al defecar. ¿Qué medida ayuda a evitar el esfuerzo?",
+  ops:["Laxantes formadores de masa","Loperamida","Ondansetrón","Antiácidos"],
+  ok:0,
+  exp:"Los laxantes formadores de masa ablandan las heces y reducen el esfuerzo defecatorio, ayudando a la cicatrización de la fisura anal." },
+
+{ cat:"Motilidad colónica", tipo:"teoria",
+  q:"La distensión rectal sostenida puede provocar:",
+  ops:["Relajación del esfínter interno","Contracción del esfínter interno","Cierre del esfínter externo","Acalasia"],
+  ok:0,
+  exp:"La distensión rectal produce relajación del esfínter anal interno (reflejo rectoanal inhibitorio), permitiendo el paso de las heces." },
+
+{ cat:"Motilidad colónica", tipo:"teoria",
+  q:"La motilidad colónica aumenta con:",
+  ops:["La comida (reflejo gastrocólico)","El ayuno","La somatostatina","La deshidratación"],
+  ok:0,
+  exp:"La ingesta de comida desencadena el reflejo gastrocólico, que aumenta la motilidad colónica y facilita la defecación." },
+
+{ cat:"Motilidad colónica", tipo:"caso",
+  q:"Paciente con diarrea que presenta urgencia defecatoria. ¿Qué mecanismo contribuye?",
+  ops:["Hipermotilidad colónica","Hipomotilidad","Acalasia","Obstrucción"],
+  ok:0,
+  exp:"La hipermotilidad colónica reduce el tiempo de absorción de agua y causa urgencia defecatoria y heces líquidas." },
+
+{ cat:"Motilidad colónica", tipo:"teoria",
+  q:"El colon absorbe principalmente:",
+  ops:["Agua y electrolitos","Proteínas","Grasas","Carbohidratos"],
+  ok:0,
+  exp:"El colon absorbe agua y electrolitos, compactando las heces. Su capacidad máxima es de 5-8 litros al día." },
+
+{ cat:"Motilidad colónica", tipo:"caso",
+  q:"Paciente con incontinencia fecal por disfunción del esfínter anal. ¿Qué estructura es clave?",
+  ops:["Esfínter anal externo","Píloro","EEI","Esfínter de Oddi"],
+  ok:0,
+  exp:"El esfínter anal externo, de control voluntario, es clave para la continencia fecal. Su disfunción causa incontinencia." },
+
+{ cat:"Motilidad colónica", tipo:"teoria",
+  q:"El reflejo rectoanal inhibitorio permite:",
+  ops:["La relajación del esfínter interno","La contracción del esfínter interno","El cierre del esfínter externo","La contracción del recto"],
+  ok:0,
+  exp:"El reflejo rectoanal inhibitorio relaja el esfínter anal interno en respuesta a la distensión rectal, permitiendo el paso de las heces." },
+
+{ cat:"Motilidad colónica", tipo:"caso",
+  q:"Paciente con estreñimiento por abuso de laxantes estimulantes. ¿Qué alteración puede ocurrir?",
+  ops:["Dependencia y alteración del reflejo defecatorio","Aumento de la absorción de agua","Hipermotilidad permanente","Acalasia"],
+  ok:0,
+  exp:"El abuso de laxantes estimulantes puede alterar la motilidad y el reflejo defecatorio, causando dependencia." },
+
+{ cat:"Motilidad colónica", tipo:"teoria",
+  q:"La defecación requiere:",
+  ops:["Relajación de los esfínteres anales","Contracción de los esfínteres anales","Cierre del píloro","Acalasia del EEI"],
+  ok:0,
+  exp:"La defecación requiere la relajación coordinada del esfínter anal interno y externo, junto con la contracción del recto y la presión abdominal." },
+
+/* =========================================================
+   CONTROL NERVIOSO Y CIRCULACIÓN (86-95)
+   ========================================================= */
+{ cat:"Control nervioso y circulación", tipo:"teoria",
+  q:"El plexo mientérico (Auerbach) controla principalmente:",
+  ops:["La motilidad gastrointestinal","La secreción glandular","El flujo sanguíneo","La absorción"],
+  ok:0,
+  exp:"El plexo mientérico, situado entre las capas musculares, controla la motilidad gastrointestinal (peristalsis y segmentación)." },
+
+{ cat:"Control nervioso y circulación", tipo:"teoria",
+  q:"El plexo submucoso (Meissner) controla principalmente:",
+  ops:["La motilidad","La secreción y el flujo sanguíneo","La absorción","La defecación"],
+  ok:1,
+  exp:"El plexo submucoso controla la secreción glandular, el flujo sanguíneo local y la absorción." },
+
+{ cat:"Control nervioso y circulación", tipo:"teoria",
+  q:"La estimulación parasimpática del tubo digestivo:",
+  ops:["Aumenta la motilidad y secreción","Disminuye la motilidad","No afecta","Solo afecta el colon"],
+  ok:0,
+  exp:"La estimulación parasimpática (vago y nervios pélvicos) aumenta la motilidad y la secreción digestiva." },
+
+{ cat:"Control nervioso y circulación", tipo:"teoria",
+  q:"La estimulación simpática del tubo digestivo:",
+  ops:["Aumenta la motilidad","Disminuye la motilidad y el flujo sanguíneo","No afecta","Solo afecta la secreción"],
+  ok:1,
+  exp:"La estimulación simpática reduce la motilidad y el flujo sanguíneo esplácnico, inhibiendo la actividad digestiva." },
+
+{ cat:"Control nervioso y circulación", tipo:"caso",
+  q:"Paciente con íleo paralítico por trauma que presenta disminución de la motilidad. ¿Qué mecanismo explica esta alteración?",
+  ops:["Aumento del tono simpático","Aumento del tono parasimpático","Exceso de acetilcolina","Deficiencia de gastrina"],
+  ok:0,
+  exp:"El trauma y el estrés aumentan el tono simpático, que inhibe la motilidad intestinal y contribuye al íleo paralítico." },
+
+{ cat:"Control nervioso y circulación", tipo:"teoria",
+  q:"La circulación esplácnica recibe aproximadamente:",
+  ops:["5% del gasto cardíaco","20-30% del gasto cardíaco","50% del gasto cardíaco","70% del gasto cardíaco"],
+  ok:1,
+  exp:"La circulación esplácnica recibe el 20-30% del gasto cardíaco, aunque puede variar según las necesidades digestivas." },
+
+{ cat:"Control nervioso y circulación", tipo:"teoria",
+  q:"El sistema contracorriente de las vellosidades intestinales:",
+  ops:["Favorece la absorción de oxígeno","Protege la médula ósea","Aumenta la absorción de agua","Reduce el flujo sanguíneo"],
+  ok:0,
+  exp:"El sistema contracorriente de las vellosidades favorece la absorción de oxígeno y nutrientes, pero puede hacer vulnerable la punta de la vellosidad a la isquemia." },
+
+{ cat:"Control nervioso y circulación", tipo:"teoria",
+  q:"La vasoconstricción esplácnica intensa puede causar:",
+  ops:["Isquemia intestinal","Aumento de la absorción","Hipermotilidad","Acalasia"],
+  ok:0,
+  exp:"La vasoconstricción esplácnica intensa reduce el flujo sanguíneo intestinal y puede causar isquemia, especialmente en la punta de las vellosidades." },
+
+{ cat:"Control nervioso y circulación", tipo:"caso",
+  q:"Paciente en shock que presenta isquemia intestinal. ¿Qué mecanismo explica la lesión?",
+  ops:["Vasoconstricción esplácnica","Aumento del flujo sanguíneo","Vasodilatación","Hipermotilidad"],
+  ok:0,
+  exp:"En el shock, la vasoconstricción esplácnica desvía la sangre hacia órganos vitales y puede causar isquemia intestinal." },
+
+{ cat:"Control nervioso y circulación", tipo:"teoria",
+  q:"El flujo sanguíneo intestinal aumenta durante:",
+  ops:["La digestión","El ayuno","El sueño","El ejercicio intenso"],
+  ok:0,
+  exp:"Durante la digestión, el flujo sanguíneo esplácnico aumenta para favorecer la absorción y la secreción." },
+
+/* =========================================================
+   CASOS CLÍNICOS INTEGRADORES (96-100)
+   ========================================================= */
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con acalasia que presenta disfagia progresiva y regurgitación. ¿Qué alteración motora es característica?",
+  ops:["Falta de relajación del EEI","Hipertonía del píloro","Aumento de la motilidad gástrica","Deficiencia de gastrina"],
+  ok:0,
+  exp:"La acalasia se caracteriza por la falta de relajación del EEI durante la deglución, lo que causa disfagia, regurgitación y dilatación esofágica." },
+
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con síndrome de dumping tras gastrectomía que presenta mareo y diarrea. ¿Qué mecanismo explica los síntomas?",
+  ops:["Vaciamiento gástrico acelerado","Acalasia","Gastroparesia","Obstrucción pilórica"],
+  ok:0,
+  exp:"El síndrome de dumping se debe al vaciamiento rápido del contenido gástrico al duodeno, causando síntomas vasomotores y diarrea osmótica." },
+
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con íleo paralítico postoperatorio que presenta distensión y ausencia de ruidos. ¿Qué medida inicial es adecuada?",
+  ops:["Descompresión nasogástrica y ayuno","Loperamida","Cirugía inmediata","Antiácidos"],
+  ok:0,
+  exp:"El íleo paralítico se maneja inicialmente con descompresión nasogástrica, ayuno y corrección de electrolitos; la cirugía se reserva para obstrucción mecánica." },
+
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con enfermedad de Hirschsprung que presenta estreñimiento grave desde el nacimiento. ¿Qué alteración subyace?",
+  ops:["Ausencia de células ganglionares","Exceso de células ganglionares","Hipermotilidad","Acalasia"],
+  ok:0,
+  exp:"La enfermedad de Hirschsprung se debe a la ausencia de células ganglionares en el plexo mientérico de un segmento del colon, lo que impide la relajación y causa dilatación proximal." },
+
+{ cat:"Casos integradores", tipo:"caso",
+  q:"Paciente con reflujo gastroesofágico que presenta pirosis. ¿Qué alteración motora es frecuente?",
+  ops:["Relajación transitoria del EEI","Acalasia","Hipertonía del EEI","Gastroparesia"],
+  ok:0,
+  exp:"El reflujo gastroesofágico se debe a relajaciones transitorias del EEI o a hipotonía del esfínter, que permiten el paso del contenido gástrico al esófago." }
+
+];
+
+/* =========================================================
+   LÓGICA (sin reinicio ni mezcla)
+   ========================================================= */
+const cont = document.getElementById('quiz');
+const marcador = document.getElementById('marcador');
+let respondidas = 0, aciertos = 0;
+
+function actualizarMarcador() {
+  marcador.textContent = `Respondidas: ${respondidas} / ${preguntas.length} · Aciertos: ${aciertos}`;
+}
+
+function responder(card, caja, exp, p, elegida) {
+  if (card.dataset.respondida) return;
+  card.dataset.respondida = "1";
+  caja.querySelectorAll('.opcion').forEach((b, j) => {
+    b.disabled = true;
+    if (j === p.ok) b.classList.add('correcta');
+    if (j === elegida && elegida !== p.ok) b.classList.add('incorrecta');
+  });
+  const acerto = elegida === p.ok;
+  respondidas++;
+  if (acerto) aciertos++;
+  actualizarMarcador();
+  exp.innerHTML = `<strong>${acerto ? '✅ ¡Correcto!' : '❌ Respuesta incorrecta.'}</strong> ${p.exp}`;
+  exp.classList.add('visible');
+}
+
+function construir() {
+  cont.innerHTML = "";
+  respondidas = 0; aciertos = 0;
+  actualizarMarcador();
+
+  preguntas.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'card ' + p.tipo;
+
+    const cab = document.createElement('div');
+    cab.className = 'cabecera';
+    cab.innerHTML =
+      `<div class="numero">${i + 1}</div>
+       <span class="etiqueta ${p.tipo === 'caso' ? 'c' : 't'}">
+         ${p.tipo === 'caso' ? 'Caso clínico' : 'Teoría'}
+       </span>
+       <span class="etiqueta materia">${p.cat}</span>`;
+    card.appendChild(cab);
+
+    const enun = document.createElement('p');
+    enun.className = 'enunciado';
+    enun.textContent = p.q;
+    card.appendChild(enun);
+
+    const caja = document.createElement('div');
+    caja.className = 'opciones';
+    const exp = document.createElement('div');
+    exp.className = 'explicacion';
+
+    p.ops.forEach((op, j) => {
+      const b = document.createElement('button');
+      b.className = 'opcion';
+      b.innerHTML = `<span class="letra">${'ABCD'[j]}</span><span>${op}</span>`;
+      b.addEventListener('click', () => responder(card, caja, exp, p, j));
+      caja.appendChild(b);
+    });
+
+    card.appendChild(caja);
+    card.appendChild(exp);
+    cont.appendChild(card);
+  });
+}
+
+/* Diagnóstico silencioso: alerta si la correcta es (o empata como) la más larga */
+preguntas.forEach((p, i) => {
+  const max = Math.max(...p.ops.map(o => o.length));
+  if (p.ops[p.ok].length === max) {
+    console.warn(`Aviso Q${i+1}: la correcta es (o empata como) la más larga.`);
+  }
+});
+
+construir();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claudir de Jesus Kowal · Ejercicios de Fisiología</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+      background: #f0f4f8;
+      color: #0f172a;
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+
+    /* ============================================================
+       CABEÇALHO REDESENHADO
+       ============================================================ */
+    header {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 35%, #2563eb 70%, #0ea5e9 100%);
+      background-size: 200% 200%;
+      animation: gradientShift 14s ease infinite;
+      color: #fff;
+      padding: 78px 24px 110px;
+      text-align: center;
+      isolation: isolate;
+    }
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50%      { background-position: 100% 50%; }
+    }
+
+    /* Grades/linhas decorativas no fundo */
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+      z-index: -1;
+    }
+
+    /* Orbes de luz */
+    header::after {
+      content: '';
+      position: absolute;
+      inset: -50%;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(56,189,248,.35), transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(37,99,235,.45), transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(139,92,246,.25), transparent 55%);
+      filter: blur(10px);
+      animation: floatOrbs 18s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+    @keyframes floatOrbs {
+      0%   { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-30px, -20px) scale(1.1); }
+    }
+
+    .header-inner {
+      position: relative;
+      max-width: 880px;
+      margin: 0 auto;
+      z-index: 1;
+    }
+
+    /* Badge superior */
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      color: #e0f2fe;
+    }
+    .header-badge .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 0 rgba(74,222,128,.6);
+      animation: pulseDot 2s infinite;
+    }
+    @keyframes pulseDot {
+      0%   { box-shadow: 0 0 0 0 rgba(74,222,128,.6); }
+      70%  { box-shadow: 0 0 0 10px rgba(74,222,128,0); }
+      100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+    }
+
+    /* Título */
+    header h1 {
+      margin: 0 0 18px;
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      text-shadow: 0 4px 24px rgba(0,0,0,.25);
+    }
+    header h1 .nome {
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Bandeiras */
+    header .flags {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform .3s ease, background .3s;
+    }
+    header .flags:hover {
+      transform: translateY(-2px) scale(1.03);
+      background: rgba(255,255,255,.16);
+    }
+    header .flag {
+      width: 32px;
+      height: 22px;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.35);
+      display: block;
+      transition: transform .3s;
+    }
+    header .flags:hover .flag:first-child {
+      transform: rotate(-6deg) translateY(-2px);
+    }
+    header .flags:hover .flag:last-child {
+      transform: rotate(6deg) translateY(-2px);
+    }
+
+    /* Ícone */
+    header .icone {
+      font-size: 2.1rem;
+      line-height: 1;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.3));
+      animation: floatIcon 3.5s ease-in-out infinite;
+      display: inline-block;
+    }
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+
+    /* Subtítulo em pill */
+    header p {
+      display: inline-block;
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #e0f2fe;
+      padding: 8px 20px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 100px;
+      letter-spacing: .3px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    /* Onda inferior */
+    .header-wave {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      width: 100%;
+      height: 60px;
+      z-index: 2;
+      display: block;
+    }
+
+    /* ============================================================
+       CONTEÚDO PRINCIPAL
+       ============================================================ */
+    main {
+      max-width: 1150px;
+      margin: -50px auto 60px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 3;
+    }
+    .search-bar {
+      background: #fff;
+      border-radius: 16px;
+      padding: 16px 22px;
+      box-shadow: 0 10px 30px rgba(15,23,42,.12);
+      margin-bottom: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+    .search-bar input {
+      flex: 1;
+      min-width: 240px;
+      font: inherit;
+      font-size: .95rem;
+      padding: 12px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .search-bar input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37,99,235,.12);
+    }
+    .stats {
+      color: #64748b;
+      font-size: .85rem;
+      font-weight: 600;
+      padding-left: 4px;
+    }
+    .section-title {
+      font-size: 1.25rem;
+      margin: 34px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #0f172a;
+    }
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 22px;
+      background: #2563eb;
+      border-radius: 2px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      display: block;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 20px 20px 16px;
+      text-decoration: none;
+      color: #0f172a;
+      transition: transform .18s, box-shadow .18s, border-color .18s;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(15,23,42,.04);
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(30,64,175,.15);
+      border-color: #93c5fd;
+    }
+    .card .badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+    .card p {
+      margin: 0 0 14px;
+      font-size: .85rem;
+      color: #64748b;
+      min-height: 2.6em;
+    }
+    .card .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .8rem;
+      color: #64748b;
+      font-weight: 600;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 12px;
+    }
+    .card.visited-card {
+      border-left: 4px solid #22c55e;
+    }
+    .card.visited-card .meta .visited {
+      color: #15803d;
+    }
+    .card.em-breve {
+      opacity: .6;
+      pointer-events: none;
+      border-style: dashed;
+    }
+    .empty {
+      text-align: center;
+      color: #64748b;
+      padding: 50px 20px;
+      font-style: italic;
+      font-size: .95rem;
+    }
+
+    /* ============================================================
+       RESPONSIVO
+       ============================================================ */
+    @media (max-width: 600px) {
+      header { padding: 55px 18px 90px; }
+      header h1 { font-size: 1.6rem; gap: 12px; }
+      header .flags { padding: 6px 9px; gap: 6px; }
+      header .flag { width: 26px; height: 18px; }
+      header .icone { font-size: 1.5rem; }
+      header p { font-size: .88rem; padding: 7px 16px; }
+      .header-badge { font-size: .65rem; }
+      main { margin-top: -40px; }
+      .card p { min-height: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-badge">
+        <span class="dot"></span>
+        Fisiología · Práctica interactiva
+      </div>
+
+      <h1>
+        <span class="flags" aria-hidden="true">
+          <!-- Bandeira do Brasil -->
+          <svg class="flag" viewBox="0 0 720 504" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Brasil">
+            <rect width="720" height="504" fill="#009c3b"/>
+            <polygon points="360,42 685,252 360,462 35,252" fill="#ffdf00"/>
+            <circle cx="360" cy="252" r="100" fill="#002776"/>
+            <path d="M 285 232 Q 360 208 435 232 Q 400 272 360 275 Q 320 272 285 232 Z" fill="#ffffff" opacity="0.85"/>
+          </svg>
+          <!-- Bandeira da Bolívia -->
+          <svg class="flag" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bolivia">
+            <rect width="22" height="5" y="0"  fill="#d52b1e"/>
+            <rect width="22" height="5" y="5"  fill="#f9e300"/>
+            <rect width="22" height="5" y="10" fill="#007934"/>
+          </svg>
+        </span>
+        <span class="icone" aria-hidden="true">📚</span>
+        <span class="nome">Claudir de Jesus Kowal</span>
+      </h1>
+
+      <p>Ejercicios de fisiología para practicar</p>
+    </div>
+
+    <!-- Onda decorativa -->
+    <svg class="header-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,40 L1440,80 L0,80 Z" fill="#f0f4f8"/>
+    </svg>
+  </header>
+
+  <main>
+    <div class="search-bar">
+      <input type="text" id="busca" placeholder="🔍 Buscar capítulo, tema o palabra clave..." autocomplete="off" />
+      <span class="stats" id="stats"></span>
+    </div>
+
+    <div id="catalogo"></div>
+  </main>
+
+<script>
+  // ============================================================
+  // CATÁLOGO DE CAPÍTULOS
+  // ------------------------------------------------------------
+  // Para añadir un nuevo capítulo:
+  //   1. Guarda el archivo HTML en la misma carpeta que el index
+  //   2. Copia un bloque { ... } de abajo y ajusta los campos
+  //   3. El campo "arquivo" debe coincidir con el nombre del archivo
+  // ============================================================
+  const catalogo = [
+    {
+      disciplina: "Fisiología – Guyton",
+      capitulos: [
+        {
+          numero: "63",
+          titulo: "Propulsión y Mezcla",
+          descricao: "Masticación, deglución, motilidad esofágica, vaciamiento gástrico, motilidad intestinal y defecación.",
+          arquivo: "capitulo-63.html",
+          perguntas: 100
+        },
+        {
+          numero: "66",
+          titulo: "Digestión y Absorción",
+          descricao: "Digestión y absorción de carbohidratos, proteínas, grasas, agua, electrolitos y vitaminas.",
+          arquivo: "capitulo-66.html",
+          perguntas: 100
+        },
+        {
+          numero: "64",
+          titulo: "Funciones Secretoras",
+          descricao: "Glándulas digestivas, saliva, secreción gástrica, páncreas, bilis y secreción intestinal.",
+          arquivo: "capitulo-64.html",
+          perguntas: 100,
+          emBreve: true
+        },
+        {
+          numero: "65",
+          titulo: "Digestión y Absorción (principios)",
+          descricao: "Principios generales de la digestión y absorción de nutrientes.",
+          arquivo: "capitulo-65.html",
+          perguntas: 100,
+          emBreve: true
+        }
+      ]
+    }
+    // ---- Ejemplo de otra disciplina (descomenta y ajusta cuando la tengas) ----
+    // {
+    //   disciplina: "Farmacología",
+    //   capitulos: [
+    //     {
+    //       numero: "—",
+    //       titulo: "AINEs y Analgésicos",
+    //       descricao: "Mecanismos de acción, efectos adversos y casos clínicos.",
+    //       arquivo: "farmaco-aines.html",
+    //       perguntas: 100
+    //     }
+    //   ]
+    // }
+  ];
+
+  // ------------------------------------------------------------
+  // Renderização dinâmica
+  // ------------------------------------------------------------
+  const catalogoEl = document.getElementById('catalogo');
+  const buscaEl    = document.getElementById('busca');
+  const statsEl    = document.getElementById('stats');
+
+  function foiVisitado(arquivo) {
+    try { return localStorage.getItem('visita:' + arquivo) === '1'; }
+    catch { return false; }
+  }
+  function marcarVisitado(arquivo) {
+    try { localStorage.setItem('visita:' + arquivo, '1'); } catch {}
+  }
+
+  function totalPerguntas() {
+    return catalogo.reduce(
+      (acc, d) => acc + d.capitulos.reduce((a, c) => a + (c.perguntas || 0), 0),
+      0
+    );
+  }
+
+  function renderizar(filtro = '') {
+    const termo = filtro.trim().toLowerCase();
+    catalogoEl.innerHTML = '';
+    let visiveis = 0;
+
+    catalogo.forEach(disciplina => {
+      const filtrados = disciplina.capitulos.filter(c => {
+        if (!termo) return true;
+        return (
+          c.numero.toLowerCase().includes(termo) ||
+          c.titulo.toLowerCase().includes(termo) ||
+          c.descricao.toLowerCase().includes(termo) ||
+          disciplina.disciplina.toLowerCase().includes(termo)
+        );
+      });
+      if (filtrados.length === 0) return;
+
+      const h2 = document.createElement('h2');
+      h2.className = 'section-title';
+      h2.textContent = disciplina.disciplina;
+      catalogoEl.appendChild(h2);
+
+      const grid = document.createElement('div');
+      grid.className = 'grid';
+
+      filtrados.forEach(c => {
+        visiveis++;
+        const visitado = foiVisitado(c.arquivo);
+        const a = document.createElement('a');
+        a.className = 'card' +
+          (visitado && !c.emBreve ? ' visited-card' : '') +
+          (c.emBreve ? ' em-breve' : '');
+        a.href = c.emBreve ? '#' : c.arquivo;
+        if (!c.emBreve) {
+          a.addEventListener('click', () => marcarVisitado(c.arquivo));
+        }
+        a.innerHTML = `
+          <span class="badge">Cap. ${c.numero}</span>
+          <h3>${c.titulo}</h3>
+          <p>${c.descricao}</p>
+          <div class="meta">
+            <span>${c.emBreve ? 'Em breve' : (c.perguntas ? c.perguntas + ' preguntas' : 'Ver ejercicio')}</span>
+            ${!c.emBreve && visitado ? '<span class="visited">✓ Visitado</span>' : ''}
+          </div>
+        `;
+        grid.appendChild(a);
+      });
+
+      catalogoEl.appendChild(grid);
+    });
+
+    if (visiveis === 0) {
+      const p = document.createElement('p');
+      p.className = 'empty';
+      p.textContent = `No se encontró ningún capítulo para "${filtro}".`;
+      catalogoEl.appendChild(p);
+    }
+
+    statsEl.textContent =
+      visiveis + ' capítulo' + (visiveis !== 1 ? 's' : '') +
+      ' · ' + totalPerguntas() + ' preguntas en total';
+  }
+
+  buscaEl.addEventListener('input', e => renderizar(e.target.value));
+  renderizar();
+</script>
+
+</body>
+</html>
