@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guyton Cap. 63 – Principios Generales de la Función Gastrointestinal</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+    background: linear-gradient(165deg, #eef2f9 0%, #dde6f2 100%);
+    color: #1e293b;
+    line-height: 1.55;
+    padding: 26px 14px 90px;
+    min-height: 100vh;
+  }
+  .contenedor { max-width: 880px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #0ea5e9 100%);
+    color: #fff;
+    padding: 30px 28px;
+    border-radius: 20px;
+    box-shadow: 0 14px 34px rgba(30, 58, 138, .3);
+    margin-bottom: 24px;
+  }
+  header h1 { margin: 0 0 8px; font-size: 1.45rem; letter-spacing: -.3px; }
+  header p { margin: 0; font-size: .92rem; opacity: .93; }
+  .panel {
+    position: sticky; top: 12px; z-index: 20;
+    display: flex; flex-wrap: wrap; gap: 10px;
+    align-items: center; justify-content: space-between;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(10px);
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 12px 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 6px 20px rgba(15,23,42,.09);
+    font-size: .9rem;
+    font-weight: 600;
+  }
+  .panel .marcador { color: #2563eb; }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 22px 16px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 16px rgba(15,23,42,.07);
+    border-left: 6px solid #cbd5e1;
+    transition: box-shadow .25s;
+  }
+  .card:hover { box-shadow: 0 6px 22px rgba(15,23,42,.11); }
+  .card.teoria { border-left-color: #3b82f6; }
+  .card.caso   { border-left-color: #f59e0b; }
+  .cabecera { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+  .numero {
+    background: #1e293b; color: #fff;
+    font-size: .72rem; font-weight: 700;
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex: 0 0 auto;
+  }
+  .etiqueta {
+    font-size: .68rem; font-weight: 700; letter-spacing: .6px;
+    text-transform: uppercase;
+    padding: 3px 10px; border-radius: 20px;
+  }
+  .etiqueta.t { background: #dbeafe; color: #1d4ed8; }
+  .etiqueta.c { background: #fef3c7; color: #b45309; }
+  .etiqueta.materia { background: #f1f5f9; color: #475569; }
+  .enunciado {
+    margin: 0 0 6px;
+    font-weight: 600;
+    font-size: .98rem;
+    color: #0f172a;
+  }
+  .opciones { margin-top: 8px; }
+  .opcion {
+    display: flex; align-items: flex-start; gap: 10px;
+    width: 100%; text-align: left;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 11px;
+    padding: 11px 14px;
+    margin-top: 9px;
+    font: inherit;
+    font-size: .93rem;
+    color: #1e293b;
+    cursor: pointer;
+    transition: background .18s, border-color .18s, transform .12s;
+  }
+  .opcion:hover:not(:disabled) { background: #eff6ff; border-color: #93c5fd; transform: translateX(2px); }
+  .opcion:disabled { cursor: default; }
+  .letra { font-weight: 800; color: #64748b; flex: 0 0 auto; min-width: 16px; }
+  .opcion.correcta { background: #dcfce7; border-color: #22c55e; font-weight: 600; }
+  .opcion.correcta .letra { color: #15803d; }
+  .opcion.incorrecta { background: #fee2e2; border-color: #ef4444; }
+  .opcion.incorrecta .letra { color: #b91c1c; }
+  .explicacion {
+    display: none;
+    margin-top: 14px;
+    padding: 13px 16px;
+    border-radius: 11px;
+    background: #f0f9ff;
+    border-left: 4px solid #0ea5e9;
+    font-size: .89rem;
+    color: #0c4a6e;
+  }
+  .explicacion.visible { display: block; animation: aparecer .28s ease; }
+  @keyframes aparecer {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  footer { text-align: center; font-size: .8rem; color: #64748b; margin-top: 34px; }
+
+  .volver {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 100;
+    background: #2563eb;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(37,99,235,.4);
+    font-size: .9rem;
+    transition: background .2s, transform .15s;
+  }
+  .volver:hover { background: #1d4ed8; transform: translateY(-2px); }
+
+  @media (max-width: 560px) {
+    header { padding: 22px 18px; }
+    header h1 { font-size: 1.18rem; }
+    .card { padding: 16px 15px 12px; }
+    .opcion { font-size: .88rem; }
+    .volver { bottom: 14px; left: 14px; padding: 8px 14px; font-size: .82rem; }
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="volver">🏠 Início</a>
+
+<div class="contenedor">
+  <header>
+    <h1>📖 Guyton Cap. 63 – Principios Generales de la Función Gastrointestinal</h1>
+    <p>Motilidad · Control nervioso · Circulación sanguínea · Casos clínicos</p>
+  </header>
+
+  <div class="panel">
+    <span class="marcador" id="marcador">Respondidas: 0 / 0 · Aciertos: 0</span>
+  </div>
+
+  <div id="quiz"></div>
+  <footer>Selecciona una opción para ver la explicación inmediata.</footer>
+</div>
+
+<script>
+const preguntas = [
+
+/* ============ PRINCIPIOS GENERALES (1-20) ============ */
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Cuál es la función principal del tubo digestivo?",
+  ops:["Absorber nutrientes","Transformar alimentos para absorción","Regular la temperatura corporal","Producir hormonas tiroideas"],
+  ok:1,
+  exp:"El tubo digestivo tiene como función principal transformar los alimentos en moléculas absorbibles (nutrientes) y absorberlas junto con agua y electrolitos hacia la sangre." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué porcentaje del gasto cardíaco recibe la circulación esplácnica en reposo?",
+  ops:["5-10% del gasto cardíaco","20-30% del gasto cardíaco","40-50% del gasto cardíaco","60-70% del gasto cardíaco"],
+  ok:1,
+  exp:"La circulación esplácnica recibe aproximadamente el 20-30% del gasto cardíaco, aunque esta fracción aumenta durante la digestión y disminuye durante el ejercicio o el shock." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué plexo nervioso controla principalmente la motilidad gastrointestinal?",
+  ops:["Plexo submucoso (Meissner)","Plexo mientérico (Auerbach)","Plexo celíaco","Plexo hipogástrico"],
+  ok:1,
+  exp:"El plexo mientérico (Auerbach), situado entre las capas musculares circular y longitudinal, controla la motilidad gastrointestinal (peristalsis y segmentación)." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué plexo nervioso controla principalmente la secreción y el flujo sanguíneo local?",
+  ops:["Plexo mientérico (Auerbach)","Plexo submucoso (Meissner)","Plexo cervical superior","Plexo sacro"],
+  ok:1,
+  exp:"El plexo submucoso (Meissner), situado en la submucosa, controla la secreción glandular, el flujo sanguíneo local y la absorción." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Cómo se llama el sistema nervioso propio del tubo digestivo?",
+  ops:["Sistema nervioso central","Sistema nervioso entérico","Sistema nervioso autónomo","Sistema nervioso somático"],
+  ok:1,
+  exp:"El sistema nervioso entérico es una red de neuronas y fibras nerviosas que controla la motilidad, la secreción y el flujo sanguíneo gastrointestinal de forma autónoma." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué neurotransmisor es el principal mediador de la contracción del músculo liso gastrointestinal?",
+  ops:["Noradrenalina","Acetilcolina","Óxido nítrico","Péptido intestinal vasoactivo"],
+  ok:1,
+  exp:"La acetilcolina, liberada por las neuronas parasimpáticas y por las interneuronas del plexo mientérico, es el principal neurotransmisor excitador que produce contracción del músculo liso gastrointestinal." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué neurotransmisor media principalmente la relajación del músculo liso gastrointestinal?",
+  ops:["Acetilcolina","Noradrenalina","Óxido nítrico","Sustancia P"],
+  ok:2,
+  exp:"El óxido nítrico (NO) es el principal neurotransmisor inhibitorio no adrenérgico no colinérgico (NANC) que media la relajación del músculo liso gastrointestinal, incluyendo el esfínter esofágico inferior." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué efecto tiene la estimulación parasimpática sobre la motilidad gastrointestinal?",
+  ops:["Disminuye la motilidad","Aumenta la motilidad","No afecta la motilidad","Solo afecta la secreción"],
+  ok:1,
+  exp:"La estimulación parasimpática (vago y nervios pélvicos) aumenta la motilidad gastrointestinal y la secreción, favoreciendo la digestión." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué efecto tiene la estimulación simpática sobre la motilidad gastrointestinal?",
+  ops:["Aumenta la motilidad","Disminuye la motilidad","No afecta la motilidad","Solo afecta el flujo sanguíneo"],
+  ok:1,
+  exp:"La estimulación simpática reduce la motilidad gastrointestinal y el flujo sanguíneo esplácnico, inhibiendo la actividad digestiva (respuesta de lucha o huida)." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué es el reflejo gastrocólico?",
+  ops:["Contracción del estómago tras la defecación","Aumento de la motilidad colónica tras la ingesta","Relajación del esfínter esofágico inferior","Secreción ácida por distensión gástrica"],
+  ok:1,
+  exp:"El reflejo gastrocólico es el aumento de la motilidad colónica (movimientos de masa) desencadenado por la distensión gástrica tras la ingesta de alimentos, facilitando la defecación." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué es el complejo motor migratorio (CMM)?",
+  ops:["Ondas peristálticas de la fase posprandial","Patrón de motilidad del ayuno","Contracción tónica del esfínter pilórico","Secreción cíclica de ácido gástrico"],
+  ok:1,
+  exp:"El complejo motor migratorio (CMM) es un patrón de motilidad que ocurre durante el ayuno cada 1.5-2 horas, impulsado por la motilina, y tiene función de limpieza del intestino." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué hormona inicia el complejo motor migratorio?",
+  ops:["Gastrina","Secretina","Motilina","Colecistoquinina"],
+  ok:2,
+  exp:"La motilina, secretada por las células endocrinas del intestino delgado, desencadena el complejo motor migratorio (CMM) durante el ayuno." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué es la peristalsis?",
+  ops:["Movimiento de mezcla local","Movimiento propulsivo anterógrado","Contracción tónica de esfínteres","Relajación receptiva gástrica"],
+  ok:1,
+  exp:"La peristalsis es un movimiento propulsivo coordinado por el plexo mientérico que impulsa el contenido desde la boca hacia el ano." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué es la segmentación?",
+  ops:["Movimiento propulsivo anterógrado","Movimiento de mezcla local","Contracción tónica de esfínteres","Relajación receptiva gástrica"],
+  ok:1,
+  exp:"La segmentación consiste en contracciones localizadas que mezclan el contenido intestinal con las enzimas y lo ponen en contacto con la mucosa para la absorción." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué es la relajación receptiva gástrica?",
+  ops:["Contracción del píloro tras la ingesta","Aumento del volumen gástrico sin aumento de presión","Secreción ácida por distensión","Relajación del esfínter esofágico inferior"],
+  ok:1,
+  exp:"La relajación receptiva es un reflejo vagal que permite que el estómago se distienda y acomode el alimento sin un aumento significativo de la presión intragástrica." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Cuál es la función de las células de Cajal (células intersticiales)?",
+  ops:["Secretar enzimas digestivas","Generar el ritmo eléctrico básico","Producir moco protector","Regular el flujo sanguíneo"],
+  ok:1,
+  exp:"Las células intersticiales de Cajal actúan como marcapasos del músculo liso gastrointestinal, generando el ritmo eléctrico básico que coordina las contracciones." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué es el ritmo eléctrico básico (REB)?",
+  ops:["Potencial de acción del músculo liso","Ondas lentas de despolarización","Secreción cíclica de hormonas","Contracción tónica de esfínteres"],
+  ok:1,
+  exp:"El ritmo eléctrico básico (REB) son ondas lentas de despolarización generadas por las células de Cajal, que determinan la frecuencia máxima de contracción del músculo liso gastrointestinal." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué es un potencial de acción en el músculo liso gastrointestinal?",
+  ops:["Onda lenta de despolarización","Despolarización rápida que produce contracción","Hiperpolarización que produce relajación","Secreción de neurotransmisores"],
+  ok:1,
+  exp:"Los potenciales de acción son despolarizaciones rápidas que, cuando superan el umbral, producen la contracción del músculo liso gastrointestinal. Su frecuencia depende de las ondas lentas." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué efecto tiene la distensión de la pared intestinal sobre la motilidad?",
+  ops:["Disminuye la motilidad","Aumenta la motilidad","No afecta la motilidad","Solo afecta la secreción"],
+  ok:1,
+  exp:"La distensión de la pared intestinal estimula reflejos entéricos que aumentan la motilidad (peristalsis y segmentación), favoreciendo la propulsión y mezcla del contenido." },
+
+{ cat:"Principios generales", tipo:"teoria",
+  q:"¿Qué es el reflejo peristáltico?",
+  ops:["Relajación del esfínter esofágico inferior","Contracción proximal y relajación distal","Secreción ácida por distensión","Contracción tónica del píloro"],
+  ok:1,
+  exp:"El reflejo peristáltico consiste en la contracción del músculo liso proximal al bolo y la relajación del distal, impulsando el contenido en dirección anterógrada." },
+
+/* ============ CONTROL NERVIOSO (21-40) ============ */
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué nervio proporciona la inervación parasimpática del estómago y el intestino delgado proximal?",
+  ops:["Nervio glosofaríngeo","Nervio vago","Nervio pélvico","Nervio esplácnico"],
+  ok:1,
+  exp:"El nervio vago proporciona la inervación parasimpática del estómago y el intestino delgado proximal (hasta el colon transverso), estimulando la motilidad y la secreción." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué nervios proporcionan la inervación parasimpática del colon distal y el recto?",
+  ops:["Nervios vagos","Nervios pélvicos","Nervios esplácnicos","Nervios glosofaríngeos"],
+  ok:1,
+  exp:"Los nervios pélvicos (parasimpáticos sacros) proporcionan la inervación del colon distal, el recto y el ano, controlando la defecación." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿De dónde provienen las fibras simpáticas que inervan el tubo digestivo?",
+  ops:["Núcleo motor dorsal del vago","Médula espinal toracolumbar","Núcleo ambiguo","Médula sacra"],
+  ok:1,
+  exp:"Las fibras simpáticas que inervan el tubo digestivo provienen de la médula espinal toracolumbar (T5-L2) y hacen sinapsis en los ganglios celíaco, mesentérico superior e inferior." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué efecto tiene la estimulación simpática sobre los esfínteres gastrointestinales?",
+  ops:["Los relaja","Los contrae","No los afecta","Solo afecta los esfínteres esofágicos"],
+  ok:1,
+  exp:"La estimulación simpática contrae los esfínteres gastrointestinales (esfínter esofágico inferior, piloro, esfínter ileocecal, esfínter anal interno), inhibiendo el tránsito." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué es el reflejo vago-vagal?",
+  ops:["Reflejo medular de la defecación","Reflejo que integra funciones digestivas en el tronco encefálico","Reflejo local del plexo mientérico","Reflejo simpático de contracción de esfínteres"],
+  ok:1,
+  exp:"El reflejo vago-vagal es un arco reflejo que integra información sensorial del tubo digestivo en el tronco encefálico y genera respuestas motoras y secretoras a través del nervio vago." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué es el reflejo local o reflejo corto?",
+  ops:["Reflejo que integra en el tronco encefálico","Reflejo que se integra en el plexo entérico","Reflejo medular de la defecación","Reflejo simpático de contracción"],
+  ok:1,
+  exp:"El reflejo local (o corto) se integra completamente en el plexo entérico, sin participación del sistema nervioso central, y controla funciones como la peristalsis y la secreción local." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué es el reflejo largo?",
+  ops:["Reflejo integrado en el plexo entérico","Reflejo que integra en el sistema nervioso central","Reflejo local de secreción","Reflejo medular de defecación"],
+  ok:1,
+  exp:"El reflejo largo es un arco reflejo que integra información en el sistema nervioso central (tronco encefálico o médula espinal) y genera respuestas motoras o secretoras a través de nervios autónomos." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué efecto tiene la estimulación del nervio vago sobre la secreción gástrica?",
+  ops:["Disminuye la secreción ácida","Aumenta la secreción ácida","No afecta la secreción","Solo afecta la motilidad"],
+  ok:1,
+  exp:"La estimulación vagal aumenta la secreción ácida gástrica, tanto directamente sobre las células parietales como indirectamente mediante la liberación de gastrina." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué efecto tiene la estimulación simpática sobre la secreción gástrica?",
+  ops:["Aumenta la secreción ácida","Disminuye la secreción ácida","No afecta la secreción","Solo afecta la motilidad"],
+  ok:1,
+  exp:"La estimulación simpática reduce la secreción gástrica, principalmente por vasoconstricción de los vasos sanguíneos de la mucosa gástrica." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué es el reflejo enterogástrico?",
+  ops:["Aumento de la motilidad gástrica por distensión","Inhibición de la motilidad gástrica por el duodeno","Contracción del píloro por el vago","Secreción ácida por la gastrina"],
+  ok:1,
+  exp:"El reflejo enterogástrico es la inhibición de la motilidad y la secreción gástrica desencadenada por la presencia de quimo en el duodeno (ácido, grasa, osmolaridad elevada), permitiendo una digestión adecuada." },
+
+{ cat:"Control nervioso", tipo:"caso",
+  q:"Paciente con lesión medular alta que presenta íleo paralítico. ¿Qué mecanismo explica esta alteración?",
+  ops:["Aumento del tono parasimpático","Aumento del tono simpático","Disminución del tono simpático","Aumento de la motilina"],
+  ok:1,
+  exp:"La lesión medular y el estrés asociado aumentan el tono simpático, que inhibe la motilidad intestinal y contribuye al íleo paralítico." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué es el síndrome de intestino irritable (SII) desde el punto de vista fisiopatológico?",
+  ops:["Inflamación crónica del intestino","Alteración de la motilidad y la sensibilidad visceral","Obstrucción mecánica del intestino","Deficiencia de enzimas pancreáticas"],
+  ok:1,
+  exp:"El SII se caracteriza por alteraciones de la motilidad intestinal y de la sensibilidad visceral (hiperalgesia visceral), sin lesión orgánica demostrable." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué efecto tiene la serotonina (5-HT) sobre la motilidad intestinal?",
+  ops:["Inhibe la motilidad","Estimula la motilidad","No afecta la motilidad","Solo afecta la secreción"],
+  ok:1,
+  exp:"La serotonina (5-HT) es un neurotransmisor entérico que estimula la motilidad y los reflejos secretores, participando en la peristalsis y en el reflejo del vómito." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué efecto tiene la somatostatina sobre la motilidad intestinal?",
+  ops:["Aumenta la motilidad","Inhibe la motilidad","No afecta la motilidad","Solo afecta la secreción"],
+  ok:1,
+  exp:"La somatostatina inhibe la motilidad intestinal y la secreción de hormonas gastrointestinales, reduciendo la actividad digestiva." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué efecto tiene la colecistoquinina (CCK) sobre la motilidad gástrica?",
+  ops:["Aumenta la motilidad gástrica","Inhibe la motilidad gástrica","No afecta la motilidad gástrica","Solo afecta la secreción"],
+  ok:1,
+  exp:"La CCK inhibe la motilidad gástrica y enlentece el vaciamiento gástrico, permitiendo una digestión adecuada de las grasas y proteínas en el duodeno." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué efecto tiene la secretina sobre la motilidad gástrica?",
+  ops:["Aumenta la motilidad gástrica","Inhibe la motilidad gástrica","No afecta la motilidad gástrica","Solo afecta la secreción"],
+  ok:1,
+  exp:"La secretina inhibe la motilidad gástrica y reduce la secreción ácida, contribuyendo a la neutralización del quimo ácido en el duodeno." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué efecto tiene la gastrina sobre la motilidad gástrica?",
+  ops:["Inhibe la motilidad gástrica","Estimula la motilidad gástrica","No afecta la motilidad gástrica","Solo afecta la secreción"],
+  ok:1,
+  exp:"La gastrina estimula la motilidad gástrica y la secreción ácida, favoreciendo el vaciamiento gástrico." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué es el reflejo de la defecación?",
+  ops:["Reflejo que se integra en el tronco encefálico","Reflejo medular que relaja el esfínter anal interno","Reflejo local del plexo mientérico","Reflejo simpático de contracción"],
+  ok:1,
+  exp:"El reflejo de la defecación es un reflejo medular que se desencadena por la distensión rectal y produce la relajación del esfínter anal interno y la contracción del recto." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué controla el esfínter anal externo?",
+  ops:["Sistema nervioso autónomo","Control voluntario (nervio pudendo)","Plexo mientérico","Plexo submucoso"],
+  ok:1,
+  exp:"El esfínter anal externo está formado por músculo estriado y está bajo control voluntario a través del nervio pudendo, permitiendo la continencia fecal." },
+
+{ cat:"Control nervioso", tipo:"teoria",
+  q:"¿Qué es el reflejo rectoanal inhibitorio?",
+  ops:["Contracción del esfínter anal interno","Relajación del esfínter anal interno","Contracción del recto","Relajación del esfínter anal externo"],
+  ok:1,
+  exp:"El reflejo rectoanal inhibitorio es la relajación del esfínter anal interno en respuesta a la distensión rectal, permitiendo el paso de las heces." },
+
+/* ============ CIRCULACIÓN (41-60) ============ */
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Cuál es la principal arteria que irriga el intestino delgado?",
+  ops:["Arteria celíaca","Arteria mesentérica superior","Arteria mesentérica inferior","Arteria hepática"],
+  ok:1,
+  exp:"La arteria mesentérica superior irriga el intestino delgado (excepto el duodeno proximal) y la mitad derecha del colon." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Cuál es la principal arteria que irriga el colon distal y el recto?",
+  ops:["Arteria celíaca","Arteria mesentérica superior","Arteria mesentérica inferior","Arteria ilíaca interna"],
+  ok:2,
+  exp:"La arteria mesentérica inferior irriga el colon descendente, el colon sigmoide y el recto superior." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Qué es el sistema contracorriente de las vellosidades intestinales?",
+  ops:["Sistema de contracorriente para absorción de oxígeno","Sistema de contracorriente para absorción de agua","Sistema de contracorriente para absorción de glucosa","Sistema de contracorriente para absorción de grasas"],
+  ok:0,
+  exp:"El sistema contracorriente de las vellosidades favorece la absorción de oxígeno y nutrientes, pero hace vulnerable la punta de la vellosidad a la isquemia." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Qué efecto tiene la vasoconstricción esplácnica intensa sobre el intestino?",
+  ops:["Aumento de la absorción","Isquemia intestinal","Aumento de la motilidad","Disminución de la secreción"],
+  ok:1,
+  exp:"La vasoconstricción esplácnica intensa reduce el flujo sanguíneo intestinal y puede causar isquemia, especialmente en la punta de las vellosidades." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Qué efecto tiene la digestión sobre el flujo sanguíneo esplácnico?",
+  ops:["Disminuye el flujo","Aumenta el flujo","No afecta el flujo","Redistribuye el flujo al colon"],
+  ok:1,
+  exp:"Durante la digestión, el flujo sanguíneo esplácnico aumenta para favorecer la absorción y la secreción gastrointestinal." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Qué efecto tiene el ejercicio intenso sobre el flujo sanguíneo esplácnico?",
+  ops:["Aumenta el flujo","Disminuye el flujo","No afecta el flujo","Redistribuye el flujo al intestino"],
+  ok:1,
+  exp:"Durante el ejercicio intenso, la vasoconstricción simpática reduce el flujo sanguíneo esplácnico para desviar sangre hacia los músculos esqueléticos y el corazón." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Qué efecto tiene el shock sobre el flujo sanguíneo esplácnico?",
+  ops:["Aumenta el flujo","Disminuye el flujo","No afecta el flujo","Redistribuye el flujo al intestino"],
+  ok:1,
+  exp:"En el shock, la vasoconstricción esplácnica desvía la sangre hacia órganos vitales (cerebro, corazón) y puede causar isquemia intestinal." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Cuál es la función de las anastomosis arteriovenosas en el tubo digestivo?",
+  ops:["Aumentar la absorción de nutrientes","Regular el flujo sanguíneo local","Producir moco protector","Secretar enzimas digestivas"],
+  ok:1,
+  exp:"Las anastomosis arteriovenosas permiten regular el flujo sanguíneo local, derivando sangre de la mucosa a la submucosa según las necesidades." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Cuál es la función de los vasos linfáticos en las vellosidades intestinales?",
+  ops:["Transportar glucosa al hígado","Transportar quilomicrones","Transportar aminoácidos","Transportar agua y electrolitos"],
+  ok:1,
+  exp:"Los vasos linfáticos de las vellosidades (lacteales) transportan los quilomicrones formados tras la absorción de grasas de cadena larga." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Qué es el sistema porta hepático?",
+  ops:["Sistema venoso que conecta el intestino con el hígado","Sistema arterial que irriga el hígado","Sistema linfático que drena el intestino","Sistema nervioso que controla el hígado"],
+  ok:0,
+  exp:"El sistema porta hepático es un sistema venoso que transporta la sangre desde el intestino (con nutrientes absorbidos) hasta el hígado para su metabolismo y almacenamiento." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Qué porcentaje del flujo sanguíneo hepático proviene de la vena porta?",
+  ops:["Aproximadamente 25%","Alrededor del 75%","Cerca del 50%","Casi el 100%"],
+  ok:1,
+  exp:"La vena porta aporta aproximadamente el 75% del flujo sanguíneo hepático (rico en nutrientes), mientras que la arteria hepática aporta el 25% restante (rico en oxígeno)." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Qué efecto tiene la noradrenalina sobre el flujo sanguíneo esplácnico?",
+  ops:["Vasodilatación","Vasoconstricción","No afecta el flujo","Aumenta la absorción"],
+  ok:1,
+  exp:"La noradrenalina produce vasoconstricción esplácnica al estimular los receptores alfa-adrenérgicos de los vasos sanguíneos, reduciendo el flujo sanguíneo intestinal." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Qué efecto tiene la acetilcolina sobre el flujo sanguíneo esplácnico?",
+  ops:["Vasoconstricción","Vasodilatación","No afecta el flujo","Aumenta la motilidad"],
+  ok:1,
+  exp:"La acetilcolina produce vasodilatación esplácnica al estimular los receptores muscarínicos del endotelio vascular, aumentando el flujo sanguíneo intestinal." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Qué es la isquemia intestinal?",
+  ops:["Aumento del flujo sanguíneo intestinal","Disminución del flujo sanguíneo intestinal","Inflamación del intestino","Obstrucción intestinal"],
+  ok:1,
+  exp:"La isquemia intestinal es la disminución del flujo sanguíneo intestinal, que puede causar necrosis de la mucosa y perforación si no se corrige." },
+
+{ cat:"Circulación", tipo:"caso",
+  q:"Paciente con shock séptico que presenta isquemia intestinal. ¿Qué mecanismo explica esta complicación?",
+  ops:["Vasodilatación esplácnica","Vasoconstricción esplácnica","Aumento del flujo sanguíneo","Aumento de la motilidad"],
+  ok:1,
+  exp:"En el shock séptico, la vasoconstricción esplácnica desvía la sangre hacia órganos vitales y puede causar isquemia intestinal." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Qué es el sistema linfático intestinal?",
+  ops:["Sistema de transporte de glucosa","Sistema de transporte de grasas","Sistema de transporte de aminoácidos","Sistema de transporte de agua"],
+  ok:1,
+  exp:"El sistema linfático intestinal (lacteales) transporta los quilomicrones formados tras la absorción de grasas de cadena larga hacia el conducto torácico y la circulación sistémica." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Qué es el flujo sanguíneo esplácnico?",
+  ops:["Flujo sanguíneo de los riñones","Flujo sanguíneo del tubo digestivo","Flujo sanguíneo del cerebro","Flujo sanguíneo del corazón"],
+  ok:1,
+  exp:"El flujo sanguíneo esplácnico es el flujo sanguíneo que irriga el tubo digestivo, el hígado, el páncreas y el bazo." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Qué efecto tiene la distensión gástrica sobre el flujo sanguíneo de la mucosa gástrica?",
+  ops:["Disminuye el flujo","Aumenta el flujo","No afecta el flujo","Redistribuye el flujo al colon"],
+  ok:1,
+  exp:"La distensión gástrica y la presencia de alimento aumentan el flujo sanguíneo de la mucosa gástrica para favorecer la secreción y la absorción." },
+
+{ cat:"Circulación", tipo:"teoria",
+  q:"¿Qué es la hiperemia reactiva?",
+  ops:["Aumento del flujo sanguíneo tras un período de isquemia","Disminución del flujo sanguíneo tras la isquemia","Aumento del flujo sanguíneo durante la digestión","Disminución del flujo sanguíneo durante el ejercicio"],
+  ok:0,
+  exp:"La hiperemia reactiva es el aumento del flujo sanguíneo que sigue a un período de isquemia, como mecanismo compensatorio para restaurar el aporte de oxígeno y nutrientes." },
+
+/* ============ CASOS CLÍNICOS (61-80) ============ */
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con síndrome de intestino irritable que presenta diarrea e dolor abdominal. ¿Qué alteración fisiopatológica subyace?",
+  ops:["Inflamación crónica de la mucosa","Alteración de la motilidad y sensibilidad visceral","Obstrucción mecánica intestinal","Deficiencia de enzimas pancreáticas"],
+  ok:1,
+  exp:"El SII se caracteriza por alteraciones de la motilidad intestinal y de la sensibilidad visceral (hiperalgesia visceral), sin lesión orgánica demostrable." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con enfermedad de Hirschsprung que presenta estreñimiento grave desde el nacimiento. ¿Qué alteración subyace?",
+  ops:["Ausencia de células ganglionares en el plexo mientérico","Exceso de células ganglionares","Hipermotilidad intestinal","Acalasia del esfínter esofágico inferior"],
+  ok:0,
+  exp:"La enfermedad de Hirschsprung se debe a la ausencia de células ganglionares en el plexo mientérico de un segmento del colon, lo que impide la relajación y causa dilatación proximal (megacolon)." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con acalasia que presenta disfagia y regurgitación. ¿Qué alteración motora es característica?",
+  ops:["Falta de relajación del esfínter esofágico inferior","Hipertonía del píloro","Aumento de la motilidad gástrica","Deficiencia de gastrina"],
+  ok:0,
+  exp:"La acalasia se caracteriza por la falta de relajación del esfínter esofágico inferior durante la deglución, lo que causa disfagia, regurgitación y dilatación esofágica." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con síndrome de dumping tras gastrectomía que presenta mareo y diarrea. ¿Qué mecanismo explica los síntomas?",
+  ops:["Vaciamiento gástrico acelerado","Acalasia del esfínter esofágico inferior","Gastroparesia diabética","Obstrucción pilórica"],
+  ok:0,
+  exp:"El síndrome de dumping se debe al vaciamiento rápido del contenido gástrico al duodeno, causando síntomas vasomotores y diarrea osmótica." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con íleo paralítico postoperatorio que presenta distensión y ausencia de ruidos. ¿Qué medida inicial es adecuada?",
+  ops:["Descompresión nasogástrica y ayuno","Loperamida para aumentar la motilidad","Cirugía inmediata","Antiácidos gástricos"],
+  ok:0,
+  exp:"El íleo paralítico se maneja inicialmente con descompresión nasogástrica, ayuno y corrección de electrolitos; la cirugía se reserva para obstrucción mecánica." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con lesión medular que presenta incontinencia fecal. ¿Qué mecanismo está alterado?",
+  ops:["Control voluntario del esfínter anal externo","Motilidad gástrica","Secreción biliar","Absorción de agua"],
+  ok:0,
+  exp:"La lesión medular altera el control voluntario del esfínter anal externo, lo que puede causar incontinencia fecal." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con fisura anal que presenta dolor al defecar. ¿Qué medida ayuda a evitar el esfuerzo?",
+  ops:["Laxantes formadores de masa","Loperamida para reducir la motilidad","Ondansetrón para reducir las náuseas","Antiácidos gástricos"],
+  ok:0,
+  exp:"Los laxantes formadores de masa ablandan las heces y reducen el esfuerzo defecatorio, ayudando a la cicatrización de la fisura anal." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con estreñimiento crónico que presenta esfuerzo defecatorio. ¿Qué alteración motora es frecuente?",
+  ops:["Hipermotilidad colónica","Hipomotilidad colónica","Acalasia del esfínter esofágico inferior","Gastroparesia diabética"],
+  ok:1,
+  exp:"El estreñimiento crónico por hipomotilidad colónica se caracteriza por disminución de los movimientos de masa y esfuerzo defecatorio." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con diarrea que presenta urgencia defecatoria. ¿Qué mecanismo contribuye?",
+  ops:["Hipermotilidad colónica","Hipomotilidad colónica","Acalasia del esfínter esofágico inferior","Obstrucción intestinal"],
+  ok:0,
+  exp:"La hipermotilidad colónica reduce el tiempo de absorción de agua y causa urgencia defecatoria y heces líquidas." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con obstrucción intestinal que presenta vómitos y distensión. ¿Qué alteración motora predomina?",
+  ops:["Hipermotilidad intestinal","Íleo paralítico","Acalasia del esfínter esofágico inferior","Gastroparesia diabética"],
+  ok:1,
+  exp:"En la obstrucción intestinal se produce íleo paralítico con disminución de la motilidad, distensión y vómitos." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con gastroenteritis que presenta diarrea e cólicos. ¿Qué mecanismo explica la diarrea?",
+  ops:["Aumento de la motilidad y secreción intestinal","Disminución de la motilidad intestinal","Obstrucción mecánica intestinal","Acalasia del esfínter esofágico inferior"],
+  ok:0,
+  exp:"La gastroenteritis causa inflamación y aumento de la motilidad y secreción intestinal, produciendo diarrea y cólicos." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con enfermedad de Crohn que presenta dolor cólico y diarrea. ¿Qué alteración motora contribuye?",
+  ops:["Hipermotilidad por inflamación","Hipomotilidad intestinal","Acalasia del esfínter esofágico inferior","Obstrucción mecánica intestinal"],
+  ok:0,
+  exp:"La inflamación en la enfermedad de Crohn altera la motilidad y aumenta la actividad contráctil, causando dolor cólico y diarrea." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con síndrome de Zollinger-Ellison que presenta úlceras múltiples. ¿Qué hormona está elevada?",
+  ops:["Secretina duodenal elevada","Gastrina sérica elevada","Colecistoquinina duodenal elevada","Motilina intestinal elevada"],
+  ok:1,
+  exp:"El síndrome de Zollinger-Ellison se debe a un gastrinoma que secreta grandes cantidades de gastrina, lo que estimula la hipersecreción ácida y causa úlceras pépticas múltiples." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con anemia perniciosa. ¿Qué células gástricas están destruidas?",
+  ops:["Células principales secretoras de pepsinógeno","Células G antrales productoras de gastrina","Células mucosas superficiales","Células parietales del cuerpo gástrico"],
+  ok:3,
+  exp:"La anemia perniciosa se debe a la destrucción autoinmune de las células parietales, que secretan factor intrínseco y ácido clorhídrico. Sin factor intrínseco, la vitamina B12 no se absorbe." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con pancreatitis aguda que presenta dolor abdominal intenso y elevación de amilasa. ¿Qué mecanismo explica la elevación de amilasa?",
+  ops:["Obstrucción del conducto pancreático","Aumento de la secreción gástrica","Deficiencia de lactasa intestinal","Aumento de la absorción intestinal"],
+  ok:0,
+  exp:"La pancreatitis aguda causa edema e inflamación que obstruyen el conducto pancreático, impidiendo el paso de las enzimas al duodeno. Las enzimas se liberan a la sangre, elevando la amilasa y la lipasa séricas." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con ictericia obstructiva que presenta esteatorrea. ¿Qué falta en el intestino?",
+  ops:["Enzimas pancreáticas","Sales biliares","Ácido clorhídrico","Factor intrínseco"],
+  ok:1,
+  exp:"La obstrucción biliar impide el paso de bilis (y sales biliares) al intestino. Sin sales biliares, las grasas no se emulsifican ni se absorben, causando esteatorrea y heces acólicas." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con fibrosis quística que presenta esteatorrea. ¿Qué mecanismo es responsable?",
+  ops:["Deficiencia de enzimas pancreáticas","Exceso de sales biliares","Aumento de la motilidad intestinal","Deficiencia de lactasa intestinal"],
+  ok:0,
+  exp:"La fibrosis quística produce moco espeso que obstruye los conductos pancreáticos, impidiendo la llegada de enzimas al duodeno y causando maldigestión y malabsorción de grasas." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con enfermedad celíaca que presenta atrofia de las vellosidades intestinales. ¿Qué consecuencia funcional tiene?",
+  ops:["Aumento de la secreción ácida gástrica","Aumento de la motilidad intestinal","Disminución de la superficie de absorción","Deficiencia de lactasa intestinal"],
+  ok:2,
+  exp:"La atrofia de las vellosidades intestinales reduce la superficie de absorción y la actividad de las enzimas del ribete en cepillo, causando malabsorción de nutrientes." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con síndrome de intestino corto tras resección masiva. ¿Qué mecanismo compensatorio permite la adaptación intestinal?",
+  ops:["Hiperplasia de las criptas y vellosidades","Disminución de la motilidad intestinal","Aumento de la secreción gástrica","Deficiencia de lactasa secundaria"],
+  ok:0,
+  exp:"Tras la resección intestinal, el intestino restante desarrolla hiperplasia de las criptas y elongación de las vellosidades para aumentar la superficie de absorción, proceso mediado por factores de crecimiento." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con cólera que presenta deshidratación grave. ¿Cuál es la medida inicial fundamental?",
+  ops:["Antibióticos de amplio espectro","Rehidratación oral o intravenosa","Loperamida para reducir la diarrea","Antiácidos gástricos"],
+  ok:1,
+  exp:"La rehidratación agresiva con soluciones de rehidratación oral o intravenosa es la piedra angular del tratamiento del cólera. Los antibióticos son adyuvantes para reducir la duración y la diseminación." },
+
+{ cat:"Casos clínicos", tipo:"caso",
+  q:"Paciente con úlcera duodenal que presenta dolor que mejora con la comida. ¿Qué mecanismo subyace?",
+  ops:["Exceso de ácido clorhídrico gástrico","Exceso de pepsina gástrica","Desequilibrio agresivo-defensivo","Infección por Helicobacter pylori"],
+  ok:2,
+  exp:"La úlcera duodenal resulta de un desequilibrio entre los factores agresivos (ácido, pepsina, H. pylori, AINEs) y los protectores (moco, bicarbonato, prostaglandinas). El dolor mejora con la comida porque el alimento tampona el ácido." },
+
+/* ============ REFUERZO (81-96) ============ */
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Cuál es la función de las glándulas de Brunner del duodeno?",
+  ops:["Secretar enzimas proteolíticas","Secretar moco alcalino","Secretar bilis","Secretar ácido clorhídrico"],
+  ok:1,
+  exp:"Las glándulas de Brunner del duodeno secretan un moco alcalino que protege la mucosa duodenal de la acidez del quimo gástrico." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Cuál es la función de las criptas de Lieberkühn del intestino delgado?",
+  ops:["Secretar moco","Secretar agua y electrolitos","Secretar bilis","Secretar ácido clorhídrico"],
+  ok:1,
+  exp:"Las criptas de Lieberkühn secretan agua y electrolitos (jugo intestinal) que ayudan a fluidificar el contenido intestinal y facilitar la absorción." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Cuál es la función de las células caliciformes intestinales?",
+  ops:["Secretar enzimas digestivas","Secretar moco protector","Secretar hormonas gastrointestinales","Secretar bicarbonato"],
+  ok:1,
+  exp:"Las células caliciformes secretan moco que lubrica y protege el epitelio intestinal de la irritación y la digestión." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Cuál es la función de las células G del antro gástrico?",
+  ops:["Secretar ácido clorhídrico","Secretar pepsinógeno","Secretar gastrina","Secretar moco"],
+  ok:2,
+  exp:"Las células G del antro gástrico secretan gastrina, que estimula la secreción de ácido clorhídrico por las células parietales." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Cuál es la función de las células parietales gástricas?",
+  ops:["Secretar ácido clorhídrico y factor intrínseco","Secretar pepsinógeno","Secretar gastrina","Secretar moco"],
+  ok:0,
+  exp:"Las células parietales secretan ácido clorhídrico y factor intrínseco. El factor intrínseco es esencial para la absorción de vitamina B12." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Cuál es la función de las células principales gástricas?",
+  ops:["Secretar ácido clorhídrico","Secretar pepsinógeno","Secretar gastrina","Secretar moco"],
+  ok:1,
+  exp:"Las células principales (peptídicas) secretan pepsinógeno, que se activa en pepsina en el ambiente ácido del estómago." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Cuál es la función de las células D gástricas?",
+  ops:["Secretar ácido clorhídrico","Secretar pepsinógeno","Secretar somatostatina","Secretar gastrina"],
+  ok:2,
+  exp:"Las células D del estómago secretan somatostatina, que inhibe la liberación de gastrina por las células G y reduce la secreción ácida." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Cuál es la función de las células S del duodeno?",
+  ops:["Secretar gastrina","Secretar secretina","Secretar colecistoquinina","Secretar motilina"],
+  ok:1,
+  exp:"Las células S del duodeno secretan secretina en respuesta al pH ácido, que estimula la secreción pancreática de bicarbonato." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Cuál es la función de las células I del intestino delgado?",
+  ops:["Secretar gastrina","Secretar secretina","Secretar colecistoquinina","Secretar motilina"],
+  ok:2,
+  exp:"Las células I del intestino delgado secretan colecistoquinina (CCK) en respuesta a grasas y proteínas, que estimula la secreción de enzimas pancreáticas y la contracción de la vesícula biliar." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Cuál es la función de las células endocrinas del intestino delgado que secretan motilina?",
+  ops:["Iniciar el complejo motor migratorio","Estimular la secreción ácida","Inhibir la motilidad intestinal","Estimular la secreción biliar"],
+  ok:0,
+  exp:"La motilina, secretada por células endocrinas del intestino delgado, inicia el complejo motor migratorio (CMM) durante el ayuno." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Cuál es la función del sistema nervioso entérico?",
+  ops:["Controlar la motilidad, secreción y flujo sanguíneo gastrointestinal","Controlar la respiración","Controlar la presión arterial","Controlar la temperatura corporal"],
+  ok:0,
+  exp:"El sistema nervioso entérico controla la motilidad, la secreción y el flujo sanguíneo gastrointestinal de forma autónoma." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Cuál es la función del plexo mientérico (Auerbach)?",
+  ops:["Controlar la secreción glandular","Controlar la motilidad gastrointestinal","Controlar el flujo sanguíneo","Controlar la absorción"],
+  ok:1,
+  exp:"El plexo mientérico (Auerbach) controla la motilidad gastrointestinal (peristalsis y segmentación)." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Cuál es la función del plexo submucoso (Meissner)?",
+  ops:["Controlar la motilidad gastrointestinal","Controlar la secreción y el flujo sanguíneo local","Controlar la absorción de nutrientes","Controlar la defecación"],
+  ok:1,
+  exp:"El plexo submucoso (Meissner) controla la secreción glandular, el flujo sanguíneo local y la absorción." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Qué es el reflejo gastrocólico?",
+  ops:["Aumento de la motilidad colónica tras la ingesta","Disminución de la motilidad colónica tras la ingesta","Contracción del estómago tras la defecación","Relajación del esfínter esofágico inferior"],
+  ok:0,
+  exp:"El reflejo gastrocólico es el aumento de la motilidad colónica (movimientos de masa) desencadenado por la distensión gástrica tras la ingesta, facilitando la defecación." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Qué es el reflejo enterogástrico?",
+  ops:["Aumento de la motilidad gástrica por distensión","Inhibición de la motilidad gástrica por el duodeno","Contracción del píloro por el vago","Secreción ácida por la gastrina"],
+  ok:1,
+  exp:"El reflejo enterogástrico es la inhibición de la motilidad y la secreción gástrica desencadenada por la presencia de quimo en el duodeno (ácido, grasa, osmolaridad elevada)." },
+
+{ cat:"Refuerzo", tipo:"teoria",
+  q:"¿Qué es la relajación receptiva gástrica?",
+  ops:["Contracción del píloro tras la ingesta","Aumento del volumen gástrico sin aumento de presión","Secreción ácida por distensión","Relajación del esfínter esofágico inferior"],
+  ok:1,
+  exp:"La relajación receptiva es un reflejo vagal que permite que el estómago se distienda y acomode el alimento sin un aumento significativo de la presión intragástrica." }
+
+];
+
+/* ============ LÓGICA ============ */
+const cont = document.getElementById('quiz');
+const marcador = document.getElementById('marcador');
+let respondidas = 0, aciertos = 0;
+
+function actualizarMarcador() {
+  marcador.textContent = `Respondidas: ${respondidas} / ${preguntas.length} · Aciertos: ${aciertos}`;
+}
+
+function responder(card, caja, exp, p, elegida) {
+  if (card.dataset.respondida) return;
+  card.dataset.respondida = "1";
+  caja.querySelectorAll('.opcion').forEach((b, j) => {
+    b.disabled = true;
+    if (j === p.ok) b.classList.add('correcta');
+    if (j === elegida && elegida !== p.ok) b.classList.add('incorrecta');
+  });
+  const acerto = elegida === p.ok;
+  respondidas++;
+  if (acerto) aciertos++;
+  actualizarMarcador();
+  exp.innerHTML = `<strong>${acerto ? '✅ ¡Correcto!' : '❌ Respuesta incorrecta.'}</strong> ${p.exp}`;
+  exp.classList.add('visible');
+}
+
+function construir() {
+  cont.innerHTML = "";
+  respondidas = 0; aciertos = 0;
+  actualizarMarcador();
+
+  preguntas.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'card ' + p.tipo;
+
+    const cab = document.createElement('div');
+    cab.className = 'cabecera';
+    cab.innerHTML =
+      `<div class="numero">${i + 1}</div>
+       <span class="etiqueta ${p.tipo === 'caso' ? 'c' : 't'}">
+         ${p.tipo === 'caso' ? 'Caso clínico' : 'Teoría'}
+       </span>
+       <span class="etiqueta materia">${p.cat}</span>`;
+    card.appendChild(cab);
+
+    const enun = document.createElement('p');
+    enun.className = 'enunciado';
+    enun.textContent = p.q;
+    card.appendChild(enun);
+
+    const caja = document.createElement('div');
+    caja.className = 'opciones';
+    const exp = document.createElement('div');
+    exp.className = 'explicacion';
+
+    p.ops.forEach((op, j) => {
+      const b = document.createElement('button');
+      b.className = 'opcion';
+      b.innerHTML = `<span class="letra">${'ABCD'[j]}</span><span>${op}</span>`;
+      b.addEventListener('click', () => responder(card, caja, exp, p, j));
+      caja.appendChild(b);
+    });
+
+    card.appendChild(caja);
+    card.appendChild(exp);
+    cont.appendChild(card);
+  });
+}
+
+preguntas.forEach((p, i) => {
+  const max = Math.max(...p.ops.map(o => o.length));
+  if (p.ops[p.ok].length === max) {
+    console.warn(`Aviso Q${i+1}: la correcta es (o empata como) la más larga.`);
+  }
+});
+
+construir();
+</script>
+
+</body>
+</html>
